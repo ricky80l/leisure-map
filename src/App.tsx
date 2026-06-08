@@ -8,13 +8,9 @@ import {
   Phone, 
   User, 
   RotateCcw,
-  SlidersHorizontal,
-  Layers,
-  Map as MapIcon,
   X,
   Menu,
-  Navigation,
-  Compass
+  Navigation
 } from 'lucide-react';
 import { 
   Activity, 
