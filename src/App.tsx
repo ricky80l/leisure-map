@@ -371,6 +371,7 @@ export default function App() {
             <h1 className="logo-text">LeisureMap</h1>
           </div>
           <p className="subtitle">Scopri i migliori corsi e hobby nella tua zona</p>
+          <p className="subtitle">by Riccardo Z.</p>
         </div>
 
         <div className="sidebar-content">
