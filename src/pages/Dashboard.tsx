@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { MapPin, ShieldAlert, LogOut, Plus, Settings, CalendarDays, Loader2 } from 'lucide-react';
 import { supabase } from '../lib/supabaseClient';
 import { Activity } from '../data/mockActivities';
