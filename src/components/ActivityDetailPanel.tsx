@@ -30,6 +30,19 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
     window.open(`https://www.google.com/maps/dir/?api=1&destination=${activity.lat},${activity.lng}`, '_blank');
   };
 
+  const handleContact = () => {
+    if (!activity.contact || activity.contact === 'Nessun contatto disponibile') {
+      alert("Purtroppo non abbiamo recapiti per questa struttura. Cerca il nome su Google!");
+      return;
+    }
+    
+    if (activity.contact.includes('@')) {
+      window.location.href = `mailto:${activity.contact}?subject=Richiesta informazioni: ${activity.name}`;
+    } else {
+      window.location.href = `tel:${activity.contact.replace(/\s+/g, '')}`;
+    }
+  };
+
   const handleShare = async () => {
     const shareText = `Vieni a fare ${activity.name} da ${activity.locationName}!\nOrario: ${activity.startHour}:00 - ${activity.endHour}:00\n`;
     if (navigator.share) {
@@ -175,7 +188,10 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
               <Share2 size={20} />
             </button>
           </div>
-          <button className="w-full mt-2 bg-white border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-800 flex items-center justify-center gap-2 py-3 rounded-xl font-bold transition-all">
+          <button 
+            onClick={handleContact}
+            className="w-full mt-2 bg-white border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-800 flex items-center justify-center gap-2 py-3 rounded-xl font-bold transition-all"
+          >
             <Mail size={18} />
             Richiedi Informazioni
           </button>
