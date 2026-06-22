@@ -136,34 +136,25 @@ export default function Map({
 
       const marker = L.marker([act.lat, act.lng], { icon: customIcon });
 
-      const daysString = act.days.map(d => DAY_LABELS.find(l => l.value === d)?.label).join(', ');
-      const popupHtml = `
-        <div class="popup-content">
-          <div class="popup-title">${act.name}</div>
-          <div class="popup-location"><span style="font-size:14px">📍</span> ${act.locationName}</div>
-          <div class="popup-schedule"><span style="font-size:14px">🕒</span> ${daysString} dalle ${act.startHour}:00 alle ${act.endHour}:00</div>
-          <div class="popup-footer">
-            <span class="popup-price">${act.price}</span>
-            <button class="popup-btn" id="popup-btn-${act.id}">Dettagli</button>
-          </div>
-        </div>
-      `;
+      const isMobile = window.innerWidth <= 768;
 
-      marker.bindPopup(popupHtml);
+      marker.bindTooltip(`
+        <div style="text-align: center; font-family: 'Outfit', sans-serif;">
+          <div style="font-weight: 700; font-size: 12px; color: #0f172a; max-width: 140px; white-space: normal; line-height: 1.2;">${act.name}</div>
+          <div style="color: #64748b; font-size: 10px; margin-top: 2px; font-weight: 600;">${getCategoryLabel(act.category)}</div>
+        </div>
+      `, {
+        direction: 'top',
+        offset: [0, -20],
+        className: 'custom-tooltip',
+        permanent: isMobile,
+        opacity: 0.95
+      });
       
       marker.on('click', () => {
         setSelectedActivity(act);
-      });
-
-      marker.on('popupopen', () => {
-        const btn = document.getElementById(`popup-btn-${act.id}`);
-        if (btn) {
-          btn.addEventListener('click', () => {
-            setSelectedActivity(act);
-            if (window.innerWidth <= 768) {
-              setSidebarOpen(true);
-            }
-          });
+        if (isMobile) {
+          setSidebarOpen(false); // Chiudiamo la sidebar sinistra così si vede bene il panel destro
         }
       });
 
@@ -172,16 +163,8 @@ export default function Map({
 
     // Se c'è un'attività selezionata, centrala fluidamente
     if (selectedActivity) {
-      const marker = markersGroupRef.current.getLayers().find(
-        (l: any) => l.getLatLng().lat === selectedActivity.lat && l.getLatLng().lng === selectedActivity.lng
-      ) as L.Marker;
-      
       // Usa un offset visivo per desktop se necessario (opzionale), ma flyTo garantisce il pan corretto
       mapRef.current.flyTo([selectedActivity.lat, selectedActivity.lng], 15, { duration: 0.8 });
-      
-      if (marker && !marker.isPopupOpen()) {
-        marker.openPopup();
-      }
     }
   }, [filteredActivities, selectedActivity, setSelectedActivity, setSidebarOpen]);
 
