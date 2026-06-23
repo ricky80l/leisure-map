@@ -630,6 +630,6 @@ body {
 
 /* Fix zoom controls positioning on mobile */
 .leaflet-bottom.leaflet-right {
-  bottom: 30px !important;
-  right: 10px !important;
+  bottom: 80px !important;
+  right: 16px !important;
 }
