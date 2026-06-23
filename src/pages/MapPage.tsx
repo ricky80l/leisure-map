@@ -212,7 +212,7 @@ export default function MapPage() {
   return (
     <div className="app-container">
       {/* Header Mobile / Pulsante Menu */}
-      <div className="absolute top-4 left-4 z-[1000] flex gap-2">
+      <div className="absolute top-4 left-4 z-[1010] flex gap-2">
         <button 
           className="sidebar-toggle-btn !static"
           onClick={() => setSidebarOpen(!sidebarOpen)}
