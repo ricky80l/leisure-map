@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import L from 'leaflet';
-import { Activity, CATEGORY_EMOJIS, DAY_LABELS } from '../data/mockActivities';
+import { Activity, CATEGORY_EMOJIS, getCategoryLabel } from '../data/mockActivities';
 
 interface MapProps {
   userCoords: { lat: number; lng: number } | null;
