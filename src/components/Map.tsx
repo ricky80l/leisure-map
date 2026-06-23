@@ -38,9 +38,12 @@ export default function Map({
 
     // Inizializza la mappa centrata sulla posizione corrente
     const map = L.map(mapContainerRef.current, {
-      zoomControl: true,
+      zoomControl: false,
       attributionControl: false
     }).setView([userCoords.lat, userCoords.lng], 13);
+
+    // Riposiziona il controllo dello zoom in basso a destra per evitare sovrapposizioni
+    L.control.zoom({ position: 'bottomright' }).addTo(map);
 
     // Carica i tile CHIARI E MINIMALI da CartoDB (Positron)
     const tileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
