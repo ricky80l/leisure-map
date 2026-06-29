@@ -1,5 +1,8 @@
 import { useEffect, useRef } from 'react';
 import L from 'leaflet';
+import 'leaflet.markercluster';
+import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import { Activity, CATEGORY_EMOJIS, getCategoryLabel } from '../data/mockActivities';
 
 interface MapProps {
@@ -55,8 +58,14 @@ export default function Map({
     // Aggiunge controllo attribuzione
     L.control.attribution({ position: 'bottomright' }).addTo(map);
 
-    // Gruppo per i marker delle attività
-    const markersGroup = L.featureGroup().addTo(map);
+    // Gruppo Cluster per i marker delle attività
+    const markersGroup = L.markerClusterGroup({
+      maxClusterRadius: 30, // Raggio di raggruppamento in pixel
+      spiderfyOnMaxZoom: true, // Apre a ragnatela se i marker hanno stesse coordinate
+      showCoverageOnHover: false,
+      zoomToBoundsOnClick: true,
+      spiderLegPolylineOptions: { weight: 2, color: '#fca5a5', opacity: 0.8 }
+    }).addTo(map);
 
     mapRef.current = map;
     markersGroupRef.current = markersGroup;

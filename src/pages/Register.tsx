@@ -181,7 +181,7 @@ export default function Register() {
                 </div>
                 <div className="ml-3 text-sm">
                   <label htmlFor="terms" className="font-bold text-slate-700">Termini di Servizio</label>
-                  <p className="text-slate-500 font-medium mt-0.5">Accetto i <a href="#" className="text-blue-600 hover:underline">Termini di Servizio</a> e dichiaro di essere il legittimo rappresentante della struttura indicata.</p>
+                  <p className="text-slate-500 font-medium mt-0.5">Accetto i <Link to="/terms" target="_blank" className="text-blue-600 hover:underline">Termini di Servizio</Link> e dichiaro di essere il legittimo rappresentante della struttura indicata.</p>
                 </div>
               </div>
 
@@ -198,7 +198,7 @@ export default function Register() {
                 </div>
                 <div className="ml-3 text-sm">
                   <label htmlFor="privacy" className="font-bold text-slate-700">Informativa Privacy</label>
-                  <p className="text-slate-500 font-medium mt-0.5">Acconsento al trattamento dei miei dati personali in conformità con la <a href="#" className="text-blue-600 hover:underline">Privacy Policy</a>.</p>
+                  <p className="text-slate-500 font-medium mt-0.5">Acconsento al trattamento dei miei dati personali in conformità con la <Link to="/privacy" target="_blank" className="text-blue-600 hover:underline">Privacy Policy</Link>.</p>
                 </div>
               </div>
             </div>

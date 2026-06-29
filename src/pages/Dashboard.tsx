@@ -4,6 +4,7 @@ import { MapPin, ShieldAlert, LogOut, Plus, Settings, CalendarDays, Loader2 } fr
 import { supabase } from '../lib/supabaseClient';
 import { Activity } from '../data/mockActivities';
 import { useAuth } from '../context/AuthContext';
+import ActivityModal from '../components/ActivityModal';
 
 export default function Dashboard() {
   const { user, signOut, loading: authLoading } = useAuth();
@@ -12,6 +13,8 @@ export default function Dashboard() {
   const [managerProfile, setManagerProfile] = useState<any>(null);
   const [activities, setActivities] = useState<Activity[]>([]);
   const [loadingData, setLoadingData] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activityToEdit, setActivityToEdit] = useState<Activity | null>(null);
 
   useEffect(() => {
     // Se non è loggato (e non sta caricando l'auth), caccialo
@@ -69,6 +72,64 @@ export default function Dashboard() {
       </div>
     );
   }
+
+  const handleAddCourse = () => {
+    setActivityToEdit(null);
+    setIsModalOpen(true);
+  };
+
+  const handleEditCourse = (act: Activity) => {
+    setActivityToEdit(act);
+    setIsModalOpen(true);
+  };
+
+  const handleDeleteCourse = async (id: string) => {
+    if (!supabase) return;
+    if (!window.confirm("Sei sicuro di voler eliminare questo corso?")) return;
+    try {
+      const { error } = await supabase.from('activities').delete().eq('id', id);
+      if (error) throw error;
+      setActivities(prev => prev.filter(a => a.id !== id));
+    } catch (err: any) {
+      alert("Errore durante l'eliminazione: " + err.message);
+    }
+  };
+
+  const handleSaveCourse = async (newAct: Partial<Activity>) => {
+    if (!supabase) return;
+    try {
+      let finalActivity = { ...newAct };
+      
+      if (!activityToEdit) {
+        finalActivity.id = 'act_' + Date.now();
+        if (activities.length > 0) {
+          const firstAct = activities[0];
+          finalActivity.lat = firstAct.lat;
+          finalActivity.lng = firstAct.lng;
+          finalActivity.address = firstAct.address;
+          finalActivity.contact = firstAct.contact;
+          finalActivity.organizer = firstAct.organizer;
+        } else {
+          finalActivity.lat = 45.6568; 
+          finalActivity.lng = 12.1950;
+          finalActivity.address = "Indirizzo da inserire";
+          finalActivity.contact = "http://";
+          finalActivity.organizer = managerProfile?.facility_name;
+        }
+      }
+
+      const { error } = await supabase.from('activities').upsert(finalActivity);
+      if (error) throw error;
+
+      if (activityToEdit) {
+        setActivities(prev => prev.map(a => a.id === finalActivity.id ? (finalActivity as Activity) : a));
+      } else {
+        setActivities(prev => [...prev, finalActivity as Activity]);
+      }
+    } catch (err: any) {
+      throw err; // propagates to modal to show error
+    }
+  };
 
   const isPending = managerProfile?.status === 'pending';
 
@@ -143,6 +204,7 @@ export default function Dashboard() {
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-bold text-slate-800">Corsi Attivi</h2>
             <button 
+              onClick={handleAddCourse}
               disabled={isPending}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold transition-all ${
                 isPending 
@@ -180,10 +242,18 @@ export default function Dashboard() {
                       <td className="p-4 text-slate-600 text-sm font-medium">{act.startHour}:00 - {act.endHour}:00</td>
                       <td className="p-4 text-slate-800 font-bold text-sm">{act.price}</td>
                       <td className="p-4">
-                        <button disabled={isPending} className="text-blue-600 hover:text-blue-800 font-bold text-sm disabled:text-slate-300 mr-4 transition-colors">
+                        <button 
+                          onClick={() => handleEditCourse(act)}
+                          disabled={isPending} 
+                          className="text-blue-600 hover:text-blue-800 font-bold text-sm disabled:text-slate-300 mr-4 transition-colors"
+                        >
                           Modifica
                         </button>
-                        <button disabled={isPending} className="text-red-500 hover:text-red-700 font-bold text-sm disabled:text-slate-300 transition-colors">
+                        <button 
+                          onClick={() => handleDeleteCourse(act.id)}
+                          disabled={isPending} 
+                          className="text-red-500 hover:text-red-700 font-bold text-sm disabled:text-slate-300 transition-colors"
+                        >
                           Elimina
                         </button>
                       </td>
@@ -199,6 +269,14 @@ export default function Dashboard() {
           </div>
         </main>
       </div>
+
+      <ActivityModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSave={handleSaveCourse}
+        activityToEdit={activityToEdit}
+        facilityName={managerProfile?.facility_name || ''}
+      />
     </div>
   );
 }

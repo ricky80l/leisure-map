@@ -10,6 +10,7 @@ export interface Activity {
   price: string;
   description: string;
   locationName: string;
+  address?: string;
   lat: number;
   lng: number;
   contact: string;

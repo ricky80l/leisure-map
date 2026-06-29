@@ -97,9 +97,16 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
               {getCategoryLabel(activity.category)}
             </span>
             <h2 className="text-2xl font-bold leading-tight drop-shadow-md">{activity.name}</h2>
-            <div className="flex items-center gap-1.5 mt-1 opacity-90 text-sm font-medium drop-shadow-sm">
-              <MapPin size={14} />
-              <span className="truncate">{activity.locationName}</span>
+            <div className="flex flex-col gap-1 mt-2 opacity-90 drop-shadow-sm">
+              <div className="flex items-center gap-1.5 text-sm font-semibold">
+                <MapPin size={14} className="shrink-0" />
+                <span className="truncate">{activity.locationName}</span>
+              </div>
+              {activity.address && activity.address !== "Indirizzo non disponibile" && (
+                <div className="flex items-center gap-1.5 pl-5 text-xs font-medium opacity-80">
+                  <span className="truncate">{activity.address}</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
