@@ -6,6 +6,8 @@ import { fetchActivities } from '../data/db';
 import { Activity, getDistanceKm } from '../data/mockActivities';
 import { Link } from 'react-router-dom';
 import ActivityDetailPanel from '../components/ActivityDetailPanel';
+import PatchNotesModal from '../components/PatchNotesModal';
+import { LATEST_PATCH_NOTE } from '../data/patchNotes';
 
 // Coordinate di default (Treviso) se il GPS non è disponibile
 const DEFAULT_LAT = 45.6669;
@@ -43,8 +45,22 @@ export default function MapPage() {
   const [startHourFilter, setStartHourFilter] = useState<number>(8);
   const [endHourFilter, setEndHourFilter] = useState<number>(23);
 
-  // UI Mobile
+  // UI Mobile e Modali
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showPatchNotes, setShowPatchNotes] = useState(false);
+
+  // Controllo Patch Notes all'avvio
+  useEffect(() => {
+    const savedVersion = localStorage.getItem('leisureMap_version');
+    if (savedVersion !== LATEST_PATCH_NOTE.version) {
+      setShowPatchNotes(true);
+    }
+  }, []);
+
+  const handleClosePatchNotes = () => {
+    localStorage.setItem('leisureMap_version', LATEST_PATCH_NOTE.version);
+    setShowPatchNotes(false);
+  };
 
   // 0. Carica i dati dal DB (Supabase o JSON locale)
   useEffect(() => {
@@ -299,6 +315,11 @@ export default function MapPage() {
         activity={selectedActivity} 
         onClose={() => setSelectedActivity(null)} 
       />
+
+      {/* Modale Patch Notes */}
+      {showPatchNotes && (
+        <PatchNotesModal onClose={handleClosePatchNotes} />
+      )}
     </div>
   );
 }
