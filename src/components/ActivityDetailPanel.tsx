@@ -170,9 +170,21 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3 text-sm text-slate-700">
                 <div className="bg-white p-1.5 rounded-full shadow-sm text-blue-600">
-                  <Phone size={14} />
+                  {activity.contact?.includes('@') ? <Mail size={14} /> : 
+                   (activity.contact?.startsWith('http') || activity.contact?.startsWith('www')) ? <Navigation size={14} /> : 
+                   <Phone size={14} />}
                 </div>
-                <span>{activity.contact}</span>
+                <a 
+                  href={activity.contact?.includes('@') ? `mailto:${activity.contact}` : 
+                        activity.contact?.startsWith('http') ? activity.contact :
+                        activity.contact?.startsWith('www') ? `https://${activity.contact}` :
+                        `tel:${activity.contact?.replace(/\s+/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-600 hover:underline transition-colors truncate"
+                >
+                  {activity.contact}
+                </a>
               </div>
             </div>
           </div>
