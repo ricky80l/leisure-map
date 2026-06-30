@@ -27,7 +27,12 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
   const daysString = activity.days.map(d => DAY_LABELS.find(l => l.value === d)?.label).join(', ');
 
   const handleDirections = () => {
-    window.open(`https://www.google.com/maps/dir/?api=1&destination=${activity.lat},${activity.lng}`, '_blank');
+    let destination = `${activity.lat},${activity.lng}`;
+    // Se l'indirizzo sembra esatto (es. via e comune), usiamo quello per avere il civico preciso su Maps
+    if (activity.address && activity.address !== "Indirizzo non disponibile" && activity.address.includes(',')) {
+      destination = encodeURIComponent(activity.address);
+    }
+    window.open(`https://www.google.com/maps/dir/?api=1&destination=${destination}`, '_blank');
   };
 
   const handleContact = () => {
