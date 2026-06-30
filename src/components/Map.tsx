@@ -135,7 +135,7 @@ export default function Map({
 
     filteredActivities.forEach(act => {
       // Risoluzione dell'icona basata sul dizionario dinamico delle emoji
-      const emoji = CATEGORY_EMOJIS[act.category.toLowerCase()] || CATEGORY_EMOJIS.default;
+      const emoji = CATEGORY_EMOJIS[(act.category || '').toLowerCase()] || CATEGORY_EMOJIS.default;
       const isSelected = selectedActivity?.id === act.id;
 
       const customIcon = L.divIcon({

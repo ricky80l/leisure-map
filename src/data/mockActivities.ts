@@ -28,13 +28,14 @@ export const CATEGORY_EMOJIS: Record<string, string> = {
   basket: '🏀',
   karate: '🥋',
   ciclismo: '🚴',
-  palestra: '🏋️',
+  palestra: '💪',
   padel: '🎾',
   scacchi: '♟️',
-  default: '📍'
+  default: '❓'
 };
 
 export function getCategoryLabel(category: string): string {
+  if (!category) return `${CATEGORY_EMOJIS.default} Altro`;
   const c = category.toLowerCase();
   const emoji = CATEGORY_EMOJIS[c] || CATEGORY_EMOJIS.default;
   const capitalized = category.charAt(0).toUpperCase() + category.slice(1);
