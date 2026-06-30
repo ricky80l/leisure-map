@@ -145,7 +145,7 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
             <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
               <span className="text-blue-600 font-bold mb-1 block text-lg leading-none">🎖️</span>
               <p className="text-xs text-slate-500 font-medium">Livello</p>
-              <p className="text-sm font-semibold text-slate-800">{LEVEL_LABELS[activity.level]}</p>
+              <p className="text-sm font-semibold text-slate-800">{LEVEL_LABELS[activity.level] || 'Tutti i livelli'}</p>
             </div>
             <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
               <span className="text-blue-600 font-bold mb-1 block text-lg leading-none">🎯</span>

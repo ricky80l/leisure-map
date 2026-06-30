@@ -194,8 +194,8 @@ export default function MapPage() {
       if (!matchDay) return false;
     }
 
-    // Filtro orario
-    if (act.startHour < startHourFilter || act.endHour > endHourFilter) return false;
+    // Filtro orario (l'attività deve sovrapporsi con la fascia oraria scelta)
+    if (act.endHour <= startHourFilter || act.startHour >= endHourFilter) return false;
 
     return true;
   });
