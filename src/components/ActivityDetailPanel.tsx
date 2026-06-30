@@ -36,12 +36,28 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
       return;
     }
     
-    if (activity.contact.includes('@')) {
+    if (activity.contact.startsWith('http') || activity.contact.startsWith('www')) {
+      const url = activity.contact.startsWith('www') ? `https://${activity.contact}` : activity.contact;
+      window.open(url, '_blank');
+    } else if (activity.contact.includes('@')) {
       window.location.href = `mailto:${activity.contact}?subject=Richiesta informazioni: ${activity.name}`;
     } else {
       window.location.href = `tel:${activity.contact.replace(/\s+/g, '')}`;
     }
   };
+
+  let contactIcon = <Phone size={18} />;
+  let contactText = "Contatta la struttura";
+  if (activity.contact?.includes('@')) {
+    contactIcon = <Mail size={18} />;
+    contactText = "Invia Email";
+  } else if (activity.contact?.startsWith('http') || activity.contact?.startsWith('www')) {
+    contactIcon = <Navigation size={18} />;
+    contactText = "Visita il Sito Web";
+  } else if (activity.contact && activity.contact !== 'Nessun contatto disponibile') {
+    contactIcon = <Phone size={18} />;
+    contactText = "Chiama Ora";
+  }
 
   const handleShare = async () => {
     const shareText = `Vieni a fare ${activity.name} da ${activity.locationName}!\nOrario: ${activity.startHour}:00 - ${activity.endHour}:00\n`;
@@ -167,8 +183,18 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
         <div className="bg-white border-t border-slate-100 p-4 shadow-[0_-10px_20px_-15px_rgba(0,0,0,0.1)]">
           <div className="flex items-center justify-between mb-4 px-2">
             <div>
-              <p className="text-xs text-slate-500 font-medium">Prezzo Indicativo</p>
-              <p className="text-xl font-extrabold text-slate-900">{activity.price}</p>
+              <p className="text-xs text-slate-500 font-medium">Prezzo</p>
+              {!activity.price || activity.price === 'N/A' || activity.price.toLowerCase().includes('verificare') ? (
+                <p className="text-lg font-bold text-amber-600 flex items-center gap-2">
+                  <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
+                  </span>
+                  Da verificare
+                </p>
+              ) : (
+                <p className="text-xl font-extrabold text-slate-900">{activity.price}</p>
+              )}
             </div>
           </div>
 
@@ -197,10 +223,14 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
           </div>
           <button 
             onClick={handleContact}
-            className="w-full mt-2 bg-white border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-800 flex items-center justify-center gap-2 py-3 rounded-xl font-bold transition-all"
+            className={`w-full mt-2 border-2 flex items-center justify-center gap-2 py-3 rounded-xl font-bold transition-all ${
+              (!activity.price || activity.price === 'N/A' || activity.price.toLowerCase().includes('verificare'))
+                ? 'bg-amber-50 border-amber-200 hover:bg-amber-100 text-amber-800 shadow-sm'
+                : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-800'
+            }`}
           >
-            <Mail size={18} />
-            Richiedi Informazioni
+            {contactIcon}
+            {contactText}
           </button>
         </div>
 
