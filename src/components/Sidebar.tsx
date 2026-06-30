@@ -93,7 +93,7 @@ export default function Sidebar({
               <input 
                 type="text" 
                 className="input-field" 
-                placeholder="Inserisci comune (es. Conegliano, Mogliano)"
+                placeholder="Comune o nome struttura (es. Natatorium)"
                 value={citySearchQuery}
                 onChange={(e) => setCitySearchQuery(e.target.value)}
               />

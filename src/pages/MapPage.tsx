@@ -100,12 +100,29 @@ export default function MapPage() {
     new Set(allActivities.map(act => act.category))
   );
 
-  // 4. Funzione per cercare una città / indirizzo tramite geocoding (Nominatim)
+  // 4. Funzione per cercare una città / indirizzo / struttura
   const handleCitySearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!citySearchQuery.trim()) return;
 
     setSearchLoading(true);
+
+    // 1. Cerca prima se il testo corrisponde a una struttura o corso nel nostro DB globale
+    const query = citySearchQuery.toLowerCase();
+    const facilityMatch = allActivities.find(act => 
+      act.locationName.toLowerCase().includes(query) || 
+      act.organizer.toLowerCase().includes(query)
+    );
+
+    if (facilityMatch) {
+      setUserCoords({ lat: facilityMatch.lat, lng: facilityMatch.lng });
+      setCurrentCityName(facilityMatch.locationName);
+      setGpsError(null);
+      setSelectedActivity(facilityMatch); // Seleziona subito l'attività trovata
+      setSearchLoading(false);
+      return;
+    }
+
     try {
       // Prioritizza i risultati nella provincia di Treviso o in Veneto
       const res = await fetch(
