@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Menu, X } from 'lucide-react';
 import Sidebar from '../components/Sidebar';
 import Map from '../components/Map';
@@ -112,9 +112,24 @@ export default function MapPage() {
   }, [userCoords, searchRadius, allActivities]);
 
   // 3. Estrarre l'elenco delle categorie uniche presenti nel database per i filtri della Sidebar
-  const availableCategories = Array.from(
-    new Set(allActivities.map(act => act.category))
-  );
+  const availableCategories = useMemo(() => {
+    const baseCats = allActivities.map(act => act.category);
+    
+    // Estrai anche i corsi rilevati dal bot (es: 🏆 Corsi e Servizi rilevati: Yoga, Pilates.)
+    const detectedCats = allActivities.flatMap(act => {
+      if (!act.description) return [];
+      const match = act.description.match(/🏆 Corsi e Servizi rilevati:\s*(.*?)\./);
+      if (match && match[1]) {
+        return match[1].split(',').map(c => c.trim().toLowerCase());
+      }
+      return [];
+    });
+
+    const allCats = [...baseCats, ...detectedCats].filter(Boolean);
+    // Rimuovi duplicati (ignorando il case) e ordina alfabeticamente
+    const uniqueCats = Array.from(new Set(allCats.map(c => c.toLowerCase()))).sort();
+    return uniqueCats;
+  }, [allActivities]);
 
   // 4. Funzione per cercare una città / indirizzo / struttura
   const handleCitySearch = async (e: React.FormEvent) => {
@@ -195,8 +210,25 @@ export default function MapPage() {
       if (!matchName && !matchDesc && !matchLoc) return false;
     }
 
-    // Categoria
-    if (selectedCategory !== 'all' && act.category !== selectedCategory) return false;
+    // Categoria o Corso Rilevato
+    if (selectedCategory !== 'all') {
+      const selectedLower = selectedCategory.toLowerCase();
+      const matchCategory = act.category && act.category.toLowerCase() === selectedLower;
+      
+      // Cerca anche se lo sport è elencato nella stringa "🏆 Corsi e Servizi rilevati: ..."
+      let matchScrapedCourse = false;
+      if (act.description) {
+        const match = act.description.match(/🏆 Corsi e Servizi rilevati:\s*(.*?)\./);
+        if (match && match[1]) {
+           const courses = match[1].split(',').map(c => c.trim().toLowerCase());
+           if (courses.includes(selectedLower)) {
+             matchScrapedCourse = true;
+           }
+        }
+      }
+      
+      if (!matchCategory && !matchScrapedCourse) return false;
+    }
 
     // Livello
     if (selectedLevel !== 'all' && act.level !== selectedLevel) return false;

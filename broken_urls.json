@@ -1,0 +1,32 @@
+[
+  {
+    "name": "A.S.D. Gregorense Trinitas",
+    "url": "https://gregopadova.com",
+    "status": "getaddrinfo ENOTFOUND gregopadova.com"
+  },
+  {
+    "name": "Tiro con l'arco tradizionale - Compagnia Titulum 06ARTI - FIARC",
+    "url": "http://06arti.ning.com/",
+    "status": 404
+  },
+  {
+    "name": "Pista Motocross Ca' Bianca",
+    "url": "https://motocrosscabianca.com/",
+    "status": "getaddrinfo ENOTFOUND motocrosscabianca.com"
+  },
+  {
+    "name": "Archivio Storico Comunale",
+    "url": "https://www.segni-di-carta.com/",
+    "status": "getaddrinfo ENOTFOUND www.segni-di-carta.com"
+  },
+  {
+    "name": "CIAO Fitness House",
+    "url": "https://www.ciaofit.it/mogliano/",
+    "status": "read ECONNRESET"
+  },
+  {
+    "name": "Polisportiva Casale",
+    "url": "https://www.lapolisporticasale.it/",
+    "status": "getaddrinfo ENOTFOUND www.lapolisporticasale.it"
+  }
+]
