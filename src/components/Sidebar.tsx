@@ -37,6 +37,7 @@ interface SidebarProps {
   selectedActivity: Activity | null;
   handleCardClick: (act: Activity) => void;
   availableCategories: string[];
+  allActivities: Activity[];
 }
 
 const hoursOptions = Array.from({ length: 17 }, (_, i) => i + 8); // Da 8 a 24
@@ -69,7 +70,8 @@ export default function Sidebar({
   handleResetFilters,
   selectedActivity,
   handleCardClick,
-  availableCategories
+  availableCategories,
+  allActivities
 }: SidebarProps) {
   return (
     <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
@@ -96,7 +98,13 @@ export default function Sidebar({
                 placeholder="Comune o nome struttura (es. Natatorium)"
                 value={citySearchQuery}
                 onChange={(e) => setCitySearchQuery(e.target.value)}
+                list="facility-suggestions"
               />
+              <datalist id="facility-suggestions">
+                {Array.from(new Set(allActivities.map(a => a.locationName))).sort().map(loc => (
+                  <option key={loc} value={loc} />
+                ))}
+              </datalist>
             </div>
             <button type="submit" className="location-btn" disabled={searchLoading}>
               {searchLoading ? '...' : 'Vai'}
@@ -145,7 +153,13 @@ export default function Sidebar({
               placeholder="Cosa vuoi fare? (es. Calcio, Yoga)"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              list="activity-suggestions"
             />
+            <datalist id="activity-suggestions">
+              {availableCategories.map(cat => (
+                <option key={cat} value={cat} />
+              ))}
+            </datalist>
           </div>
         </div>
 

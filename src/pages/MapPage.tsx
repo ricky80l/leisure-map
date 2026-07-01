@@ -118,9 +118,9 @@ export default function MapPage() {
     // Estrai anche i corsi rilevati dal bot (es: 🏆 Corsi e Servizi rilevati: Yoga, Pilates.)
     const detectedCats = allActivities.flatMap(act => {
       if (!act.description) return [];
-      const match = act.description.match(/🏆 Corsi e Servizi rilevati:\s*(.*?)\./);
+      const match = act.description.match(/🏆 Corsi e Servizi rilevati:\s*([^\n]+)/);
       if (match && match[1]) {
-        return match[1].split(',').map(c => c.trim().toLowerCase());
+        return match[1].replace(/\.$/, '').split(',').map(c => c.trim().toLowerCase());
       }
       return [];
     });
@@ -139,11 +139,13 @@ export default function MapPage() {
     setSearchLoading(true);
 
     // 1. Cerca prima se il testo corrisponde a una struttura o corso nel nostro DB globale
-    const query = citySearchQuery.toLowerCase();
-    const facilityMatch = allActivities.find(act => 
-      act.locationName.toLowerCase().includes(query) || 
-      act.organizer.toLowerCase().includes(query)
-    );
+    // Dividiamo la ricerca in parole chiave (es. "tennis este" -> ["tennis", "este"])
+    const queryTerms = citySearchQuery.toLowerCase().trim().split(/\s+/);
+    const facilityMatch = allActivities.find(act => {
+      const searchStr = `${act.name} ${act.locationName} ${act.organizer} ${act.address} ${act.category}`.toLowerCase();
+      // Deve contenere TUTTE le parole chiave digitate
+      return queryTerms.every(term => searchStr.includes(term));
+    });
 
     if (facilityMatch) {
       setUserCoords({ lat: facilityMatch.lat, lng: facilityMatch.lng });
@@ -203,11 +205,10 @@ export default function MapPage() {
   const filteredActivities = activities.filter(act => {
     // Ricerca testuale
     if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      const matchName = act.name.toLowerCase().includes(query);
-      const matchDesc = act.description.toLowerCase().includes(query);
-      const matchLoc = act.locationName.toLowerCase().includes(query);
-      if (!matchName && !matchDesc && !matchLoc) return false;
+      const queryTerms = searchQuery.toLowerCase().trim().split(/\s+/);
+      const searchStr = `${act.name} ${act.description} ${act.locationName} ${act.category}`.toLowerCase();
+      const matchAll = queryTerms.every(term => searchStr.includes(term));
+      if (!matchAll) return false;
     }
 
     // Categoria o Corso Rilevato
@@ -218,9 +219,9 @@ export default function MapPage() {
       // Cerca anche se lo sport è elencato nella stringa "🏆 Corsi e Servizi rilevati: ..."
       let matchScrapedCourse = false;
       if (act.description) {
-        const match = act.description.match(/🏆 Corsi e Servizi rilevati:\s*(.*?)\./);
+        const match = act.description.match(/🏆 Corsi e Servizi rilevati:\s*([^\n]+)/);
         if (match && match[1]) {
-           const courses = match[1].split(',').map(c => c.trim().toLowerCase());
+           const courses = match[1].replace(/\.$/, '').split(',').map(c => c.trim().toLowerCase());
            if (courses.includes(selectedLower)) {
              matchScrapedCourse = true;
            }
@@ -327,6 +328,7 @@ export default function MapPage() {
         selectedActivity={selectedActivity}
         handleCardClick={handleCardClick}
         availableCategories={availableCategories}
+        allActivities={allActivities}
       />
 
       {/* Contenitore Mappa */}
