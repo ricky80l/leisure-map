@@ -27,12 +27,17 @@ export async function fetchActivities(): Promise<Activity[]> {
 
     if (!data || data.length === 0) {
       console.log("Nessun dato trovato su Supabase. Fallback al JSON locale.");
-      return rawActivities as Activity[];
+      return (rawActivities as Activity[]).map(a => ({ ...a, id: String(a.id) }));
     }
 
-    return data as Activity[];
+    // Uniamo i dati che abbiamo appena importato localmente dal CSV!
+    const localImported = (rawActivities as Activity[]).filter(a => String(a.id).startsWith('csv_imported'));
+    const combined = [...(data as Activity[]), ...localImported];
+    
+    // Forziamo tutti gli ID a essere stringhe per evitare crash nei filtri di Mapbox
+    return combined.map(a => ({ ...a, id: String(a.id) }));
   } catch (error) {
     console.error("Errore imprevisto di rete con Supabase:", error);
-    return rawActivities as Activity[];
+    return (rawActivities as Activity[]).map(a => ({ ...a, id: String(a.id) }));
   }
 }

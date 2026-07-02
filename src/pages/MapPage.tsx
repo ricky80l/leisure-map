@@ -1,55 +1,48 @@
-import { useState, useEffect, useMemo } from 'react';
-import { Menu, X } from 'lucide-react';
-import Sidebar from '../components/Sidebar';
-import Map from '../components/Map';
-import { fetchActivities } from '../data/db';
-import { Activity, getDistanceKm } from '../data/mockActivities';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import Header from '../components/Header';
+import Filters from '../components/Filters';
+import ActivityCard from '../components/ActivityCard';
+import ActivityMap from '../components/map/ActivityMap';
 import ActivityDetailPanel from '../components/ActivityDetailPanel';
 import PatchNotesModal from '../components/PatchNotesModal';
 import { LATEST_PATCH_NOTE } from '../data/patchNotes';
+import { fetchActivities } from '../data/db';
+import { Activity, getDistanceKm } from '../data/mockActivities';
 
-// Coordinate di default (Treviso) se il GPS non è disponibile
 const DEFAULT_LAT = 45.6669;
 const DEFAULT_LNG = 12.2431;
 
 export default function MapPage() {
-  // Posizione corrente dell'utente o impostata manualmente
-  const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
-  const [gpsLoading, setGpsLoading] = useState(true);
-  const [gpsError, setGpsError] = useState<string | null>(null);
+  // --- UI State ---
+  const [theme, setTheme] = useState('light');
+  const [showPatchNotes, setShowPatchNotes] = useState(false);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
-  // Stato per la ricerca testuale della località
-  const [citySearchQuery, setCitySearchQuery] = useState('');
-  const [currentCityName, setCurrentCityName] = useState<string>('');
-  const [searchLoading, setSearchLoading] = useState(false);
-
-  // Raggio di ricerca in km
-  const [searchRadius, setSearchRadius] = useState<number>(5);
-
-  // Database globale scaricato (Supabase o JSON)
+  // --- Data State ---
   const [allActivities, setAllActivities] = useState<Activity[]>([]);
-
-  // Database attività filtrate geograficamente
   const [activities, setActivities] = useState<Activity[]>([]);
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
 
-  // Filtri di ricerca attività
-  const [searchQuery, setSearchQuery] = useState('');
+  // --- GPS / Search State ---
+  const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
+  const [citySearchQuery, setCitySearchQuery] = useState('');
+  const [currentCityName, setCurrentCityName] = useState<string>('');
+  
+  // --- Filters State ---
+  const [searchRadius, setSearchRadius] = useState<number>(30);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedLevel, setSelectedLevel] = useState<string>('all');
   const [selectedTarget, setSelectedTarget] = useState<string>('all');
-  const [selectedDays, setSelectedDays] = useState<number[]>([]);
-  
-  // Fascia oraria precisa (ora d'inizio e ora di fine consentita)
-  const [startHourFilter, setStartHourFilter] = useState<number>(8);
-  const [endHourFilter, setEndHourFilter] = useState<number>(23);
+  const [selectedDay, setSelectedDay] = useState<string>('all');
+  const [startHourLimit, setStartHourLimit] = useState<number | 'all'>('all');
+  const [endHourLimit, setEndHourLimit] = useState<number | 'all'>('all');
 
-  // UI Mobile e Modali
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [showPatchNotes, setShowPatchNotes] = useState(false);
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    document.body.dataset.theme = newTheme;
+  };
 
-  // Controllo Patch Notes all'avvio
   useEffect(() => {
     const savedVersion = localStorage.getItem('leisureMap_version');
     if (savedVersion !== LATEST_PATCH_NOTE.version) {
@@ -62,7 +55,6 @@ export default function MapPage() {
     setShowPatchNotes(false);
   };
 
-  // 0. Carica i dati dal DB (Supabase o JSON locale)
   useEffect(() => {
     async function loadData() {
       const data = await fetchActivities();
@@ -71,35 +63,26 @@ export default function MapPage() {
     loadData();
   }, []);
 
-  // 1. Rileva la posizione GPS dell'utente all'avvio
   useEffect(() => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-          setUserCoords({ lat, lng });
-          setGpsLoading(false);
+          setUserCoords({ lat: position.coords.latitude, lng: position.coords.longitude });
           setCurrentCityName('Tua Posizione GPS');
         },
-        (error) => {
-          console.warn('Errore geolocalizzazione:', error.message);
-          setGpsError('GPS non disponibile. Cerca un comune della provincia di Treviso.');
+        () => {
           setUserCoords({ lat: DEFAULT_LAT, lng: DEFAULT_LNG });
-          setGpsLoading(false);
           setCurrentCityName('Treviso (Predefinita)');
         },
         { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
       );
     } else {
-      setGpsError('Geolocalizzazione non supportata.');
       setUserCoords({ lat: DEFAULT_LAT, lng: DEFAULT_LNG });
-      setGpsLoading(false);
       setCurrentCityName('Treviso (Predefinita)');
     }
   }, []);
 
-  // 2. Filtra geograficamente le attività
+  // Update nearby activities when coords or radius change
   useEffect(() => {
     if (userCoords && allActivities.length > 0) {
       const nearby = allActivities.filter(act => {
@@ -107,253 +90,188 @@ export default function MapPage() {
         return distance <= searchRadius;
       });
       setActivities(nearby);
-      setSelectedActivity(null);
+      setSelectedActivity(prev => {
+        if (!prev) return null;
+        const isStillNearby = nearby.some(a => a.id === prev.id);
+        return isStillNearby ? prev : null;
+      });
     }
   }, [userCoords, searchRadius, allActivities]);
 
-  // 3. Estrarre l'elenco delle categorie uniche presenti nel database per i filtri della Sidebar
   const availableCategories = useMemo(() => {
     const baseCats = allActivities.map(act => act.category);
-    
-    // Estrai anche i corsi rilevati dal bot (es: 🏆 Corsi e Servizi rilevati: Yoga, Pilates.)
-    const detectedCats = allActivities.flatMap(act => {
-      if (!act.description) return [];
-      const match = act.description.match(/🏆 Corsi e Servizi rilevati:\s*([^\n]+)/);
-      if (match && match[1]) {
-        return match[1].replace(/\.$/, '').split(',').map(c => c.trim().toLowerCase());
-      }
-      return [];
-    });
-
-    const allCats = [...baseCats, ...detectedCats].filter(Boolean);
-    // Rimuovi duplicati (ignorando il case) e ordina alfabeticamente
-    const uniqueCats = Array.from(new Set(allCats.map(c => c.toLowerCase()))).sort();
+    const uniqueCats = Array.from(new Set(baseCats.map(c => c.toLowerCase()))).sort();
     return uniqueCats;
   }, [allActivities]);
 
-  // 4. Funzione per cercare una città / indirizzo / struttura
-  const handleCitySearch = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!citySearchQuery.trim()) return;
+  const handleCitySearch = async (e?: any, overrideQuery?: string) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const queryToUse = overrideQuery !== undefined ? overrideQuery : citySearchQuery;
+    if (!queryToUse.trim()) return;
 
-    setSearchLoading(true);
-
-    // 1. Cerca prima se il testo corrisponde a una struttura o corso nel nostro DB globale
-    // Dividiamo la ricerca in parole chiave (es. "tennis este" -> ["tennis", "este"])
-    const queryTerms = citySearchQuery.toLowerCase().trim().split(/\s+/);
+    const queryTerms = queryToUse.toLowerCase().trim().split(/\s+/);
     const facilityMatch = allActivities.find(act => {
       const searchStr = `${act.name} ${act.locationName} ${act.organizer} ${act.address} ${act.category}`.toLowerCase();
-      // Deve contenere TUTTE le parole chiave digitate
       return queryTerms.every(term => searchStr.includes(term));
     });
 
     if (facilityMatch) {
       setUserCoords({ lat: facilityMatch.lat, lng: facilityMatch.lng });
       setCurrentCityName(facilityMatch.locationName);
-      setGpsError(null);
-      setSelectedActivity(facilityMatch); // Seleziona subito l'attività trovata
-      setSearchLoading(false);
+      setSelectedActivity(facilityMatch);
       return;
     }
 
     try {
-      // Prioritizza i risultati nella provincia di Treviso o in Veneto
-      const res = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(citySearchQuery + ', Treviso, Italia')}`
-      );
+      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(citySearchQuery + ', Treviso, Italia')}`);
       const data = await res.json();
-
       if (data && data.length > 0) {
-        const lat = parseFloat(data[0].lat);
-        const lng = parseFloat(data[0].lon);
-        const displayName = data[0].display_name.split(',')[0]; // Prende il nome principale (es. città)
-
-        setUserCoords({ lat, lng });
-        setCurrentCityName(displayName);
-        setGpsError(null);
+        setUserCoords({ lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) });
+        setCurrentCityName(data[0].display_name.split(',')[0]);
       } else {
-        alert('Località non trovata. Controlla l\'ortografia e riprova.');
+        alert('Località non trovata.');
       }
     } catch (error) {
       console.error('Errore nel geocoding:', error);
-      alert('Impossibile cercare la località in questo momento. Controlla la tua connessione.');
-    } finally {
-      setSearchLoading(false);
     }
   };
 
-  // 5. Funzione per aggiornare la posizione tramite clic sulla mappa
-  const handleMapClick = async (lat: number, lng: number) => {
-    setUserCoords({ lat, lng });
-    setCurrentCityName('Punto selezionato');
-    setGpsError(null);
-    
-    // Reverse geocoding opzionale per avere il nome della via o città
-    try {
-      const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`);
-      const data = await res.json();
-      if (data && data.address) {
-        const placeName = data.address.city || data.address.town || data.address.village || data.address.road || 'Punto selezionato';
-        setCurrentCityName(placeName);
+  const filteredActivities = useMemo(() => {
+    return activities.filter(act => {
+      if (selectedCategory !== 'all') {
+        const matchCategory = act.category?.toLowerCase() === selectedCategory.toLowerCase();
+        if (!matchCategory) return false;
       }
-    } catch (error) {
-      console.warn("Reverse geocoding fallito", error);
-    }
-  };
-
-  // Filtra le attività visualizzate in base ai filtri selezionati
-  const filteredActivities = activities.filter(act => {
-    // Ricerca testuale
-    if (searchQuery) {
-      const queryTerms = searchQuery.toLowerCase().trim().split(/\s+/);
-      const searchStr = `${act.name} ${act.description} ${act.locationName} ${act.category}`.toLowerCase();
-      const matchAll = queryTerms.every(term => searchStr.includes(term));
-      if (!matchAll) return false;
-    }
-
-    // Categoria o Corso Rilevato
-    if (selectedCategory !== 'all') {
-      const selectedLower = selectedCategory.toLowerCase();
-      const matchCategory = act.category && act.category.toLowerCase() === selectedLower;
+      if (selectedLevel !== 'all' && (act.level || '').toLowerCase() !== selectedLevel.toLowerCase()) return false;
       
-      // Cerca anche se lo sport è elencato nella stringa "🏆 Corsi e Servizi rilevati: ..."
-      let matchScrapedCourse = false;
-      if (act.description) {
-        const match = act.description.match(/🏆 Corsi e Servizi rilevati:\s*([^\n]+)/);
-        if (match && match[1]) {
-           const courses = match[1].replace(/\.$/, '').split(',').map(c => c.trim().toLowerCase());
-           if (courses.includes(selectedLower)) {
-             matchScrapedCourse = true;
-           }
-        }
+      if (selectedTarget !== 'all') {
+        const actTarget = (act.target || 'tutti').toLowerCase();
+        // If the activity is for 'tutti', it matches anything. Otherwise, it must match specifically.
+        if (actTarget !== 'tutti' && actTarget !== selectedTarget.toLowerCase()) return false;
       }
-      
-      if (!matchCategory && !matchScrapedCourse) return false;
-    }
 
-    // Livello
-    if (selectedLevel !== 'all' && act.level !== selectedLevel) return false;
+      if (selectedDay !== 'all') {
+        if (!act.days || !act.days.includes(parseInt(selectedDay))) return false;
+      }
 
-    // Target (Adulti / Bambini)
-    if (selectedTarget !== 'all' && act.target !== selectedTarget) return false;
+      if (startHourLimit !== 'all' || endHourLimit !== 'all') {
+        const st = act.startHour ?? 0;
+        const en = act.endHour ?? 24;
+        
+        if (startHourLimit !== 'all' && st < startHourLimit) return false;
+        if (endHourLimit !== 'all' && en > endHourLimit) return false;
+      }
 
-    // Giorni (se selezionati, l'attività deve svolgersi in almeno uno dei giorni scelti)
-    if (selectedDays.length > 0) {
-      const matchDay = act.days.some(d => selectedDays.includes(d));
-      if (!matchDay) return false;
-    }
-
-    // Filtro orario (l'attività deve sovrapporsi con la fascia oraria scelta)
-    if (act.endHour <= startHourFilter || act.startHour >= endHourFilter) return false;
-
-    return true;
-  });
-
-  const handleCardClick = (act: Activity) => {
-    setSelectedActivity(act);
-    if (window.innerWidth <= 768) {
-      setSidebarOpen(false);
-    }
-  };
+      return true;
+    });
+  }, [activities, selectedCategory, selectedLevel, selectedTarget, selectedDay, startHourLimit, endHourLimit]);
 
   const handleResetFilters = () => {
-    setSearchQuery('');
     setSelectedCategory('all');
     setSelectedLevel('all');
+    setSearchRadius(1000); // Imposta un raggio grandissimo per mostrare tutti i pin globalmente
     setSelectedTarget('all');
-    setSelectedDays([]);
-    setStartHourFilter(8);
-    setEndHourFilter(23);
+    setSelectedDay('all');
+    setStartHourLimit('all');
+    setEndHourLimit('all');
     setSelectedActivity(null);
   };
 
-  const toggleDay = (dayValue: number) => {
-    if (selectedDays.includes(dayValue)) {
-      setSelectedDays(selectedDays.filter(d => d !== dayValue));
-    } else {
-      setSelectedDays([...selectedDays, dayValue]);
-    }
-  };
+  const handleSearchArea = useCallback((b: { west: number; south: number; east: number; north: number }) => {
+    // Basic implementation: update center to the middle of bounds
+    const lat = (b.north + b.south) / 2;
+    const lng = (b.east + b.west) / 2;
+    setUserCoords({ lat, lng });
+  }, []);
 
   return (
-    <div className="app-container">
-      {/* Header Mobile / Pulsante Menu */}
-      <div className="absolute top-4 left-4 z-[1010] flex gap-2">
-        <button 
-          className="sidebar-toggle-btn !static"
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          title="Filtri e Attività"
-        >
-          {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Pulsante Area Gestori (in alto a destra) */}
-      <div className="absolute top-4 right-4 z-[1000]">
-        <Link 
-          to="/login"
-          className="bg-gray-900/90 hover:bg-gray-800 text-white px-4 py-2 rounded-full shadow-lg backdrop-blur text-sm font-medium transition-all"
-        >
-          Sei un gestore?
-        </Link>
-      </div>
-
-      {/* Sidebar Laterale */}
-      <Sidebar
-        sidebarOpen={sidebarOpen}
-        citySearchQuery={citySearchQuery}
-        setCitySearchQuery={setCitySearchQuery}
+    <>
+      <Header 
+        citySearchQuery={citySearchQuery} 
+        setCitySearchQuery={setCitySearchQuery} 
         handleCitySearch={handleCitySearch}
-        searchLoading={searchLoading}
-        currentCityName={currentCityName}
-        searchRadius={searchRadius}
-        setSearchRadius={setSearchRadius}
-        gpsError={gpsError}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
+        theme={theme}
+        toggleTheme={toggleTheme}
+        allActivities={allActivities}
+      />
+
+      <Filters 
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
+        availableCategories={availableCategories}
+        searchRadius={searchRadius}
+        setSearchRadius={setSearchRadius}
         selectedLevel={selectedLevel}
         setSelectedLevel={setSelectedLevel}
         selectedTarget={selectedTarget}
         setSelectedTarget={setSelectedTarget}
-        selectedDays={selectedDays}
-        toggleDay={toggleDay}
-        startHourFilter={startHourFilter}
-        setStartHourFilter={setStartHourFilter}
-        endHourFilter={endHourFilter}
-        setEndHourFilter={setEndHourFilter}
-        filteredActivities={filteredActivities}
+        selectedDay={selectedDay}
+        setSelectedDay={setSelectedDay}
+        startHourLimit={startHourLimit}
+        setStartHourLimit={setStartHourLimit}
+        endHourLimit={endHourLimit}
+        setEndHourLimit={setEndHourLimit}
         handleResetFilters={handleResetFilters}
-        selectedActivity={selectedActivity}
-        handleCardClick={handleCardClick}
-        availableCategories={availableCategories}
-        allActivities={allActivities}
       />
 
-      {/* Contenitore Mappa */}
-      <Map
-        userCoords={userCoords}
-        currentCityName={currentCityName}
-        searchRadius={searchRadius}
-        filteredActivities={filteredActivities}
-        selectedActivity={selectedActivity}
-        setSelectedActivity={setSelectedActivity}
-        setSidebarOpen={setSidebarOpen}
-        gpsLoading={gpsLoading}
-        onMapClick={handleMapClick}
-      />
+      <main className="split">
+        {/* ============ LISTA ============ */}
+        <section className="list" aria-label="Risultati">
+          <div className="list-head">
+            <h1>Vicino a {currentCityName}</h1>
+            <span className="count" aria-live="polite">{filteredActivities.length} attività trovate</span>
+          </div>
 
-      {/* Pannello Dettaglio */}
-      <ActivityDetailPanel 
-        activity={selectedActivity} 
-        onClose={() => setSelectedActivity(null)} 
-      />
+          {filteredActivities.map((act) => (
+            <ActivityCard
+              key={act.id}
+              activity={act}
+              isSelected={selectedActivity?.id === act.id}
+              onMouseEnter={() => setHoveredId(act.id)}
+              onMouseLeave={() => setHoveredId(null)}
+              onClick={() => setSelectedActivity(act)}
+            />
+          ))}
+          {filteredActivities.length === 0 && (
+            <p style={{ color: 'var(--muted)', marginTop: 20 }}>Nessuna attività trovata con questi filtri.</p>
+          )}
+        </section>
 
-      {/* Modale Patch Notes */}
+        {/* ============ MAPPA ============ */}
+        <section className="mapwrap" aria-label="Mappa dei risultati">
+          <ActivityMap 
+            activities={filteredActivities}
+            theme={theme as "light" | "dark"}
+            hoveredId={hoveredId}
+            selectedId={selectedActivity?.id}
+            initialCenter={userCoords ? [userCoords.lng, userCoords.lat] : undefined}
+            onMarkerClick={(id) => {
+              const act = allActivities.find(a => a.id === id);
+              if (act) {
+                setSelectedActivity(act);
+                document.getElementById(`card-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
+            }}
+            onEmptyMapClick={(lng, lat) => {
+              setUserCoords({ lat, lng });
+              setCurrentCityName('Punto selezionato');
+              setSelectedActivity(null);
+            }}
+            onSearchArea={handleSearchArea}
+          />
+        </section>
+      </main>
+
+      {selectedActivity && (
+        <ActivityDetailPanel 
+          activity={selectedActivity} 
+          onClose={() => setSelectedActivity(null)} 
+        />
+      )}
+
       {showPatchNotes && (
         <PatchNotesModal onClose={handleClosePatchNotes} />
       )}
-    </div>
+    </>
   );
 }

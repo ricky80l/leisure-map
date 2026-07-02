@@ -1,0 +1,35 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "id": "att-001", "nome": "Rafting sul Brenta — Valstagna", "categoria": "acqua", "prezzo": "€€", "livello": "principiante", "rating": 4.8 },
+      "geometry": { "type": "Point", "coordinates": [11.6603, 45.8586] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "att-002", "nome": "Anello MTB del Montello — presa 14", "categoria": "outdoor", "prezzo": "€", "livello": "intermedio", "rating": 4.6 },
+      "geometry": { "type": "Point", "coordinates": [12.1035, 45.8121] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "att-003", "nome": "Degustazione — colline del Prosecco", "categoria": "gusto", "prezzo": "€€", "livello": "per-tutti", "rating": 4.9 },
+      "geometry": { "type": "Point", "coordinates": [11.9964, 45.9007] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "att-004", "nome": "Grotte del Caglieron", "categoria": "natura", "prezzo": "€", "livello": "per-tutti", "rating": 4.7 },
+      "geometry": { "type": "Point", "coordinates": [12.3396, 45.9853] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "pal-001", "nome": "Palestra di esempio — Montebelluna centro", "categoria": "fitness", "prezzo": "€€", "livello": "per-tutti", "rating": 4.4 },
+      "geometry": { "type": "Point", "coordinates": [12.0409, 45.7758] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "cor-001", "nome": "Corso di arrampicata indoor — base", "categoria": "corsi", "prezzo": "€€", "livello": "principiante", "rating": 4.7 },
+      "geometry": { "type": "Point", "coordinates": [12.2431, 45.6669] }
+    }
+  ]
+}
