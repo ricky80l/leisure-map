@@ -20,6 +20,7 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
   const [theme, setTheme] = useState('light');
   const [showPatchNotes, setShowPatchNotes] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
+  const [mobileMode, setMobileMode] = useState<'map' | 'list'>('map');
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   // --- Data State ---
@@ -216,7 +217,7 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
         handleResetFilters={handleResetFilters}
       />
 
-      <main className="split">
+      <main className={`split ${mobileMode === 'map' ? 'mode-map' : 'mode-list'}`}>
         {/* ============ LISTA ============ */}
         <section className="list" aria-label="Risultati">
           <div className="list-head">
@@ -280,6 +281,15 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
             onSearchArea={handleSearchArea}
           />
         </section>
+
+        {/* Pulsante Floating per Mobile (Mappa/Elenco) */}
+        <button 
+          className="mobile-view-toggle"
+          onClick={() => setMobileMode(m => m === 'map' ? 'list' : 'map')}
+          aria-label="Cambia visualizzazione"
+        >
+          {mobileMode === 'map' ? '📋 Mostra Elenco' : '🗺️ Mostra Mappa'}
+        </button>
       </main>
 
       {selectedActivity && (
