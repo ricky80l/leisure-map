@@ -111,6 +111,7 @@ export default function ActivityMap({
   const mapRef = useRef<MLMap | null>(null);
   const initialBounds = useRef<LngLatBounds | null>(null);
   const [showSearchArea, setShowSearchArea] = useState(false);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
 
   const onMarkerClickRef = useRef(onMarkerClick);
   const onEmptyMapClickRef = useRef(onEmptyMapClick);
@@ -147,7 +148,8 @@ export default function ActivityMap({
     map.on("load", async () => {
       await loadPinImages(map);
       
-      const data = convertToGeoJSON(activities);
+      // Usa un array vuoto iniziale, poi il useEffect(..., [activities, isMapLoaded]) farà il setData reale
+      const data = convertToGeoJSON([]);
       
       map.addSource("attivita", {
         type: "geojson",
@@ -252,6 +254,8 @@ export default function ActivityMap({
           setShowSearchArea(moved);
         }
       });
+      
+      setIsMapLoaded(true);
     });
 
     return () => {
@@ -263,11 +267,12 @@ export default function ActivityMap({
   // Aggiornamento dati (nuovi filtri)
   useEffect(() => {
     const map = mapRef.current;
+    if (!isMapLoaded) return;
     const src = map?.getSource("attivita") as maplibregl.GeoJSONSource | undefined;
     if (src) {
       src.setData(convertToGeoJSON(activities) as any);
     }
-  }, [activities]);
+  }, [activities, isMapLoaded]);
 
   // Cambio tema
   useEffect(() => {

@@ -58,15 +58,20 @@ header{position:sticky;top:0;z-index:50;background:var(--surface);
 .count{font-size:.82rem;color:var(--muted)}
 
 /* ---------- Card ---------- */
-.card{background:var(--card);border-radius:var(--r);overflow:hidden;
-  box-shadow:var(--shadow);margin-bottom:16px;transition:transform .2s cubic-bezier(.2,0,0,1),box-shadow .2s;
-  cursor:pointer;outline:none; display: block; border: none; text-align: left; width: 100%;}
-.card:hover,.card:focus-visible{transform:translateY(-2px);box-shadow:0 6px 18px rgba(26,34,51,.14)}
-.card:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.card{margin-bottom:16px;cursor:pointer;outline:none;display:block;border:none;text-align:left;width:100%;perspective:1200px;background:transparent}
+.flipper{position:relative;width:100%;transition:transform .5s cubic-bezier(.2,0,0,1),box-shadow .2s;transform-style:preserve-3d;border-radius:var(--r);box-shadow:var(--shadow)}
+@media (hover: hover) {
+  .card:hover .flipper { transform:rotateY(180deg) translateY(-2px);box-shadow:0 6px 18px rgba(26,34,51,.14) }
+}
+.card:focus-visible .flipper{transform:rotateY(180deg) translateY(-2px);box-shadow:0 6px 18px rgba(26,34,51,.14)}
+.card:focus-visible .flipper{outline:2px solid var(--primary);outline-offset:2px}
+.front,.back{width:100%;backface-visibility:hidden;border-radius:var(--r);background:var(--card)}
+.front{overflow:hidden}
+.back{position:absolute;top:0;left:0;width:100%;height:100%;transform:rotateY(180deg);overflow:hidden;background:var(--card)}
 .thumb{position:relative;aspect-ratio:4/3;overflow:hidden}
 .thumb svg{width:100%;height:100%;display:block}
-.thumb::after{content:"";position:absolute;inset:auto 0 0 0;height:45%;
-  background:linear-gradient(transparent,rgba(15,22,20,.55))}
+.thumb::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;
+  background:linear-gradient(to top, rgba(26,34,51,0.85) 0%, rgba(26,34,51,0.5) 45%, transparent 100%)}
 .badge{position:absolute;top:12px;left:12px;z-index:2;font-size:.72rem;font-weight:600;
   letter-spacing:.03em;padding:5px 11px;border-radius:999px;color:#fff}
 .b-acqua{background:#2673A6}.b-outdoor{background:#0E7C66}

@@ -21,7 +21,7 @@ export async function fetchActivities(): Promise<Activity[]> {
     // Al momento, la query legge da un'ipotetica vista o tabella 'activities'
     // che riproduce la struttura piatta attuale. 
     // In futuro, questa query sarà una JOIN tra 'facilities' e 'courses'.
-    const { data, error } = await supabase.from('activities').select('id, name, category, level, target, days, startHour, endHour, price, description, locationName, address, lat, lng, contact, organizer');
+    const { data, error } = await supabase.from('activities').select('id, name, category, level, target, days, startHour, endHour, price, description, locationName, address, lat, lng, contact, organizer, verificato_il, fonte_tipo');
     
     if (error) {
       console.warn("Errore durante il fetch da Supabase:", error.message);

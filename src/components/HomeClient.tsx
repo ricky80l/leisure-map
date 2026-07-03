@@ -7,6 +7,7 @@ import ActivityCard from '../components/ActivityCard';
 import ActivityMap from '../components/map/ActivityMap';
 import ActivityDetailPanel from '../components/ActivityDetailPanel';
 import PatchNotesModal from '../components/PatchNotesModal';
+import ReportModal from '../components/ReportModal';
 import { LATEST_PATCH_NOTE } from '../data/patchNotes';
 // Removed unused fetchActivities import
 import { Activity, getDistanceKm } from '../data/mockActivities';
@@ -18,6 +19,7 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
   // --- UI State ---
   const [theme, setTheme] = useState('light');
   const [showPatchNotes, setShowPatchNotes] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   // --- Data State ---
@@ -192,6 +194,7 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
         theme={theme}
         toggleTheme={toggleTheme}
         allActivities={allActivities}
+        onReportClick={() => setShowReportModal(true)}
       />
 
       <Filters 
@@ -225,10 +228,17 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
             <ActivityCard
               key={act.id}
               activity={act}
+              userCoords={userCoords}
               isSelected={selectedActivity?.id === act.id}
               onMouseEnter={() => setHoveredId(act.id)}
               onMouseLeave={() => setHoveredId(null)}
-              onClick={() => setSelectedActivity(act)}
+              onClick={() => {
+                if (selectedActivity?.id === act.id) {
+                  setSelectedActivity(null);
+                } else {
+                  setSelectedActivity(act);
+                }
+              }}
             />
           ))}
           {filteredActivities.length === 0 && (
@@ -270,6 +280,10 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
 
       {showPatchNotes && (
         <PatchNotesModal onClose={handleClosePatchNotes} />
+      )}
+
+      {showReportModal && (
+        <ReportModal onClose={() => setShowReportModal(false)} />
       )}
     </>
   );

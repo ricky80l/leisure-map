@@ -16,6 +16,8 @@ export interface Activity {
   lng: number;
   contact: string;
   organizer: string;
+  verificato_il?: string; // ISO date string e.g. "2026-06-15"
+  fonte_tipo?: 'sito ufficiale' | 'piattaforma booking' | 'OpenStreetMap' | 'segnalazione diretta';
 }
 
 export const CATEGORY_EMOJIS: Record<string, string> = {

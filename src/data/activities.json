@@ -18,7 +18,9 @@
     "lat": 45.6791,
     "lng": 12.2325,
     "contact": "segreteria@natatoriumtreviso.it",
-    "organizer": "Natatorium Treviso ASD"
+    "organizer": "Natatorium Treviso ASD",
+    "verificato_il": "01/01/2025",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_2",
@@ -38,7 +40,9 @@
     "lat": 45.6744,
     "lng": 12.253,
     "contact": "0422-303100",
-    "organizer": "ASD Tennis Club Treviso"
+    "organizer": "ASD Tennis Club Treviso",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_3",
@@ -59,7 +63,9 @@
     "lat": 45.7201,
     "lng": 12.2568,
     "contact": "giovanili@trevisobasket.it",
-    "organizer": "NutriBullet Treviso Basket"
+    "organizer": "NutriBullet Treviso Basket",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_4",
@@ -78,7 +84,9 @@
     "lat": 45.6644,
     "lng": 12.2472,
     "contact": "info@teatrispa.it",
-    "organizer": "Teatro Stabile del Veneto"
+    "organizer": "Teatro Stabile del Veneto",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_5",
@@ -98,7 +106,9 @@
     "lat": 45.6765,
     "lng": 11.9362,
     "contact": "info@karatecastelfranco.it",
-    "organizer": "ASD Sport Target Karate"
+    "organizer": "ASD Sport Target Karate",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_6",
@@ -118,7 +128,9 @@
     "lat": 45.782,
     "lng": 12.035,
     "contact": "montebelluna@piscine.it",
-    "organizer": "Montebelluna Nuoto ASD"
+    "organizer": "Montebelluna Nuoto ASD",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_7",
@@ -139,7 +151,9 @@
     "lat": 45.8856,
     "lng": 12.3021,
     "contact": "info@tennisconegliano.it",
-    "organizer": "ASD Tennis Conegliano"
+    "organizer": "ASD Tennis Conegliano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_8",
@@ -159,7 +173,9 @@
     "lat": 45.6881,
     "lng": 12.2289,
     "contact": "info@yogashantitreviso.it",
-    "organizer": "Associazione Yoga Shanti"
+    "organizer": "Associazione Yoga Shanti",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_9",
@@ -179,7 +195,9 @@
     "lat": 45.5606,
     "lng": 12.2384,
     "contact": "pilatesmogliano@outlook.it",
-    "organizer": "Mogliano Sport & Benessere"
+    "organizer": "Mogliano Sport & Benessere",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_10",
@@ -199,7 +217,9 @@
     "lat": 45.6842,
     "lng": 12.249,
     "contact": "ballettotreviso@yahoo.it",
-    "organizer": "Danza Balletto Treviso ASD"
+    "organizer": "Danza Balletto Treviso ASD",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_11",
@@ -220,7 +240,9 @@
     "lat": 45.671,
     "lng": 12.203,
     "contact": "padel@trevisoarena.it",
-    "organizer": "Treviso Padel ASD"
+    "organizer": "Treviso Padel ASD",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_12",
@@ -239,7 +261,9 @@
     "lat": 45.6625,
     "lng": 12.2415,
     "contact": "info@trevisoscacchi.it",
-    "organizer": "ASD Circolo Scacchistico Trevigiano"
+    "organizer": "ASD Circolo Scacchistico Trevigiano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_13",
@@ -259,7 +283,9 @@
     "lat": 45.7776,
     "lng": 12.257,
     "contact": "giovanili@ciclismotrevigiano.it",
-    "organizer": "Velo Club Trevigiano"
+    "organizer": "Velo Club Trevigiano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_14",
@@ -279,7 +305,9 @@
     "lat": 45.7703,
     "lng": 12.0208,
     "contact": "skatetv@skate.it",
-    "organizer": "ASD Treviso Skate Boarding"
+    "organizer": "ASD Treviso Skate Boarding",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_15",
@@ -299,7 +327,9 @@
     "lat": 45.776,
     "lng": 12.043,
     "contact": "pilates.montebelluna@gmail.com",
-    "organizer": "ASD Sport & Health Montebelluna"
+    "organizer": "ASD Sport & Health Montebelluna",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_16",
@@ -319,7 +349,9 @@
     "lat": 45.7708,
     "lng": 12.0432,
     "contact": "info@alberodeidesideri.org",
-    "organizer": "L'Albero dei Desideri Montebelluna"
+    "organizer": "L'Albero dei Desideri Montebelluna",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_17",
@@ -340,7 +372,9 @@
     "lat": 45.8928,
     "lng": 12.3082,
     "contact": "conegliano@ranazzurra.it",
-    "organizer": "Ranazzurra Conegliano S.S.D."
+    "organizer": "Ranazzurra Conegliano S.S.D.",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_18",
@@ -360,7 +394,9 @@
     "lat": 45.8821,
     "lng": 12.2965,
     "contact": "info@basketconegliano.it",
-    "organizer": "ASD Basket Conegliano"
+    "organizer": "ASD Basket Conegliano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_19",
@@ -381,7 +417,9 @@
     "lat": 45.889,
     "lng": 12.3005,
     "contact": "info@espressionedanza.it",
-    "organizer": "Espressione Danza Conegliano"
+    "organizer": "Espressione Danza Conegliano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_20",
@@ -400,7 +438,9 @@
     "lat": 45.672,
     "lng": 11.9288,
     "contact": "teatro@comune.castelfranco-veneto.tv.it",
-    "organizer": "Teatro Accademico"
+    "organizer": "Teatro Accademico",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_21",
@@ -421,7 +461,9 @@
     "lat": 45.6795,
     "lng": 11.9482,
     "contact": "castelfranco@antaresnuoto.it",
-    "organizer": "Antares Nuoto Castelfranco"
+    "organizer": "Antares Nuoto Castelfranco",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_22",
@@ -441,7 +483,9 @@
     "lat": 45.6705,
     "lng": 11.933,
     "contact": "info@apbasketcastelfranco.it",
-    "organizer": "AP Castelfranco Basket"
+    "organizer": "AP Castelfranco Basket",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_23",
@@ -462,7 +506,9 @@
     "lat": 45.7865,
     "lng": 12.485,
     "contact": "oderzo@arcanuoto.it",
-    "organizer": "ARCA Nuoto Oderzo"
+    "organizer": "ARCA Nuoto Oderzo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_24",
@@ -483,7 +529,9 @@
     "lat": 45.7795,
     "lng": 12.4985,
     "contact": "segreteria@oderzobasket.it",
-    "organizer": "Oderzo Basket ASD"
+    "organizer": "Oderzo Basket ASD",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_25",
@@ -504,7 +552,9 @@
     "lat": 45.986,
     "lng": 12.2925,
     "contact": "nottolinuoto@vittorio.it",
-    "organizer": "Nottoli Nuoto ASD"
+    "organizer": "Nottoli Nuoto ASD",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_26",
@@ -524,7 +574,9 @@
     "lat": 45.978,
     "lng": 12.3015,
     "contact": "judo.karate.vv@gmail.com",
-    "organizer": "ASD Judo Vittorio Veneto"
+    "organizer": "ASD Judo Vittorio Veneto",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_27",
@@ -544,7 +596,9 @@
     "lat": 45.7725,
     "lng": 12.0498,
     "contact": "minibasketmonte@email.it",
-    "organizer": "Montebelluna Basket ASD"
+    "organizer": "Montebelluna Basket ASD",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_28",
@@ -565,7 +619,9 @@
     "lat": 45.569,
     "lng": 12.247,
     "contact": "mogliano@ranazzurra.it",
-    "organizer": "Ranazzurra Mogliano S.S.D."
+    "organizer": "Ranazzurra Mogliano S.S.D.",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_29",
@@ -586,7 +642,9 @@
     "lat": 45.7708,
     "lng": 12.0432,
     "contact": "info@alberodeidesideri.org",
-    "organizer": "L'Albero dei Desideri Montebelluna"
+    "organizer": "L'Albero dei Desideri Montebelluna",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_30",
@@ -606,7 +664,9 @@
     "lat": 45.7708,
     "lng": 12.0432,
     "contact": "info@alberodeidesideri.org",
-    "organizer": "L'Albero dei Desideri Montebelluna"
+    "organizer": "L'Albero dei Desideri Montebelluna",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_31",
@@ -626,7 +686,9 @@
     "lat": 45.7708,
     "lng": 12.0432,
     "contact": "info@alberodeidesideri.org",
-    "organizer": "L'Albero dei Desideri Montebelluna"
+    "organizer": "L'Albero dei Desideri Montebelluna",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_32",
@@ -646,7 +708,9 @@
     "lat": 45.7712,
     "lng": 12.045,
     "contact": "info@alberodeidesideri.org",
-    "organizer": "L'Albero dei Desideri Montebelluna"
+    "organizer": "L'Albero dei Desideri Montebelluna",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_57766542",
@@ -667,7 +731,9 @@
     "lat": 45.5411409,
     "lng": 12.2254011,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Villa Benetton"
+    "organizer": "Villa Benetton",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_77984732",
@@ -688,7 +754,9 @@
     "lat": 45.5554869,
     "lng": 12.2429863,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Tennis club Mogliano"
+    "organizer": "Tennis club Mogliano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_00000004",
@@ -709,7 +777,9 @@
     "lat": 45.5588338,
     "lng": 12.2427981,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Piscina Rari Nantes"
+    "organizer": "Piscina Rari Nantes",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_77973462",
@@ -730,7 +800,9 @@
     "lat": 45.552175,
     "lng": 12.2451712,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Stadio comunale"
+    "organizer": "Stadio comunale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78229037",
@@ -751,7 +823,9 @@
     "lat": 45.5533997,
     "lng": 12.269504,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Full Life"
+    "organizer": "Full Life",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78288259",
@@ -772,7 +846,9 @@
     "lat": 45.5593328,
     "lng": 12.2694931,
     "contact": "https://www.centrosportivoviatorni.it/#piscine",
-    "organizer": "Centro Sportivo \"Via Torni\""
+    "organizer": "Centro Sportivo \"Via Torni\"",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80096335",
@@ -793,7 +869,9 @@
     "lat": 45.6277823,
     "lng": 12.3818512,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di Roncade"
+    "organizer": "Campo Sportivo di Roncade",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_00000005",
@@ -814,7 +892,9 @@
     "lat": 45.6296698,
     "lng": 12.383211,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Piscina comunale di Roncade"
+    "organizer": "Piscina comunale di Roncade",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78349949",
@@ -835,7 +915,9 @@
     "lat": 45.5986991,
     "lng": 12.2362958,
     "contact": "+39 0422 633870",
-    "organizer": "Stilelibero S.r.l."
+    "organizer": "Stilelibero S.r.l.",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_99999996",
@@ -856,7 +938,9 @@
     "lat": 45.6002011,
     "lng": 12.2395003,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Polisportiva Preganziol"
+    "organizer": "Polisportiva Preganziol",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_99999994",
@@ -877,7 +961,9 @@
     "lat": 45.6079836,
     "lng": 12.1817028,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Auditorium Giovanni Comisso"
+    "organizer": "Auditorium Giovanni Comisso",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79344146",
@@ -898,7 +984,9 @@
     "lat": 45.6814027,
     "lng": 12.2530119,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Teatro Alcuni"
+    "organizer": "Teatro Alcuni",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79438314",
@@ -919,7 +1007,9 @@
     "lat": 45.6864742,
     "lng": 12.2573572,
     "contact": "+39 0422 303920",
-    "organizer": "Palestra To Be Gym"
+    "organizer": "Palestra To Be Gym",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78425251",
@@ -940,7 +1030,9 @@
     "lat": 45.6534228,
     "lng": 12.1891023,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Gico Verticale"
+    "organizer": "Gico Verticale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78823185",
@@ -961,7 +1053,9 @@
     "lat": 45.653701,
     "lng": 12.2286175,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Code Fitness"
+    "organizer": "Code Fitness",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79350625",
@@ -982,7 +1076,9 @@
     "lat": 45.6869309,
     "lng": 12.2481316,
     "contact": "+39 0422 308108",
-    "organizer": "A.S.D Sports Team"
+    "organizer": "A.S.D Sports Team",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79080031",
@@ -1003,7 +1099,9 @@
     "lat": 45.6634126,
     "lng": 12.2445905,
     "contact": "+39 0422540480",
-    "organizer": "Teatro Comunale Mario Del Monaco"
+    "organizer": "Teatro Comunale Mario Del Monaco",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79328438",
@@ -1024,7 +1122,9 @@
     "lat": 45.6622664,
     "lng": 12.2705774,
     "contact": "Nessun contatto disponibile",
-    "organizer": "FitActive"
+    "organizer": "FitActive",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_57913691",
@@ -1045,7 +1145,9 @@
     "lat": 45.657952,
     "lng": 12.255739,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo Aurora"
+    "organizer": "Campo Sportivo Aurora",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_57886263",
@@ -1066,7 +1168,9 @@
     "lat": 45.6523716,
     "lng": 12.2338914,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo Borgo Mestre"
+    "organizer": "Campo Sportivo Borgo Mestre",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78924229",
@@ -1087,7 +1191,9 @@
     "lat": 45.6653586,
     "lng": 12.2270643,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Teatro Eden"
+    "organizer": "Teatro Eden",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79012245",
@@ -1108,7 +1214,9 @@
     "lat": 45.6824106,
     "lng": 12.2188139,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Piscine Comunali"
+    "organizer": "Piscine Comunali",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79059398",
@@ -1129,7 +1237,9 @@
     "lat": 45.6872323,
     "lng": 12.2187075,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Polisportiva Santa Bona"
+    "organizer": "Polisportiva Santa Bona",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79241346",
@@ -1150,7 +1260,9 @@
     "lat": 45.6787925,
     "lng": 12.2453421,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palestra ITE Riccati-Luzzatti"
+    "organizer": "Palestra ITE Riccati-Luzzatti",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78824263",
@@ -1171,7 +1283,9 @@
     "lat": 45.6469406,
     "lng": 12.2354857,
     "contact": "Nessun contatto disponibile",
-    "organizer": "La Ghirada"
+    "organizer": "La Ghirada",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_99999995",
@@ -1192,7 +1306,9 @@
     "lat": 45.6811641,
     "lng": 12.2148926,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Ruggers Tarvisium"
+    "organizer": "Ruggers Tarvisium",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_00000006",
@@ -1213,7 +1329,9 @@
     "lat": 45.6798027,
     "lng": 12.2590306,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Impianti sportivi Comunali"
+    "organizer": "Impianti sportivi Comunali",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78939123",
@@ -1234,7 +1352,9 @@
     "lat": 45.6506475,
     "lng": 12.2432648,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campi da Calcetto"
+    "organizer": "Campi da Calcetto",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78876368",
@@ -1255,7 +1375,9 @@
     "lat": 45.6872838,
     "lng": 12.200353,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Asd Tennis Treviso"
+    "organizer": "Asd Tennis Treviso",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76559033",
@@ -1276,7 +1398,9 @@
     "lat": 45.6583312,
     "lng": 11.9975721,
     "contact": "+39 3319006888",
-    "organizer": "OlympiaFit"
+    "organizer": "OlympiaFit",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_75917583",
@@ -1297,7 +1421,9 @@
     "lat": 45.6326478,
     "lng": 11.9591105,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo sportivo di Resana"
+    "organizer": "Campo sportivo di Resana",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76011302",
@@ -1318,7 +1444,9 @@
     "lat": 45.6706783,
     "lng": 11.9304519,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Patronato Pio X"
+    "organizer": "Patronato Pio X",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_75955593",
@@ -1339,7 +1467,9 @@
     "lat": 45.6708613,
     "lng": 11.924698,
     "contact": "https://www.circoloartelibera.it/",
-    "organizer": "Circolo Arte Libera"
+    "organizer": "Circolo Arte Libera",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76171255",
@@ -1360,7 +1490,9 @@
     "lat": 45.6828465,
     "lng": 11.934279,
     "contact": "Nessun contatto disponibile",
-    "organizer": "FitActive"
+    "organizer": "FitActive",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76002553",
@@ -1381,7 +1513,9 @@
     "lat": 45.6676497,
     "lng": 11.9326056,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo sportivo Parrocchiale"
+    "organizer": "Campo sportivo Parrocchiale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76148134",
@@ -1402,7 +1536,9 @@
     "lat": 45.6770669,
     "lng": 11.9377465,
     "contact": "Nessun contatto disponibile",
-    "organizer": "ASD Tennis Castelfranco"
+    "organizer": "ASD Tennis Castelfranco",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_75932978",
@@ -1423,7 +1559,9 @@
     "lat": 45.6719571,
     "lng": 11.9213407,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palazzetto dello Sport"
+    "organizer": "Palazzetto dello Sport",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76071508",
@@ -1444,7 +1582,9 @@
     "lat": 45.6684422,
     "lng": 11.9387086,
     "contact": "Nessun contatto disponibile",
-    "organizer": "CTR Veneto"
+    "organizer": "CTR Veneto",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_75928773",
@@ -1465,7 +1605,9 @@
     "lat": 45.6723619,
     "lng": 11.9205154,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Picina comunale"
+    "organizer": "Picina comunale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_75932807",
@@ -1486,7 +1628,9 @@
     "lat": 45.6725222,
     "lng": 11.9207585,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Redipuglia Sport Center"
+    "organizer": "Redipuglia Sport Center",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_75980748",
@@ -1507,7 +1651,9 @@
     "lat": 45.671901,
     "lng": 11.9261738,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Teatro Accademico di Castelfranco"
+    "organizer": "Teatro Accademico di Castelfranco",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_77230979",
@@ -1528,7 +1674,9 @@
     "lat": 45.6365124,
     "lng": 12.0865855,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo Badoere"
+    "organizer": "Campo Sportivo Badoere",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_77481718",
@@ -1549,7 +1697,9 @@
     "lat": 45.6473615,
     "lng": 12.1008103,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di Morgano"
+    "organizer": "Campo Sportivo di Morgano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_57794738",
@@ -1570,7 +1720,9 @@
     "lat": 45.629393,
     "lng": 12.165345,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Pool 5"
+    "organizer": "Pool 5",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78905953",
@@ -1591,7 +1743,9 @@
     "lat": 45.6327011,
     "lng": 12.2578942,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palestra di Dosson di Casier"
+    "organizer": "Palestra di Dosson di Casier",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80828947",
@@ -1612,7 +1766,9 @@
     "lat": 45.6501769,
     "lng": 12.4327178,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Camillo Vicino"
+    "organizer": "Camillo Vicino",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_81653626",
@@ -1633,7 +1789,9 @@
     "lat": 45.678601,
     "lng": 12.4867616,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo"
+    "organizer": "Campo Sportivo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80611025",
@@ -1654,7 +1812,9 @@
     "lat": 45.6849121,
     "lng": 12.3761904,
     "contact": "https://www.facebook.com/skholesanbiagio",
-    "organizer": "Skholè"
+    "organizer": "Skholè",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80558975",
@@ -1675,7 +1835,9 @@
     "lat": 45.6802388,
     "lng": 12.3756587,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Stadio Comunale"
+    "organizer": "Stadio Comunale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80096569",
@@ -1696,7 +1858,9 @@
     "lat": 45.6776209,
     "lng": 12.332036,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palazzetto dello Sport \"Alvise de Vidi\""
+    "organizer": "Palazzetto dello Sport \"Alvise de Vidi\"",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_57833475",
@@ -1717,7 +1881,9 @@
     "lat": 45.6744902,
     "lng": 12.1589848,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Fabio Nicoletti &\nGottardo Parisotto"
+    "organizer": "Fabio Nicoletti &\nGottardo Parisotto",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80250847",
@@ -1738,7 +1904,9 @@
     "lat": 45.7398805,
     "lng": 12.2852042,
     "contact": "+39 335 594 5518",
-    "organizer": "Wakepark Cable 7"
+    "organizer": "Wakepark Cable 7",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79781038",
@@ -1759,7 +1927,9 @@
     "lat": 45.6875118,
     "lng": 12.290592,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palazzetto dello Sport di Carbonera"
+    "organizer": "Palazzetto dello Sport di Carbonera",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_74934091",
@@ -1780,7 +1950,9 @@
     "lat": 45.701499,
     "lng": 11.7919101,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Stadio Rossano Veneto"
+    "organizer": "Stadio Rossano Veneto",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_75781622",
@@ -1801,7 +1973,9 @@
     "lat": 45.7338212,
     "lng": 11.844341,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di Bessica"
+    "organizer": "Campo Sportivo di Bessica",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_75932461",
@@ -1822,7 +1996,9 @@
     "lat": 45.7309815,
     "lng": 11.8622646,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di Loria"
+    "organizer": "Campo Sportivo di Loria",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_81737651",
@@ -1843,7 +2019,9 @@
     "lat": 45.7064568,
     "lng": 12.4673083,
     "contact": "https://www.goffredoparise.it/index.php?area=65&menu=248&page=446&lingua=4",
-    "organizer": "Casa di Cultura Goffredo Parise"
+    "organizer": "Casa di Cultura Goffredo Parise",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82006716",
@@ -1864,7 +2042,9 @@
     "lat": 45.704883,
     "lng": 12.4957886,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Sala Polivalente"
+    "organizer": "Sala Polivalente",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80064435",
@@ -1885,7 +2065,9 @@
     "lat": 45.7394461,
     "lng": 12.2669974,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Fabrica"
+    "organizer": "Fabrica",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80032615",
@@ -1906,7 +2088,9 @@
     "lat": 45.7366461,
     "lng": 12.2666154,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Auditorium Mario del Monaco"
+    "organizer": "Auditorium Mario del Monaco",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80000001",
@@ -1927,7 +2111,9 @@
     "lat": 45.6961129,
     "lng": 12.2523139,
     "contact": "https://www.teatrodelpane.it",
-    "organizer": "Teatro del Pane"
+    "organizer": "Teatro del Pane",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79503642",
@@ -1948,7 +2134,9 @@
     "lat": 45.6940576,
     "lng": 12.2563066,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Ippodromo Sant'Artemio"
+    "organizer": "Ippodromo Sant'Artemio",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79720967",
@@ -1969,7 +2157,9 @@
     "lat": 45.7419901,
     "lng": 12.2301066,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palestra Comunale"
+    "organizer": "Palestra Comunale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80040027",
@@ -1990,7 +2180,9 @@
     "lat": 45.7382892,
     "lng": 12.2657135,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Impianti Sportivi di Via Postioma a Catena di Villorba"
+    "organizer": "Impianti Sportivi di Via Postioma a Catena di Villorba",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79867515",
@@ -2011,7 +2203,9 @@
     "lat": 45.7242136,
     "lng": 12.2625379,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palaverde Arena"
+    "organizer": "Palaverde Arena",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79879859",
@@ -2032,7 +2226,9 @@
     "lat": 45.7236982,
     "lng": 12.2642877,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Polisportivo di Catena di Villorba"
+    "organizer": "Polisportivo di Catena di Villorba",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76504647",
@@ -2053,7 +2249,9 @@
     "lat": 45.7332994,
     "lng": 11.9171653,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di Riese"
+    "organizer": "Campo Sportivo di Riese",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76374442",
@@ -2074,7 +2272,9 @@
     "lat": 45.7036824,
     "lng": 11.9337618,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo sportivo ASD Riese"
+    "organizer": "Campo sportivo ASD Riese",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78006826",
@@ -2095,7 +2295,9 @@
     "lat": 45.7371892,
     "lng": 12.0634934,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Il Cubo"
+    "organizer": "Il Cubo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78241242",
@@ -2116,7 +2318,9 @@
     "lat": 45.7412558,
     "lng": 12.0828684,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo Di Trevignano"
+    "organizer": "Campo Sportivo Di Trevignano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78406345",
@@ -2137,7 +2341,9 @@
     "lat": 45.7460051,
     "lng": 12.0946294,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di Falzè"
+    "organizer": "Campo Sportivo di Falzè",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78492437",
@@ -2158,7 +2364,9 @@
     "lat": 45.7475627,
     "lng": 12.101681,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di Signoressa"
+    "organizer": "Campo Sportivo di Signoressa",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_57734094",
@@ -2179,7 +2387,9 @@
     "lat": 45.7371462,
     "lng": 11.9969478,
     "contact": "+39 0423 569076",
-    "organizer": "Pista Verde"
+    "organizer": "Pista Verde",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78518083",
@@ -2200,7 +2410,9 @@
     "lat": 45.7801391,
     "lng": 12.0716692,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palestra di Caonada"
+    "organizer": "Palestra di Caonada",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78501701",
@@ -2221,7 +2433,9 @@
     "lat": 45.7800866,
     "lng": 12.0700835,
     "contact": "+39 0423 609241",
-    "organizer": "Gaia Fitness Center Montebelluna"
+    "organizer": "Gaia Fitness Center Montebelluna",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_57826602",
@@ -2242,7 +2456,9 @@
     "lat": 45.7685215,
     "lng": 12.0580805,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campetto di Guarda"
+    "organizer": "Campetto di Guarda",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78153136",
@@ -2263,7 +2479,9 @@
     "lat": 45.7666978,
     "lng": 12.0486158,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campetto Del Peep"
+    "organizer": "Campetto Del Peep",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78378174",
@@ -2284,7 +2502,9 @@
     "lat": 45.780604,
     "lng": 12.0572134,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Tennis Club Ostani"
+    "organizer": "Tennis Club Ostani",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80649953",
@@ -2305,7 +2525,9 @@
     "lat": 45.7465283,
     "lng": 12.318467,
     "contact": "+39 0422 683101",
-    "organizer": "FitClub ASD"
+    "organizer": "FitClub ASD",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80476661",
@@ -2326,7 +2548,9 @@
     "lat": 45.7367364,
     "lng": 12.3109297,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palestra comunale di Varago"
+    "organizer": "Palestra comunale di Varago",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80617527",
@@ -2347,7 +2571,9 @@
     "lat": 45.7461604,
     "lng": 12.3155923,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo sportivo"
+    "organizer": "Campo sportivo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80660719",
@@ -2368,7 +2594,9 @@
     "lat": 45.7523839,
     "lng": 12.313688,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Basket"
+    "organizer": "Campo Basket",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79094158",
@@ -2389,7 +2617,9 @@
     "lat": 45.7849875,
     "lng": 12.1244283,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palestra"
+    "organizer": "Palestra",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79115136",
@@ -2410,7 +2640,9 @@
     "lat": 45.7838601,
     "lng": 12.1276535,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Tennis Club"
+    "organizer": "Tennis Club",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79111294",
@@ -2431,7 +2663,9 @@
     "lat": 45.7832638,
     "lng": 12.1278656,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo sportivo di Volpago"
+    "organizer": "Campo sportivo di Volpago",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79217794",
@@ -2452,7 +2686,9 @@
     "lat": 45.8159864,
     "lng": 12.105793,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo Santa Maria della Vittoria"
+    "organizer": "Campo Sportivo Santa Maria della Vittoria",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_57923732",
@@ -2473,7 +2709,9 @@
     "lat": 45.7528001,
     "lng": 12.1709319,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Circolo NOI"
+    "organizer": "Circolo NOI",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76240633",
@@ -2494,7 +2732,9 @@
     "lat": 45.778754,
     "lng": 11.8453093,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Fitness Center"
+    "organizer": "Fitness Center",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76255731",
@@ -2515,7 +2755,9 @@
     "lat": 45.7889388,
     "lng": 11.8366343,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Piscina Oasi"
+    "organizer": "Piscina Oasi",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76170497",
@@ -2536,7 +2778,9 @@
     "lat": 45.7805374,
     "lng": 11.8365123,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Parrocchiale"
+    "organizer": "Campo Parrocchiale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76133185",
@@ -2557,7 +2801,9 @@
     "lat": 45.7744869,
     "lng": 11.8388316,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di San Zenone"
+    "organizer": "Campo Sportivo di San Zenone",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80422368",
@@ -2578,7 +2824,9 @@
     "lat": 45.7797686,
     "lng": 12.2624682,
     "contact": "+39 0422 1576436",
-    "organizer": "Fitfarm srl"
+    "organizer": "Fitfarm srl",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_58037428",
@@ -2599,7 +2847,9 @@
     "lat": 45.7773119,
     "lng": 12.2601161,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campi da Tennis"
+    "organizer": "Campi da Tennis",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80367663",
@@ -2620,7 +2870,9 @@
     "lat": 45.7767881,
     "lng": 12.2599782,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di Spresiano"
+    "organizer": "Campo Sportivo di Spresiano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_5803806",
@@ -2641,7 +2893,9 @@
     "lat": 45.7555728,
     "lng": 12.2824872,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Centro nuoto Le Bandie"
+    "organizer": "Centro nuoto Le Bandie",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_58279958",
@@ -2662,7 +2916,9 @@
     "lat": 45.7874581,
     "lng": 12.4924999,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Piscine di Oderzo"
+    "organizer": "Piscine di Oderzo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82605049",
@@ -2683,7 +2939,9 @@
     "lat": 45.7721249,
     "lng": 12.48838,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Teatro Brandolini Rota"
+    "organizer": "Teatro Brandolini Rota",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_39999999",
@@ -2704,7 +2962,9 @@
     "lat": 45.7887053,
     "lng": 12.4861671,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Stadio di Oderzo"
+    "organizer": "Stadio di Oderzo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82813807",
@@ -2725,7 +2985,9 @@
     "lat": 45.7874312,
     "lng": 12.4939495,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palaopitergium"
+    "organizer": "Palaopitergium",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82582064",
@@ -2746,7 +3008,9 @@
     "lat": 45.7607822,
     "lng": 12.4974242,
     "contact": "Nessun contatto disponibile",
-    "organizer": "A.S.D. Le Risorgive"
+    "organizer": "A.S.D. Le Risorgive",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82864723",
@@ -2767,7 +3031,9 @@
     "lat": 45.7734497,
     "lng": 12.5130226,
     "contact": "Nessun contatto disponibile",
-    "organizer": "ARISMA"
+    "organizer": "ARISMA",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_77157004",
@@ -2788,7 +3054,9 @@
     "lat": 45.8016396,
     "lng": 11.9140608,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Teatro dei Rinnovati"
+    "organizer": "Teatro dei Rinnovati",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76979302",
@@ -2809,7 +3077,9 @@
     "lat": 45.7861537,
     "lng": 11.9117765,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Impianti Sportivi di Asolo"
+    "organizer": "Impianti Sportivi di Asolo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_77950187",
@@ -2830,7 +3100,9 @@
     "lat": 45.7843554,
     "lng": 12.0106633,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Teatro Maffioli"
+    "organizer": "Teatro Maffioli",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_77987033",
@@ -2851,7 +3123,9 @@
     "lat": 45.7922633,
     "lng": 12.00644,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Tennis Club Caerano"
+    "organizer": "Tennis Club Caerano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80003805",
@@ -2872,7 +3146,9 @@
     "lat": 45.7812893,
     "lng": 12.2190912,
     "contact": "Nessun contatto disponibile",
-    "organizer": "AC Arcade associazione sportiva dilettantistica"
+    "organizer": "AC Arcade associazione sportiva dilettantistica",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79677096",
@@ -2893,7 +3169,9 @@
     "lat": 45.7921267,
     "lng": 12.1755829,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di Giavera"
+    "organizer": "Campo Sportivo di Giavera",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79675431",
@@ -2914,7 +3192,9 @@
     "lat": 45.8311398,
     "lng": 12.1364033,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo Santi Angeli del Montello"
+    "organizer": "Campo Sportivo Santi Angeli del Montello",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_77588247",
@@ -2935,7 +3215,9 @@
     "lat": 45.8015398,
     "lng": 11.9572849,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di Coste"
+    "organizer": "Campo Sportivo di Coste",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_77662499",
@@ -2956,7 +3238,9 @@
     "lat": 45.8042297,
     "lng": 11.9620202,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palestra Energya"
+    "organizer": "Palestra Energya",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_84244648",
@@ -2977,7 +3261,9 @@
     "lat": 45.8107508,
     "lng": 12.613714,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo Meduna"
+    "organizer": "Campo Sportivo Meduna",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80302009",
@@ -2998,7 +3284,9 @@
     "lat": 45.8282434,
     "lng": 12.2019575,
     "contact": "https://centrosportivohof.it",
-    "organizer": "Centro Sportivo HOF"
+    "organizer": "Centro Sportivo HOF",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_75974688",
@@ -3019,7 +3307,9 @@
     "lat": 45.805368,
     "lng": 11.7921008,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Associazione Ippica Monte Grappa"
+    "organizer": "Associazione Ippica Monte Grappa",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_81894446",
@@ -3040,7 +3330,9 @@
     "lat": 45.7959004,
     "lng": 12.3935442,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Multisport Centre"
+    "organizer": "Multisport Centre",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_81850966",
@@ -3061,7 +3353,9 @@
     "lat": 45.8391534,
     "lng": 12.3459432,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di Mareno di Piave"
+    "organizer": "Campo Sportivo di Mareno di Piave",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82222198",
@@ -3082,7 +3376,9 @@
     "lat": 45.8350717,
     "lng": 12.3871481,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo"
+    "organizer": "Campo Sportivo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82121977",
@@ -3103,7 +3399,9 @@
     "lat": 45.8365485,
     "lng": 12.3756492,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palazzetto dello Sport"
+    "organizer": "Palazzetto dello Sport",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82114942",
@@ -3124,7 +3422,9 @@
     "lat": 45.8355056,
     "lng": 12.3759886,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Piscina Arca Nuoto"
+    "organizer": "Piscina Arca Nuoto",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78284765",
@@ -3145,7 +3445,9 @@
     "lat": 45.8148748,
     "lng": 12.0136017,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palestra-Fitness"
+    "organizer": "Palestra-Fitness",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_81328312",
@@ -3166,7 +3468,9 @@
     "lat": 45.8505388,
     "lng": 12.2822924,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo"
+    "organizer": "Campo Sportivo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_57856541",
@@ -3187,7 +3491,9 @@
     "lat": 45.8211717,
     "lng": 12.0353693,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palazzetto dello Sport"
+    "organizer": "Palazzetto dello Sport",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_77189796",
@@ -3208,7 +3514,9 @@
     "lat": 45.8310933,
     "lng": 11.8878863,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di Castelcucco"
+    "organizer": "Campo Sportivo di Castelcucco",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80271721",
@@ -3229,7 +3537,9 @@
     "lat": 45.8591356,
     "lng": 12.1680365,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Plavilandia"
+    "organizer": "Plavilandia",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_77317685",
@@ -3250,7 +3560,9 @@
     "lat": 45.8542386,
     "lng": 11.8775299,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Tennis"
+    "organizer": "Tennis",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_57732467",
@@ -3271,7 +3583,9 @@
     "lat": 45.8550453,
     "lng": 11.8774217,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palestra"
+    "organizer": "Palestra",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_00000001",
@@ -3292,7 +3606,9 @@
     "lat": 45.8543329,
     "lng": 11.8896531,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Agriturismo 'BEPI CUNIAL'"
+    "organizer": "Agriturismo 'BEPI CUNIAL'",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_77338582",
@@ -3313,7 +3629,9 @@
     "lat": 45.854998,
     "lng": 11.8788602,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campi Sportivi di Possagno"
+    "organizer": "Campi Sportivi di Possagno",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_77536877",
@@ -3334,7 +3652,9 @@
     "lat": 45.8566865,
     "lng": 11.8970012,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo"
+    "organizer": "Campo Sportivo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78489654",
@@ -3355,7 +3675,9 @@
     "lat": 45.8565342,
     "lng": 11.9924312,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Tennis Club Pederobba"
+    "organizer": "Tennis Club Pederobba",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78485982",
@@ -3376,7 +3698,9 @@
     "lat": 45.8568122,
     "lng": 11.991786,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campi Sportivi di Onigo"
+    "organizer": "Campi Sportivi di Onigo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79085441",
@@ -3397,7 +3721,9 @@
     "lat": 45.8572186,
     "lng": 12.0513255,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Body Star Fit"
+    "organizer": "Body Star Fit",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79052786",
@@ -3418,7 +3744,9 @@
     "lat": 45.8570949,
     "lng": 12.0481837,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Parrocchiale \"Conte Augusto Govone\""
+    "organizer": "Campo Parrocchiale \"Conte Augusto Govone\"",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_83728058",
@@ -3439,7 +3767,9 @@
     "lat": 45.8833465,
     "lng": 12.4894593,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Piscina Gaiarinne"
+    "organizer": "Piscina Gaiarinne",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_81949634",
@@ -3460,7 +3790,9 @@
     "lat": 45.8965035,
     "lng": 12.2984599,
     "contact": "https://campsite.bio/bfconegliano",
-    "organizer": "Palasport Giovanni Paolo II"
+    "organizer": "Palasport Giovanni Paolo II",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_81668495",
@@ -3481,7 +3813,9 @@
     "lat": 45.8772278,
     "lng": 12.2896217,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Teatro \"G. Toniolo\""
+    "organizer": "Teatro \"G. Toniolo\"",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_81956262",
@@ -3502,7 +3836,9 @@
     "lat": 45.8987495,
     "lng": 12.2968767,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Società Sportiva Ranazzurra Conegliano"
+    "organizer": "Società Sportiva Ranazzurra Conegliano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_81874666",
@@ -3523,7 +3859,9 @@
     "lat": 45.8817504,
     "lng": 12.3057162,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Stadio Comunale di Conegliano \"Narciso Soldan\""
+    "organizer": "Stadio Comunale di Conegliano \"Narciso Soldan\"",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_81882221",
@@ -3544,7 +3882,9 @@
     "lat": 45.8806642,
     "lng": 12.3075579,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palasport Conegliano"
+    "organizer": "Palasport Conegliano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82123422",
@@ -3565,7 +3905,9 @@
     "lat": 45.8912424,
     "lng": 12.3210998,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palestra Joy Club"
+    "organizer": "Palestra Joy Club",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82278129",
@@ -3586,7 +3928,9 @@
     "lat": 45.8892961,
     "lng": 12.3385168,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palazzetto dello Sport"
+    "organizer": "Palazzetto dello Sport",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82870762",
@@ -3607,7 +3951,9 @@
     "lat": 45.9264863,
     "lng": 12.3605899,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di San Fior"
+    "organizer": "Campo Sportivo di San Fior",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_80785901",
@@ -3628,7 +3974,9 @@
     "lat": 45.9009754,
     "lng": 12.1776147,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Centro Sportivo Parrocchiale"
+    "organizer": "Centro Sportivo Parrocchiale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_79008144",
@@ -3649,7 +3997,9 @@
     "lat": 45.8988264,
     "lng": 12.001988,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Piscina Comunale"
+    "organizer": "Piscina Comunale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_78994609",
@@ -3670,7 +4020,9 @@
     "lat": 45.8986492,
     "lng": 12.0008117,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di Valdobbiadene"
+    "organizer": "Campo Sportivo di Valdobbiadene",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_83040163",
@@ -3691,7 +4043,9 @@
     "lat": 45.926524,
     "lng": 12.3774923,
     "contact": "+39 0438 430353",
-    "organizer": "Sonego Sport"
+    "organizer": "Sonego Sport",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_83544669",
@@ -3712,7 +4066,9 @@
     "lat": 45.9304347,
     "lng": 12.4240322,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Cinema Teatro Cristallo"
+    "organizer": "Cinema Teatro Cristallo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_83622736",
@@ -3733,7 +4089,9 @@
     "lat": 45.9529021,
     "lng": 12.4093715,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di Cordignano"
+    "organizer": "Campo Sportivo di Cordignano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82847924",
@@ -3754,7 +4112,9 @@
     "lat": 45.9441241,
     "lng": 12.3406683,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Ice Climbing Rock"
+    "organizer": "Ice Climbing Rock",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_83060739",
@@ -3775,7 +4135,9 @@
     "lat": 45.9449065,
     "lng": 12.3611674,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Articolo V Horse Academy"
+    "organizer": "Articolo V Horse Academy",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82693615",
@@ -3796,7 +4158,9 @@
     "lat": 45.9760285,
     "lng": 12.293333,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Aula magna del Seminario"
+    "organizer": "Aula magna del Seminario",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_83079445",
@@ -3817,7 +4181,9 @@
     "lat": 45.9861662,
     "lng": 12.3217783,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Tiro a Segno Nazionale Sezione di Vittorio Veneto"
+    "organizer": "Tiro a Segno Nazionale Sezione di Vittorio Veneto",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_58287131",
@@ -3838,7 +4204,9 @@
     "lat": 45.9715399,
     "lng": 12.3155911,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Asd Flow"
+    "organizer": "Asd Flow",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82883498",
@@ -3859,7 +4227,9 @@
     "lat": 45.9836059,
     "lng": 12.3047439,
     "contact": "Nessun contatto disponibile",
-    "organizer": "ROUND1"
+    "organizer": "ROUND1",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_58288029",
@@ -3880,7 +4250,9 @@
     "lat": 45.9983829,
     "lng": 12.2896461,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Teatro Lorenzo Da Ponte"
+    "organizer": "Teatro Lorenzo Da Ponte",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82874571",
@@ -3901,7 +4273,9 @@
     "lat": 45.9772874,
     "lng": 12.3101697,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Bobadilla"
+    "organizer": "Bobadilla",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82835063",
@@ -3922,7 +4296,9 @@
     "lat": 45.9778917,
     "lng": 12.3056146,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Stadio Comunale \"Paolo Barison\""
+    "organizer": "Stadio Comunale \"Paolo Barison\"",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82890865",
@@ -3943,7 +4319,9 @@
     "lat": 45.9895421,
     "lng": 12.2995444,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palestra Comunale di Via Carducci"
+    "organizer": "Palestra Comunale di Via Carducci",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82948694",
@@ -3964,7 +4342,9 @@
     "lat": 45.9814603,
     "lng": 12.3134091,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Marco Polo Sporting Center"
+    "organizer": "Marco Polo Sporting Center",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_82052619",
@@ -3985,7 +4365,9 @@
     "lat": 45.9766971,
     "lng": 12.2285648,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palestra di Tarzo"
+    "organizer": "Palestra di Tarzo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_57500076",
@@ -4006,7 +4388,9 @@
     "lat": 45.7513731,
     "lng": 11.7487029,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palestra HappyFeet"
+    "organizer": "Palestra HappyFeet",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_75282027",
@@ -4027,7 +4411,9 @@
     "lat": 45.7692326,
     "lng": 11.7589701,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Matchpoint"
+    "organizer": "Matchpoint",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_75042543",
@@ -4048,7 +4434,9 @@
     "lat": 45.7394334,
     "lng": 11.7648209,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Rabbit Hole"
+    "organizer": "Rabbit Hole",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_57524265",
@@ -4069,7 +4457,9 @@
     "lat": 45.7576964,
     "lng": 11.7665686,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Isola dello Sport"
+    "organizer": "Isola dello Sport",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76848667",
@@ -4090,7 +4480,9 @@
     "lat": 45.8267869,
     "lng": 11.8580798,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Piscine Filippin"
+    "organizer": "Piscine Filippin",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76643064",
@@ -4111,7 +4503,9 @@
     "lat": 45.8283056,
     "lng": 11.8360008,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palestra Comunale"
+    "organizer": "Palestra Comunale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76858614",
@@ -4132,7 +4526,9 @@
     "lat": 45.8270834,
     "lng": 11.858778,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Teatro Istituti Filippin"
+    "organizer": "Teatro Istituti Filippin",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76697605",
@@ -4153,7 +4549,9 @@
     "lat": 45.8284163,
     "lng": 11.8413442,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Centro Sportivo Parrocchiale"
+    "organizer": "Centro Sportivo Parrocchiale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76867807",
@@ -4174,7 +4572,9 @@
     "lat": 45.8142767,
     "lng": 11.872504,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Sporting Club Millennium"
+    "organizer": "Sporting Club Millennium",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76849358",
@@ -4195,7 +4595,9 @@
     "lat": 45.8314148,
     "lng": 11.853521,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Palestra Comunale di Paderno del Grappa"
+    "organizer": "Palestra Comunale di Paderno del Grappa",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_57684408",
@@ -4216,7 +4618,9 @@
     "lat": 45.8266162,
     "lng": 11.8577918,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo Istituti Filippin"
+    "organizer": "Campo Sportivo Istituti Filippin",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76602708",
@@ -4237,7 +4641,9 @@
     "lat": 45.8165354,
     "lng": 11.8437354,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Campo Sportivo di Crespano del Grappa"
+    "organizer": "Campo Sportivo di Crespano del Grappa",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "act_auto_76696875",
@@ -4258,7 +4664,9 @@
     "lat": 45.828091,
     "lng": 11.8415965,
     "contact": "Nessun contatto disponibile",
-    "organizer": "Centro Parrocchiale"
+    "organizer": "Centro Parrocchiale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_205",
@@ -4281,7 +4689,9 @@
     "lat": 45.6622556,
     "lng": 12.270513,
     "contact": "Nessun contatto",
-    "organizer": "FitActive Treviso"
+    "organizer": "FitActive Treviso",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_206",
@@ -4304,7 +4714,9 @@
     "lat": 45.6447938,
     "lng": 12.2337191,
     "contact": "Nessun contatto",
-    "organizer": "Show Club La Ghirada"
+    "organizer": "Show Club La Ghirada",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_207",
@@ -4327,7 +4739,9 @@
     "lat": 45.6450469,
     "lng": 12.2412064,
     "contact": "Nessun contatto",
-    "organizer": "My Gym City"
+    "organizer": "My Gym City",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_208",
@@ -4350,7 +4764,9 @@
     "lat": 45.6790442,
     "lng": 12.2546822,
     "contact": "Nessun contatto",
-    "organizer": "Strada Facendo Indoor"
+    "organizer": "Strada Facendo Indoor",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_209",
@@ -4373,7 +4789,9 @@
     "lat": 45.6585213,
     "lng": 12.2822492,
     "contact": "Nessun contatto",
-    "organizer": "Canoa Club Sile"
+    "organizer": "Canoa Club Sile",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_210",
@@ -4396,7 +4814,9 @@
     "lat": 45.8066913,
     "lng": 12.2063158,
     "contact": "Nessun contatto",
-    "organizer": "Palestra Sports Team Treviso"
+    "organizer": "Palestra Sports Team Treviso",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_211",
@@ -4419,7 +4839,9 @@
     "lat": 45.7159584,
     "lng": 12.2569542,
     "contact": "Nessun contatto",
-    "organizer": "Renton Fitness"
+    "organizer": "Renton Fitness",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_212",
@@ -4442,7 +4864,9 @@
     "lat": 45.7246905,
     "lng": 12.2505756,
     "contact": "Nessun contatto",
-    "organizer": "K Fitness Club"
+    "organizer": "K Fitness Club",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_213",
@@ -4465,7 +4889,9 @@
     "lat": 45.6914375,
     "lng": 12.2502371,
     "contact": "Nessun contatto",
-    "organizer": "Biverso Fitness Lab"
+    "organizer": "Biverso Fitness Lab",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_214",
@@ -4488,7 +4914,9 @@
     "lat": 45.724805,
     "lng": 12.2445005,
     "contact": "Nessun contatto",
-    "organizer": "Park Tennis Villorba"
+    "organizer": "Park Tennis Villorba",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_215",
@@ -4511,7 +4939,9 @@
     "lat": 45.7292486,
     "lng": 12.2562455,
     "contact": "Nessun contatto",
-    "organizer": "Palestra Sport Evolution"
+    "organizer": "Palestra Sport Evolution",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_216",
@@ -4534,7 +4964,9 @@
     "lat": 45.5537776,
     "lng": 12.2607119,
     "contact": "Nessun contatto",
-    "organizer": "CIAO Fitness House"
+    "organizer": "CIAO Fitness House",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_217",
@@ -4557,7 +4989,9 @@
     "lat": 45.5588554,
     "lng": 12.2344721,
     "contact": "Nessun contatto",
-    "organizer": "Teen Eleven Evolution"
+    "organizer": "Teen Eleven Evolution",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_218",
@@ -4580,7 +5014,9 @@
     "lat": 45.5573548,
     "lng": 12.2656444,
     "contact": "Nessun contatto",
-    "organizer": "Centro Sportivo Via Torni"
+    "organizer": "Centro Sportivo Via Torni",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_219",
@@ -4603,7 +5039,9 @@
     "lat": 45.5542812,
     "lng": 12.2474664,
     "contact": "Nessun contatto",
-    "organizer": "Polisportiva Mogliano"
+    "organizer": "Polisportiva Mogliano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_220",
@@ -4626,7 +5064,9 @@
     "lat": 45.5676503,
     "lng": 12.2446906,
     "contact": "Nessun contatto",
-    "organizer": "Fitness Avenue"
+    "organizer": "Fitness Avenue",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_221",
@@ -4649,7 +5089,9 @@
     "lat": 45.6703643,
     "lng": 12.1756686,
     "contact": "Nessun contatto",
-    "organizer": "Vitanova Fitness"
+    "organizer": "Vitanova Fitness",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_222",
@@ -4672,7 +5114,9 @@
     "lat": 45.6999302,
     "lng": 12.1491918,
     "contact": "Nessun contatto",
-    "organizer": "FitUP Paese"
+    "organizer": "FitUP Paese",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_223",
@@ -4695,7 +5139,9 @@
     "lat": 45.6568034,
     "lng": 12.2858556,
     "contact": "Nessun contatto",
-    "organizer": "Dream Studio"
+    "organizer": "Dream Studio",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_224",
@@ -4718,7 +5164,9 @@
     "lat": 45.6532169,
     "lng": 12.2941107,
     "contact": "Nessun contatto",
-    "organizer": "Papy Academy"
+    "organizer": "Papy Academy",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_225",
@@ -4741,7 +5189,9 @@
     "lat": 45.641207,
     "lng": 12.3236653,
     "contact": "Nessun contatto",
-    "organizer": "MoveLab Climbing"
+    "organizer": "MoveLab Climbing",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_226",
@@ -4764,7 +5214,9 @@
     "lat": 45.6513174,
     "lng": 12.3059681,
     "contact": "Nessun contatto",
-    "organizer": "Sportler Climbing Center"
+    "organizer": "Sportler Climbing Center",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_227",
@@ -4787,7 +5239,9 @@
     "lat": 45.5779946,
     "lng": 12.2330595,
     "contact": "Nessun contatto",
-    "organizer": "Fit And Go"
+    "organizer": "Fit And Go",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_228",
@@ -4810,7 +5264,9 @@
     "lat": 45.599421,
     "lng": 12.2396648,
     "contact": "Nessun contatto",
-    "organizer": "Polisportiva Preganziol"
+    "organizer": "Polisportiva Preganziol",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_229",
@@ -4833,7 +5289,9 @@
     "lat": 45.5779946,
     "lng": 12.2330595,
     "contact": "Nessun contatto",
-    "organizer": "Phision"
+    "organizer": "Phision",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_230",
@@ -4856,7 +5314,9 @@
     "lat": 45.6311718,
     "lng": 12.2587751,
     "contact": "Nessun contatto",
-    "organizer": "Polisportiva Casier"
+    "organizer": "Polisportiva Casier",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_231",
@@ -4879,7 +5339,9 @@
     "lat": 45.6045041,
     "lng": 12.3381271,
     "contact": "Nessun contatto",
-    "organizer": "Aquafit"
+    "organizer": "Aquafit",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_232",
@@ -4902,7 +5364,9 @@
     "lat": 45.6054663,
     "lng": 12.3117069,
     "contact": "Nessun contatto",
-    "organizer": "Polisportiva Casale"
+    "organizer": "Polisportiva Casale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_233",
@@ -4925,7 +5389,9 @@
     "lat": 45.7036091,
     "lng": 12.219804,
     "contact": "Nessun contatto",
-    "organizer": "ASD AREA"
+    "organizer": "ASD AREA",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_234",
@@ -4948,7 +5414,9 @@
     "lat": 45.6846131,
     "lng": 12.2862153,
     "contact": "Nessun contatto",
-    "organizer": "Volley Carbonera ASD"
+    "organizer": "Volley Carbonera ASD",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_235",
@@ -4971,7 +5439,9 @@
     "lat": 45.627691,
     "lng": 12.1729246,
     "contact": "Nessun contatto",
-    "organizer": "QuintoSenso"
+    "organizer": "QuintoSenso",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_236",
@@ -4994,7 +5464,9 @@
     "lat": 45.6510023,
     "lng": 12.1601377,
     "contact": "Nessun contatto",
-    "organizer": "Energym Sport e Benessere"
+    "organizer": "Energym Sport e Benessere",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_237",
@@ -5017,7 +5489,9 @@
     "lat": 45.6693322,
     "lng": 12.1794346,
     "contact": "Nessun contatto",
-    "organizer": "Remedium Medical Hub"
+    "organizer": "Remedium Medical Hub",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_238",
@@ -5040,7 +5514,9 @@
     "lat": 45.6165377,
     "lng": 12.1659412,
     "contact": "Nessun contatto",
-    "organizer": "FitUP Zero Branco"
+    "organizer": "FitUP Zero Branco",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_239",
@@ -5063,7 +5539,9 @@
     "lat": 45.5930161,
     "lng": 12.154091,
     "contact": "Nessun contatto",
-    "organizer": "La Fenice ASD"
+    "organizer": "La Fenice ASD",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_240",
@@ -5086,7 +5564,9 @@
     "lat": 45.6383402,
     "lng": 12.3841198,
     "contact": "Nessun contatto",
-    "organizer": "Baobab Fitness Club"
+    "organizer": "Baobab Fitness Club",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_241",
@@ -5109,7 +5589,9 @@
     "lat": 45.615262,
     "lng": 12.3944188,
     "contact": "Nessun contatto",
-    "organizer": "Roncade Basket ASD"
+    "organizer": "Roncade Basket ASD",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_242",
@@ -5132,7 +5614,9 @@
     "lat": 45.653064,
     "lng": 12.4095842,
     "contact": "Nessun contatto",
-    "organizer": "Rosa Blu Village"
+    "organizer": "Rosa Blu Village",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_243",
@@ -5155,7 +5639,9 @@
     "lat": 45.6480243,
     "lng": 12.4359246,
     "contact": "Nessun contatto",
-    "organizer": "Polisportiva Monastier '88"
+    "organizer": "Polisportiva Monastier '88",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_244",
@@ -5178,7 +5664,9 @@
     "lat": 45.7827173,
     "lng": 12.2236423,
     "contact": "Nessun contatto",
-    "organizer": "Centro Acquamagia"
+    "organizer": "Centro Acquamagia",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_245",
@@ -5201,7 +5689,9 @@
     "lat": 45.6485307,
     "lng": 12.1007139,
     "contact": "Nessun contatto",
-    "organizer": "Sporting Club Morgano"
+    "organizer": "Sporting Club Morgano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_246",
@@ -5224,7 +5714,9 @@
     "lat": 45.67699,
     "lng": 12.08837,
     "contact": "Nessun contatto",
-    "organizer": "Labofit"
+    "organizer": "Labofit",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_247",
@@ -5247,7 +5739,9 @@
     "lat": 45.6770396,
     "lng": 12.098219,
     "contact": "Nessun contatto",
-    "organizer": "E-Motion Fitness Club"
+    "organizer": "E-Motion Fitness Club",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_248",
@@ -5270,7 +5764,9 @@
     "lat": 45.7759633,
     "lng": 12.2779459,
     "contact": "Nessun contatto",
-    "organizer": "Palestra Comunale"
+    "organizer": "Palestra Comunale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_249",
@@ -5293,7 +5789,9 @@
     "lat": 45.769095,
     "lng": 12.0280672,
     "contact": "Nessun contatto",
-    "organizer": "Top Gym Montebelluna"
+    "organizer": "Top Gym Montebelluna",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_250",
@@ -5316,7 +5814,9 @@
     "lat": 45.7800866,
     "lng": 12.0700835,
     "contact": "Nessun contatto",
-    "organizer": "FitUP Montebelluna"
+    "organizer": "FitUP Montebelluna",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_251",
@@ -5339,7 +5839,9 @@
     "lat": 45.7723702,
     "lng": 12.0723697,
     "contact": "Nessun contatto",
-    "organizer": "DG Club Montebelluna"
+    "organizer": "DG Club Montebelluna",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_252",
@@ -5362,7 +5864,9 @@
     "lat": 45.789173,
     "lng": 11.9090124,
     "contact": "Nessun contatto",
-    "organizer": "Miafit Asolo"
+    "organizer": "Miafit Asolo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_253",
@@ -5385,7 +5889,9 @@
     "lat": 45.8007265,
     "lng": 11.9142444,
     "contact": "Nessun contatto",
-    "organizer": "Asolo Fitness Club"
+    "organizer": "Asolo Fitness Club",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_254",
@@ -5408,7 +5914,9 @@
     "lat": 45.7922914,
     "lng": 11.9621052,
     "contact": "Nessun contatto",
-    "organizer": "DG Club Maser"
+    "organizer": "DG Club Maser",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_255",
@@ -5431,7 +5939,9 @@
     "lat": 45.8025312,
     "lng": 11.9577877,
     "contact": "Nessun contatto",
-    "organizer": "Energya Fitness Club"
+    "organizer": "Energya Fitness Club",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_256",
@@ -5454,7 +5964,9 @@
     "lat": 45.7794673,
     "lng": 11.9977893,
     "contact": "Nessun contatto",
-    "organizer": "Esserebenessere S.r.l."
+    "organizer": "Esserebenessere S.r.l.",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_257",
@@ -5477,7 +5989,9 @@
     "lat": 45.7794673,
     "lng": 11.9977893,
     "contact": "Nessun contatto",
-    "organizer": "A.S.D. Zerogravity 981"
+    "organizer": "A.S.D. Zerogravity 981",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_258",
@@ -5500,7 +6014,9 @@
     "lat": 45.748569,
     "lng": 11.9188215,
     "contact": "Nessun contatto",
-    "organizer": "Palestra Fisyodinamic"
+    "organizer": "Palestra Fisyodinamic",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_259",
@@ -5523,7 +6039,9 @@
     "lat": 45.7947891,
     "lng": 11.9981609,
     "contact": "Nessun contatto",
-    "organizer": "Palafonte"
+    "organizer": "Palafonte",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_260",
@@ -5546,7 +6064,9 @@
     "lat": 45.8160155,
     "lng": 11.8062557,
     "contact": "Nessun contatto",
-    "organizer": "L'Anima del Fitness"
+    "organizer": "L'Anima del Fitness",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_261",
@@ -5569,7 +6089,9 @@
     "lat": 45.8186168,
     "lng": 11.8007262,
     "contact": "Nessun contatto",
-    "organizer": "Palestra di Arrampicata Indoor"
+    "organizer": "Palestra di Arrampicata Indoor",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_262",
@@ -5592,7 +6114,9 @@
     "lat": 45.8278688,
     "lng": 11.997236,
     "contact": "Nessun contatto",
-    "organizer": "ASD Valdogym"
+    "organizer": "ASD Valdogym",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_263",
@@ -5615,7 +6139,9 @@
     "lat": 45.830413,
     "lng": 12.030561,
     "contact": "Nessun contatto",
-    "organizer": "Crocetta 1920 Academy"
+    "organizer": "Crocetta 1920 Academy",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_264",
@@ -5638,7 +6164,9 @@
     "lat": 45.7814389,
     "lng": 12.1038623,
     "contact": "Nessun contatto",
-    "organizer": "Invictus Fitness"
+    "organizer": "Invictus Fitness",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_265",
@@ -5661,7 +6189,9 @@
     "lat": 45.7487093,
     "lng": 11.9616742,
     "contact": "Nessun contatto",
-    "organizer": "ASD Fast Fit"
+    "organizer": "ASD Fast Fit",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_266",
@@ -5684,7 +6214,9 @@
     "lat": 45.7540744,
     "lng": 11.9112504,
     "contact": "Nessun contatto",
-    "organizer": "Palestra Comunale San Vito"
+    "organizer": "Palestra Comunale San Vito",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_267",
@@ -5707,7 +6239,9 @@
     "lat": 45.8292435,
     "lng": 11.8886584,
     "contact": "Nessun contatto",
-    "organizer": "A.S.D. Accademia Ginnica Castelcucco"
+    "organizer": "A.S.D. Accademia Ginnica Castelcucco",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_268",
@@ -5730,7 +6264,9 @@
     "lat": 45.8600107,
     "lng": 11.9206945,
     "contact": "Nessun contatto",
-    "organizer": "Loris De Martin Studio"
+    "organizer": "Loris De Martin Studio",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_269",
@@ -5753,7 +6289,9 @@
     "lat": 45.8695205,
     "lng": 11.9695508,
     "contact": "Nessun contatto",
-    "organizer": "Fisico Fitness Club"
+    "organizer": "Fisico Fitness Club",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_270",
@@ -5776,7 +6314,9 @@
     "lat": 45.9089739,
     "lng": 11.9530607,
     "contact": "Nessun contatto",
-    "organizer": "CIDI"
+    "organizer": "CIDI",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_271",
@@ -5799,7 +6339,9 @@
     "lat": 45.8265157,
     "lng": 11.8497232,
     "contact": "Nessun contatto",
-    "organizer": "Challenge Fit Center"
+    "organizer": "Challenge Fit Center",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_272",
@@ -5822,7 +6364,9 @@
     "lat": 45.8193386,
     "lng": 11.8417822,
     "contact": "Nessun contatto",
-    "organizer": "Alpha AP Fitness"
+    "organizer": "Alpha AP Fitness",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_273",
@@ -5845,7 +6389,9 @@
     "lat": 45.733501,
     "lng": 12.0940161,
     "contact": "Nessun contatto",
-    "organizer": "Fitness Faktory"
+    "organizer": "Fitness Faktory",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_274",
@@ -5868,7 +6414,9 @@
     "lat": 45.6715473,
     "lng": 11.9289258,
     "contact": "Nessun contatto",
-    "organizer": "Centro Sportivo San Giacomo"
+    "organizer": "Centro Sportivo San Giacomo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_275",
@@ -5891,7 +6439,9 @@
     "lat": 45.722399,
     "lng": 11.9165563,
     "contact": "Nessun contatto",
-    "organizer": "ASD Ginnastica Riese"
+    "organizer": "ASD Ginnastica Riese",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_276",
@@ -5914,7 +6464,9 @@
     "lat": 45.6820594,
     "lng": 11.9953305,
     "contact": "Nessun contatto",
-    "organizer": "Happy Fit Vedelago"
+    "organizer": "Happy Fit Vedelago",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_277",
@@ -5937,7 +6489,9 @@
     "lat": 45.7629389,
     "lng": 12.3070616,
     "contact": "Nessun contatto",
-    "organizer": "Happy Fit Maserada"
+    "organizer": "Happy Fit Maserada",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_278",
@@ -5960,7 +6514,9 @@
     "lat": 45.7237273,
     "lng": 12.3312346,
     "contact": "Nessun contatto",
-    "organizer": "ASD Polisportiva Breda"
+    "organizer": "ASD Polisportiva Breda",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_279",
@@ -5983,7 +6539,9 @@
     "lat": 45.7739346,
     "lng": 11.8422455,
     "contact": "Nessun contatto",
-    "organizer": "ASD Polisportiva San Zenone"
+    "organizer": "ASD Polisportiva San Zenone",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_280",
@@ -6006,7 +6564,9 @@
     "lat": 45.9163158,
     "lng": 12.0273735,
     "contact": "Nessun contatto",
-    "organizer": "ASD Polisportiva Valdobbiadene"
+    "organizer": "ASD Polisportiva Valdobbiadene",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_281",
@@ -6029,7 +6589,9 @@
     "lat": 45.8697074,
     "lng": 12.049307,
     "contact": "Nessun contatto",
-    "organizer": "ASD Polisportiva Vidor"
+    "organizer": "ASD Polisportiva Vidor",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_282",
@@ -6052,7 +6614,9 @@
     "lat": 45.9434189,
     "lng": 12.0799327,
     "contact": "Nessun contatto",
-    "organizer": "ASD Polisportiva Miane"
+    "organizer": "ASD Polisportiva Miane",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_283",
@@ -6075,7 +6639,9 @@
     "lat": 45.9616224,
     "lng": 12.1209857,
     "contact": "Nessun contatto",
-    "organizer": "ASD Polisportiva Follina"
+    "organizer": "ASD Polisportiva Follina",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_284",
@@ -6098,7 +6664,9 @@
     "lat": 45.9756086,
     "lng": 12.1675475,
     "contact": "Nessun contatto",
-    "organizer": "ASD Polisportiva Cison"
+    "organizer": "ASD Polisportiva Cison",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_285",
@@ -6121,7 +6689,9 @@
     "lat": 45.9119197,
     "lng": 12.2088363,
     "contact": "Nessun contatto",
-    "organizer": "ASD Polisportiva Refrontolo"
+    "organizer": "ASD Polisportiva Refrontolo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_286",
@@ -6144,7 +6714,9 @@
     "lat": 45.9021459,
     "lng": 12.1788455,
     "contact": "Nessun contatto",
-    "organizer": "ASD Polisportiva Pieve di Soligo"
+    "organizer": "ASD Polisportiva Pieve di Soligo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_287",
@@ -6167,7 +6739,9 @@
     "lat": 45.9037113,
     "lng": 12.1185034,
     "contact": "Nessun contatto",
-    "organizer": "ASD Polisportiva Farra"
+    "organizer": "ASD Polisportiva Farra",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_288",
@@ -6190,7 +6764,9 @@
     "lat": 45.9090534,
     "lng": 12.2406278,
     "contact": "Nessun contatto",
-    "organizer": "ASD Polisportiva San Pietro"
+    "organizer": "ASD Polisportiva San Pietro",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_289",
@@ -6213,7 +6789,9 @@
     "lat": 45.8531074,
     "lng": 12.2235849,
     "contact": "Nessun contatto",
-    "organizer": "ASD Polisportiva Susegana"
+    "organizer": "ASD Polisportiva Susegana",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_290",
@@ -6236,7 +6814,9 @@
     "lat": 45.8589899,
     "lng": 12.0936598,
     "contact": "Nessun contatto",
-    "organizer": "ASD Polisportiva Moriago"
+    "organizer": "ASD Polisportiva Moriago",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_291",
@@ -6259,7 +6839,9 @@
     "lat": 45.8624263,
     "lng": 12.1476429,
     "contact": "Nessun contatto",
-    "organizer": "ASD Polisportiva Sernaglia"
+    "organizer": "ASD Polisportiva Sernaglia",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_292",
@@ -6282,7 +6864,9 @@
     "lat": 45.9037297,
     "lng": 12.2653108,
     "contact": "Nessun contatto",
-    "organizer": "FitActive Conegliano"
+    "organizer": "FitActive Conegliano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_293",
@@ -6305,7 +6889,9 @@
     "lat": 45.9037297,
     "lng": 12.2653108,
     "contact": "Nessun contatto",
-    "organizer": "Studio Talea"
+    "organizer": "Studio Talea",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_294",
@@ -6328,7 +6914,9 @@
     "lat": 45.8823843,
     "lng": 12.3159662,
     "contact": "Nessun contatto",
-    "organizer": "Medicenter Conegliano"
+    "organizer": "Medicenter Conegliano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_295",
@@ -6351,7 +6939,9 @@
     "lat": 45.9037297,
     "lng": 12.2653108,
     "contact": "Nessun contatto",
-    "organizer": "Puro Fitness"
+    "organizer": "Puro Fitness",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_296",
@@ -6374,7 +6964,9 @@
     "lat": 45.9037297,
     "lng": 12.2653108,
     "contact": "Nessun contatto",
-    "organizer": "Palestra Stadio"
+    "organizer": "Palestra Stadio",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_297",
@@ -6397,7 +6989,9 @@
     "lat": 45.9727274,
     "lng": 12.3136097,
     "contact": "Nessun contatto",
-    "organizer": "Flow Palestra"
+    "organizer": "Flow Palestra",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_298",
@@ -6420,7 +7014,9 @@
     "lat": 45.9978643,
     "lng": 12.2964716,
     "contact": "Nessun contatto",
-    "organizer": "Round1"
+    "organizer": "Round1",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_299",
@@ -6443,7 +7039,9 @@
     "lat": 45.9978643,
     "lng": 12.2964716,
     "contact": "Nessun contatto",
-    "organizer": "Bobadilla Vittorio Veneto"
+    "organizer": "Bobadilla Vittorio Veneto",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_300",
@@ -6466,7 +7064,9 @@
     "lat": 45.9478278,
     "lng": 12.3280934,
     "contact": "Nessun contatto",
-    "organizer": "Body Evidence Vittorio Veneto"
+    "organizer": "Body Evidence Vittorio Veneto",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_301",
@@ -6489,7 +7089,9 @@
     "lat": 45.9978643,
     "lng": 12.2964716,
     "contact": "Nessun contatto",
-    "organizer": "Palestra Beltrame-Flaminio"
+    "organizer": "Palestra Beltrame-Flaminio",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_302",
@@ -6512,7 +7114,9 @@
     "lat": 45.8812555,
     "lng": 12.3242046,
     "contact": "Nessun contatto",
-    "organizer": "WebFit"
+    "organizer": "WebFit",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_303",
@@ -6535,7 +7139,9 @@
     "lat": 45.8923985,
     "lng": 12.325555,
     "contact": "Nessun contatto",
-    "organizer": "Joy Club"
+    "organizer": "Joy Club",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_304",
@@ -6558,7 +7164,9 @@
     "lat": 45.8826354,
     "lng": 12.3197888,
     "contact": "Nessun contatto",
-    "organizer": "NEWFIT San Vendemiano"
+    "organizer": "NEWFIT San Vendemiano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_305",
@@ -6581,7 +7189,9 @@
     "lat": 45.8907463,
     "lng": 12.3338437,
     "contact": "Nessun contatto",
-    "organizer": "ASD Royal Ginnastica"
+    "organizer": "ASD Royal Ginnastica",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_306",
@@ -6604,7 +7214,9 @@
     "lat": 45.9578979,
     "lng": 12.3393411,
     "contact": "Nessun contatto",
-    "organizer": "Palestra Olimpia ASD"
+    "organizer": "Palestra Olimpia ASD",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_307",
@@ -6627,7 +7239,9 @@
     "lat": 45.9663029,
     "lng": 12.4127197,
     "contact": "Nessun contatto",
-    "organizer": "i GO Club Cordignano"
+    "organizer": "i GO Club Cordignano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_308",
@@ -6650,7 +7264,9 @@
     "lat": 45.95105,
     "lng": 12.4146645,
     "contact": "Nessun contatto",
-    "organizer": "Palestra Scuole Medie"
+    "organizer": "Palestra Scuole Medie",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_309",
@@ -6673,7 +7289,9 @@
     "lat": 45.9663029,
     "lng": 12.4127197,
     "contact": "Nessun contatto",
-    "organizer": "Team Corifeo"
+    "organizer": "Team Corifeo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_310",
@@ -6696,7 +7314,9 @@
     "lat": 45.9109991,
     "lng": 12.3897481,
     "contact": "Nessun contatto",
-    "organizer": "i GO Club Pianzano"
+    "organizer": "i GO Club Pianzano",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_311",
@@ -6719,7 +7339,9 @@
     "lat": 45.9089763,
     "lng": 12.400593,
     "contact": "Nessun contatto",
-    "organizer": "PalaGodega"
+    "organizer": "PalaGodega",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_312",
@@ -6742,7 +7364,9 @@
     "lat": 45.9191277,
     "lng": 12.444065,
     "contact": "Nessun contatto",
-    "organizer": "ASD KUMA"
+    "organizer": "ASD KUMA",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_313",
@@ -6765,7 +7389,9 @@
     "lat": 45.9804029,
     "lng": 12.2296117,
     "contact": "Nessun contatto",
-    "organizer": "Orienteering Tarzo ASD"
+    "organizer": "Orienteering Tarzo ASD",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_314",
@@ -6788,7 +7414,9 @@
     "lat": 46.0283669,
     "lng": 12.3685104,
     "contact": "Nessun contatto",
-    "organizer": "Astra C5"
+    "organizer": "Astra C5",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_315",
@@ -6811,7 +7439,9 @@
     "lat": 45.9908444,
     "lng": 12.3896451,
     "contact": "Nessun contatto",
-    "organizer": "Elite Fitness Club"
+    "organizer": "Elite Fitness Club",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_316",
@@ -6834,7 +7464,9 @@
     "lat": 45.9908444,
     "lng": 12.3896451,
     "contact": "Nessun contatto",
-    "organizer": "Time For Dancing"
+    "organizer": "Time For Dancing",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_317",
@@ -6857,7 +7489,9 @@
     "lat": 45.9714005,
     "lng": 12.3482632,
     "contact": "Nessun contatto",
-    "organizer": "Palestra Digitale"
+    "organizer": "Palestra Digitale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_318",
@@ -6880,7 +7514,9 @@
     "lat": 45.8449737,
     "lng": 12.3050327,
     "contact": "Nessun contatto",
-    "organizer": "ASD Fit Your Fun"
+    "organizer": "ASD Fit Your Fun",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_319",
@@ -6903,7 +7539,9 @@
     "lat": 45.8667947,
     "lng": 12.4339077,
     "contact": "Nessun contatto",
-    "organizer": "Area 4 Fitness"
+    "organizer": "Area 4 Fitness",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_320",
@@ -6926,7 +7564,9 @@
     "lat": 45.8667947,
     "lng": 12.4339077,
     "contact": "Nessun contatto",
-    "organizer": "Palablu"
+    "organizer": "Palablu",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_321",
@@ -6949,7 +7589,9 @@
     "lat": 45.8416312,
     "lng": 12.3457224,
     "contact": "Nessun contatto",
-    "organizer": "Palestra In.Forma"
+    "organizer": "Palestra In.Forma",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_322",
@@ -6972,7 +7614,9 @@
     "lat": 45.8300627,
     "lng": 12.3271251,
     "contact": "Nessun contatto",
-    "organizer": "Polisportiva Comunale"
+    "organizer": "Polisportiva Comunale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_323",
@@ -6995,7 +7639,9 @@
     "lat": 45.7790432,
     "lng": 12.3530199,
     "contact": "Nessun contatto",
-    "organizer": "ASD Black Sheep"
+    "organizer": "ASD Black Sheep",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_324",
@@ -7018,7 +7664,9 @@
     "lat": 45.7685126,
     "lng": 12.1962323,
     "contact": "Nessun contatto",
-    "organizer": "Palestra Fit POINT"
+    "organizer": "Palestra Fit POINT",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_325",
@@ -7041,7 +7689,9 @@
     "lat": 45.7776511,
     "lng": 12.4932002,
     "contact": "Nessun contatto",
-    "organizer": "FirstFit Oderzo"
+    "organizer": "FirstFit Oderzo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_326",
@@ -7064,7 +7714,9 @@
     "lat": 45.7776511,
     "lng": 12.4932002,
     "contact": "Nessun contatto",
-    "organizer": "Bewellness Oderzo"
+    "organizer": "Bewellness Oderzo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_327",
@@ -7087,7 +7739,9 @@
     "lat": 45.7776511,
     "lng": 12.4932002,
     "contact": "Nessun contatto",
-    "organizer": "Brandolini Sport"
+    "organizer": "Brandolini Sport",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_328",
@@ -7110,7 +7764,9 @@
     "lat": 45.7776511,
     "lng": 12.4932002,
     "contact": "Nessun contatto",
-    "organizer": "Sun Fit Oderzo"
+    "organizer": "Sun Fit Oderzo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_329",
@@ -7133,7 +7789,9 @@
     "lat": 45.7776511,
     "lng": 12.4932002,
     "contact": "Nessun contatto",
-    "organizer": "Palestra Club Delfino"
+    "organizer": "Palestra Club Delfino",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_330",
@@ -7156,7 +7814,9 @@
     "lat": 45.7776511,
     "lng": 12.4932002,
     "contact": "Nessun contatto",
-    "organizer": "Gymnos"
+    "organizer": "Gymnos",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_331",
@@ -7179,7 +7839,9 @@
     "lat": 45.7776511,
     "lng": 12.4932002,
     "contact": "Nessun contatto",
-    "organizer": "Athletic Gym"
+    "organizer": "Athletic Gym",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_332",
@@ -7202,7 +7864,9 @@
     "lat": 45.7776511,
     "lng": 12.4932002,
     "contact": "Nessun contatto",
-    "organizer": "Olympia Fit"
+    "organizer": "Olympia Fit",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_333",
@@ -7225,7 +7889,9 @@
     "lat": 45.7643917,
     "lng": 12.6245753,
     "contact": "Nessun contatto",
-    "organizer": "Body & Mind Evolution"
+    "organizer": "Body & Mind Evolution",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_334",
@@ -7248,7 +7914,9 @@
     "lat": 45.7414406,
     "lng": 12.6183495,
     "contact": "Nessun contatto",
-    "organizer": "Gymnasium Piscine"
+    "organizer": "Gymnasium Piscine",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_335",
@@ -7271,7 +7939,9 @@
     "lat": 45.7722925,
     "lng": 12.6006524,
     "contact": "Nessun contatto",
-    "organizer": "Laboratorio del Movimento"
+    "organizer": "Laboratorio del Movimento",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_336",
@@ -7294,7 +7964,9 @@
     "lat": 45.7643917,
     "lng": 12.6245753,
     "contact": "Nessun contatto",
-    "organizer": "Centro Danza & Movimento"
+    "organizer": "Centro Danza & Movimento",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_337",
@@ -7317,7 +7989,9 @@
     "lat": 45.7332194,
     "lng": 12.4700295,
     "contact": "Nessun contatto",
-    "organizer": "Lime Fitness House"
+    "organizer": "Lime Fitness House",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_338",
@@ -7340,7 +8014,9 @@
     "lat": 45.78615,
     "lng": 12.5415687,
     "contact": "Nessun contatto",
-    "organizer": "Body Up"
+    "organizer": "Body Up",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_339",
@@ -7363,7 +8039,9 @@
     "lat": 45.78615,
     "lng": 12.5415687,
     "contact": "Nessun contatto",
-    "organizer": "ASD New Body Up"
+    "organizer": "ASD New Body Up",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_340",
@@ -7386,7 +8064,9 @@
     "lat": 45.8339604,
     "lng": 12.4671633,
     "contact": "Nessun contatto",
-    "organizer": "Campo Sportivo Fontanelle"
+    "organizer": "Campo Sportivo Fontanelle",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_341",
@@ -7409,7 +8089,9 @@
     "lat": 45.7718735,
     "lng": 12.4271883,
     "contact": "Nessun contatto",
-    "organizer": "Audaxe Fitness Tribe"
+    "organizer": "Audaxe Fitness Tribe",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_342",
@@ -7432,7 +8114,9 @@
     "lat": 45.7718735,
     "lng": 12.4271883,
     "contact": "Nessun contatto",
-    "organizer": "Le Pleiadi Club"
+    "organizer": "Le Pleiadi Club",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_343",
@@ -7455,7 +8139,9 @@
     "lat": 45.7034472,
     "lng": 12.5221949,
     "contact": "Nessun contatto",
-    "organizer": "Palestra Scuola Media"
+    "organizer": "Palestra Scuola Media",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_344",
@@ -7478,7 +8164,9 @@
     "lat": 45.6779403,
     "lng": 12.4789612,
     "contact": "Nessun contatto",
-    "organizer": "Am Personal Project"
+    "organizer": "Am Personal Project",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_345",
@@ -7501,7 +8189,9 @@
     "lat": 45.7131972,
     "lng": 12.6118645,
     "contact": "Nessun contatto",
-    "organizer": "Campo Sportivo"
+    "organizer": "Campo Sportivo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_346",
@@ -7524,7 +8214,9 @@
     "lat": 45.7146614,
     "lng": 12.60954,
     "contact": "Nessun contatto",
-    "organizer": "Palazzetto dello Sport"
+    "organizer": "Palazzetto dello Sport",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_347",
@@ -7547,7 +8239,9 @@
     "lat": 45.7097523,
     "lng": 12.6304053,
     "contact": "Nessun contatto",
-    "organizer": "Body & Mind S.r.l."
+    "organizer": "Body & Mind S.r.l.",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_348",
@@ -7570,7 +8264,9 @@
     "lat": 45.8064433,
     "lng": 12.6126854,
     "contact": "Nessun contatto",
-    "organizer": "Energym"
+    "organizer": "Energym",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_349",
@@ -7593,7 +8289,9 @@
     "lat": 45.8905168,
     "lng": 12.4886501,
     "contact": "Nessun contatto",
-    "organizer": "Solerò Sport Village"
+    "organizer": "Solerò Sport Village",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_350",
@@ -7616,7 +8314,9 @@
     "lat": 45.8905168,
     "lng": 12.4886501,
     "contact": "Nessun contatto",
-    "organizer": "Energy Fitness A.S.D."
+    "organizer": "Energy Fitness A.S.D.",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_351",
@@ -7639,7 +8339,9 @@
     "lat": 45.8905168,
     "lng": 12.4886501,
     "contact": "Nessun contatto",
-    "organizer": "Athletic Fitness Center"
+    "organizer": "Athletic Fitness Center",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_352",
@@ -7662,7 +8364,9 @@
     "lat": 45.8512262,
     "lng": 12.5380752,
     "contact": "Nessun contatto",
-    "organizer": "Funnycenter Academy SSD"
+    "organizer": "Funnycenter Academy SSD",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_353",
@@ -7685,7 +8389,9 @@
     "lat": 45.7827671,
     "lng": 12.4111342,
     "contact": "Nessun contatto",
-    "organizer": "Energy Salus"
+    "organizer": "Energy Salus",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_354",
@@ -7708,7 +8414,9 @@
     "lat": 45.7886456,
     "lng": 12.3946765,
     "contact": "Nessun contatto",
-    "organizer": "Puro Fitness San Polo"
+    "organizer": "Puro Fitness San Polo",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   },
   {
     "id": "csv_imported_355",
@@ -7731,6 +8439,8 @@
     "lat": 45.7886456,
     "lng": 12.3946765,
     "contact": "Nessun contatto",
-    "organizer": "Palazzetto Polifunzionale"
+    "organizer": "Palazzetto Polifunzionale",
+    "verificato_il": "26/06/2026",
+    "fonte_tipo": "sito ufficiale"
   }
 ]

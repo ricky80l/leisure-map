@@ -7,9 +7,10 @@ interface HeaderProps {
   theme: string;
   toggleTheme: () => void;
   allActivities: any[];
+  onReportClick: () => void;
 }
 
-export default function Header({ citySearchQuery, setCitySearchQuery, handleCitySearch, theme, toggleTheme, allActivities }: HeaderProps) {
+export default function Header({ citySearchQuery, setCitySearchQuery, handleCitySearch, theme, toggleTheme, allActivities, onReportClick }: HeaderProps) {
   const [showDropdown, setShowDropdown] = useState(false);
   const containerRef = useRef<HTMLFormElement>(null);
 
@@ -119,6 +120,7 @@ export default function Header({ citySearchQuery, setCitySearchQuery, handleCity
           )}
         </form>
         <nav className="hnav">
+          <a href="#" onClick={(e) => { e.preventDefault(); onReportClick(); }}>➕ Segnala</a>
           <a href="#">Esplora</a>
           <a href="#">Salvate</a>
           <button className="theme-btn" onClick={toggleTheme} aria-label="Cambia tema">
