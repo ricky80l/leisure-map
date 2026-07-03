@@ -37,7 +37,7 @@ header{position:sticky;top:0;z-index:50;background:var(--surface);
   color:#fff;display:grid;place-items:center;font-weight:600;font-size:.85rem}
 
 /* ---------- Filtri ---------- */
-.filters{border-bottom:1px solid var(--line);background:var(--surface)}
+.filters{border-bottom:1px solid var(--line);background:var(--surface);position:sticky;top:64px;z-index:40}
 .frow{max-width:1280px;margin:0 auto;padding:12px 24px;display:flex;gap:8px;
   overflow-x:auto;align-items:center;scrollbar-width:none}
 .chip{flex:none;display:flex;align-items:center;gap:6px;padding:7px 14px;
@@ -103,7 +103,8 @@ header{position:sticky;top:0;z-index:50;background:var(--surface);
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 @media (max-width:900px){
-  .split{grid-template-columns:1fr;height:auto}
-  .mapwrap{height:340px;order:-1;border-left:none;border-bottom:1px solid var(--line)}
+  .split{grid-template-columns:1fr;grid-template-rows:35dvh 1fr;height:calc(100dvh - 121px);min-height:0}
+  .mapwrap{height:100%;order:-1;border-left:none;border-bottom:1px solid var(--line)}
+  .list{padding:16px}
   .hnav a{display:none}
 }
