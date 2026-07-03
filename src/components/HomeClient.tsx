@@ -229,15 +229,18 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
               key={act.id}
               activity={act}
               userCoords={userCoords}
-              isSelected={selectedActivity?.id === act.id}
+              isFlipped={hoveredId === act.id}
               onMouseEnter={() => setHoveredId(act.id)}
               onMouseLeave={() => setHoveredId(null)}
-              onClick={() => {
-                if (selectedActivity?.id === act.id) {
-                  setSelectedActivity(null);
+              onCardClick={() => {
+                if (hoveredId === act.id) {
+                  setHoveredId(null);
                 } else {
-                  setSelectedActivity(act);
+                  setHoveredId(act.id);
                 }
+              }}
+              onDetailsClick={(e) => {
+                setSelectedActivity(act);
               }}
             />
           ))}

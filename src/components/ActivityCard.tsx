@@ -3,10 +3,11 @@ import { Activity, getCategoryLabel, LEVEL_LABELS, getDistanceKm } from '../data
 
 interface ActivityCardProps {
   activity: Activity;
-  isSelected?: boolean;
+  isFlipped?: boolean;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
-  onClick?: () => void;
+  onCardClick?: () => void;
+  onDetailsClick?: (e: React.MouseEvent) => void;
   userCoords?: { lat: number; lng: number } | null;
 }
 
@@ -249,15 +250,15 @@ const getSvgForCategory = (activity: Activity) => {
   );
 };
 
-export default function ActivityCard({ activity, isSelected, onMouseEnter, onMouseLeave, onClick, userCoords }: ActivityCardProps) {
+export default function ActivityCard({ activity, isFlipped, onMouseEnter, onMouseLeave, onCardClick, onDetailsClick, userCoords }: ActivityCardProps) {
   
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isSelected && buttonRef.current) {
+    if (isFlipped && buttonRef.current) {
       buttonRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-  }, [isSelected]);
+  }, [isFlipped]);
 
   const getBadgeClass = (category: string) => {
     const cat = category.toLowerCase();
@@ -272,18 +273,18 @@ export default function ActivityCard({ activity, isSelected, onMouseEnter, onMou
   const badgeKey = activity.disciplina || activity.category;
 
   return (
-    <button 
+    <div 
       ref={buttonRef}
       id={`card-${activity.id}`}
-      className={`card ${isSelected ? 'selected' : ''}`} 
+      className={`card ${isFlipped ? 'selected' : ''}`} 
       tabIndex={0}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onFocus={onMouseEnter}
       onBlur={onMouseLeave}
-      onClick={onClick}
+      onClick={onCardClick}
     >
-      <div className="flipper" style={{ outline: isSelected ? '2px solid var(--primary)' : undefined, outlineOffset: '2px' }}>
+      <div className="flipper" style={{ outline: isFlipped ? '2px solid var(--primary)' : undefined, outlineOffset: '2px' }}>
         
         {/* LATO FRONTALE */}
         <div className="front">
@@ -425,14 +426,14 @@ export default function ActivityCard({ activity, isSelected, onMouseEnter, onMou
 
           </div>
 
-          <div style={{ marginTop: 'auto', padding: '12px', background: 'var(--primary)', color: '#fff', borderRadius: '8px', fontSize: '0.85rem', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', boxShadow: '0 4px 12px rgba(14, 124, 102, 0.25)' }}>
+          <button onClick={(e) => { e.stopPropagation(); onDetailsClick?.(e); }} style={{ marginTop: 'auto', padding: '12px', background: 'var(--primary)', color: '#fff', borderRadius: '8px', fontSize: '0.85rem', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', boxShadow: '0 4px 12px rgba(14, 124, 102, 0.25)', border: 'none', cursor: 'pointer', width: '100%' }}>
             Vedi scheda completa
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </div>
+          </button>
         </div>
       </div>
 
       </div>
-    </button>
+    </div>
   );
 }
