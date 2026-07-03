@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { Activity, getCategoryLabel, LEVEL_LABELS, getDistanceKm } from '../data/mockActivities';
 
 interface ActivityCardProps {
