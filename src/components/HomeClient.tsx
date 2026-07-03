@@ -239,7 +239,7 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
                   setHoveredId(act.id);
                 }
               }}
-              onDetailsClick={(e) => {
+              onDetailsClick={() => {
                 setSelectedActivity(act);
               }}
             />
