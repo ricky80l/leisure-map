@@ -7,18 +7,17 @@ export interface PatchNote {
 }
 
 export const LATEST_PATCH_NOTE: PatchNote = {
-  version: "2.1.0",
-  date: "3 Luglio 2026",
-  title: "Nuova Ricerca Intelligente & Grafica Premium 🚀",
+  version: "2.2.0",
+  date: "4 Luglio 2026",
+  title: "Schede 3D, Distanze & Segnalazioni 🌟",
   features: [
-    "Ricerca Map-Click: Clicca in un punto qualsiasi della mappa per aggiornare immediatamente i risultati nei dintorni.",
-    "Nuovo Menù a Tendina: Sostituito il menù standard con una tendina customizzata super veloce, cliccabile più volte, filtrata dinamicamente e con la nuova veste grafica.",
-    "Autocompletamento Rapido: Usa il tasto TAB nella barra di ricerca per completare al volo il suggerimento.",
-    "Importazione Dati: 151 nuove attività sportive, inclusi Calisthenics, Fitness e Arti Marziali, aggiunte al database."
+    "Card 3D Interattive: Le schede delle attività ora hanno un fantastico effetto di rotazione 3D al passaggio del mouse. Il retro offre un layout premium con icone e design ad alto contrasto.",
+    "Distanza Geografica in tempo reale: Aggiunta un'etichetta in cima a ogni scheda che mostra istantaneamente a che distanza ti trovi dalla struttura (calcolata con formula di Haversine).",
+    "Sistema di Verifica Dati: Implementata la visibilità sull'ultima data di verifica delle informazioni e sulla fonte originaria. I dati non aggiornati da oltre 6 mesi verranno evidenziati in rosso.",
+    "Segnalazioni Utenti: Aggiunto un nuovo modulo integrato per permettere alla community di segnalare aggiornamenti, inviare correzioni e proporre nuove strutture da aggiungere alla mappa."
   ],
   fixes: [
-    "Patch Notes Premium: Rivista l'interfaccia delle note di aggiornamento per farla combaciare perfettamente con il tema e i colori dell'app.",
-    "Fix Mapbox Crash: Risolta l'incompatibilità tecnica (type mismatch) che causava la sparizione dei pin sulla mappa.",
-    "Scorrimento Intelligente: La lista laterale ora scorre automaticamente per centrare la scheda dell'attività selezionata dalla mappa."
+    "Ottimizzazione Touch: Risolto il fastidioso comportamento 'Sticky Hover' sui dispositivi mobile che teneva le schede bloccate sul lato posteriore.",
+    "Riformattazione Date: Standardizzato globalmente il formato delle date nel corretto standard italiano (GG/MM/AAAA)."
   ]
 };
