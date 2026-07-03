@@ -25,7 +25,8 @@ const getCategoryVisuals = (category: string) => {
 export default function ActivityDetailPanel({ activity, onClose }: ActivityDetailPanelProps) {
   if (!activity) return null;
 
-  const visuals = getCategoryVisuals(activity.category);
+  const badgeKey = activity.disciplina || activity.category;
+  const visuals = getCategoryVisuals(badgeKey);
   const daysString = activity.days.map(d => DAY_LABELS.find(l => l.value === d)?.label).join(', ');
 
   const handleDirections = () => {
@@ -117,7 +118,7 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
           
           <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 text-white">
             <span className="inline-block px-2.5 py-1 bg-white/20 backdrop-blur-md text-[10px] font-extrabold uppercase tracking-widest rounded-md mb-2 border border-white/20 shadow-sm">
-              {getCategoryLabel(activity.category)}
+              {getCategoryLabel(badgeKey)}
             </span>
             <h2 className="text-2xl font-bold leading-tight drop-shadow-md">{activity.name}</h2>
             <div className="flex flex-col gap-1 mt-2 opacity-90 drop-shadow-sm">

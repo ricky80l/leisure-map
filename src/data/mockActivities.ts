@@ -2,6 +2,7 @@ export interface Activity {
   id: string;
   name: string;
   category: string; // Libero per supportare dinamicamente qualsiasi sport
+  disciplina?: string; // Disciplina da vocabolario controllato
   level: 'principianti' | 'intermedio' | 'avanzato';
   target: 'bambini' | 'adulti' | 'tutti';
   days: number[]; // 1 = Lunedì, 7 = Domenica
