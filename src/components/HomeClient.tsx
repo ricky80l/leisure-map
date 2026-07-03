@@ -230,8 +230,16 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
               activity={act}
               userCoords={userCoords}
               isFlipped={hoveredId === act.id}
-              onMouseEnter={() => setHoveredId(act.id)}
-              onMouseLeave={() => setHoveredId(null)}
+              onMouseEnter={() => {
+                if (window.matchMedia('(hover: hover)').matches) {
+                  setHoveredId(act.id);
+                }
+              }}
+              onMouseLeave={() => {
+                if (window.matchMedia('(hover: hover)').matches) {
+                  setHoveredId(null);
+                }
+              }}
               onCardClick={() => {
                 if (hoveredId === act.id) {
                   setHoveredId(null);
