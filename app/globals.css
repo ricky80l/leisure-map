@@ -63,6 +63,7 @@ header{position:sticky;top:0;z-index:50;background:var(--surface);
 @media (hover: hover) {
   .card:hover .flipper { transform:rotateY(180deg) translateY(-2px);box-shadow:0 6px 18px rgba(26,34,51,.14) }
 }
+.card.selected .flipper { transform:rotateY(180deg) translateY(-2px);box-shadow:0 6px 18px rgba(26,34,51,.14) }
 .card:focus-visible .flipper{transform:rotateY(180deg) translateY(-2px);box-shadow:0 6px 18px rgba(26,34,51,.14)}
 .card:focus-visible .flipper{outline:2px solid var(--primary);outline-offset:2px}
 .front,.back{width:100%;backface-visibility:hidden;border-radius:var(--r);background:var(--card)}
