@@ -1,3 +1,5 @@
+'use client';
+
 import { Activity, getCategoryLabel, LEVEL_LABELS, TARGET_LABELS, DAY_LABELS } from '../data/mockActivities';
 import { X, MapPin, Navigation, Share2, CalendarPlus, Mail, Phone, Clock, Calendar } from 'lucide-react';
 

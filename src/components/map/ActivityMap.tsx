@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef, useCallback, useState } from "react";
 import maplibregl, { Map as MLMap, LngLatBounds } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";

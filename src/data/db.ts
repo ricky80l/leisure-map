@@ -1,6 +1,10 @@
-import { supabase } from '../lib/supabaseClient';
+import { createClient } from '@supabase/supabase-js';
 import rawActivities from './activities.json';
 import { Activity } from './mockActivities';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder_key';
+export const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
 
 /**
  * Funzione centralizzata per recuperare i dati.

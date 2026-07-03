@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import Header from '../components/Header';
 import Filters from '../components/Filters';
@@ -6,20 +8,20 @@ import ActivityMap from '../components/map/ActivityMap';
 import ActivityDetailPanel from '../components/ActivityDetailPanel';
 import PatchNotesModal from '../components/PatchNotesModal';
 import { LATEST_PATCH_NOTE } from '../data/patchNotes';
-import { fetchActivities } from '../data/db';
+// Removed unused fetchActivities import
 import { Activity, getDistanceKm } from '../data/mockActivities';
 
 const DEFAULT_LAT = 45.6669;
 const DEFAULT_LNG = 12.2431;
 
-export default function MapPage() {
+export default function HomeClient({ initialActivities }: { initialActivities: Activity[] }) {
   // --- UI State ---
   const [theme, setTheme] = useState('light');
   const [showPatchNotes, setShowPatchNotes] = useState(false);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   // --- Data State ---
-  const [allActivities, setAllActivities] = useState<Activity[]>([]);
+  const [allActivities, setAllActivities] = useState<Activity[]>(initialActivities);
   const [activities, setActivities] = useState<Activity[]>([]);
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
 
@@ -56,12 +58,9 @@ export default function MapPage() {
   };
 
   useEffect(() => {
-    async function loadData() {
-      const data = await fetchActivities();
-      setAllActivities(data);
-    }
-    loadData();
-  }, []);
+    // If the server passes updated initialActivities later, sync it
+    setAllActivities(initialActivities);
+  }, [initialActivities]);
 
   useEffect(() => {
     if ('geolocation' in navigator) {
