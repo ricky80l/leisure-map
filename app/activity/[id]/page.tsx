@@ -54,8 +54,8 @@ export default async function ActivityPage({ params }: Props) {
 
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh', background: 'var(--surface)' }}>
-      {/* Riusiamo il pannello dettaglio ma mockiamo onClose per fare un redirect alla home */}
-      <ActivityDetailPanel activity={activity} onClose={() => {}} />
+      {/* Riusiamo il pannello dettaglio */}
+      <ActivityDetailPanel activity={activity} />
       <style>{`
         /* Overrides to make the panel take the full page naturally instead of acting like a modal */
         .panel {

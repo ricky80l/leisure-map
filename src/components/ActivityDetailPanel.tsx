@@ -5,7 +5,7 @@ import { X, MapPin, Navigation, Share2, CalendarPlus, Mail, Phone, Clock, Calend
 
 interface ActivityDetailPanelProps {
   activity: Activity | null;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 // Funzione helper per visuali coerenti e standardizzate
