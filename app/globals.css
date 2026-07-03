@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap');
-
+@tailwind utilities;
 :root{
   --primary:#0E7C66; --primary-hover:#0A5F4E; --accent:#F2A93B;
   --surface:#FBFAF7; --card:#FFFFFF; --ink:#1A2233; --muted:#5A6472;
