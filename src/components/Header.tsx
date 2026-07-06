@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { dict } from '../i18n/it';
 
 interface HeaderProps {
   citySearchQuery: string;
@@ -12,7 +14,10 @@ interface HeaderProps {
 
 export default function Header({ citySearchQuery, setCitySearchQuery, handleCitySearch, theme, toggleTheme, allActivities, onReportClick }: HeaderProps) {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const containerRef = useRef<HTMLFormElement>(null);
+  const { user, loading } = useAuth();
 
   const suggestions = Array.from(new Set(allActivities.map(a => a.locationName)))
     .filter((loc: any) => loc.toLowerCase().includes(citySearchQuery.toLowerCase()))
@@ -22,34 +27,52 @@ export default function Header({ citySearchQuery, setCitySearchQuery, handleCity
     const handleClickOutside = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setShowDropdown(false);
+        if (window.innerWidth <= 640 && !citySearchQuery) {
+          setIsSearchExpanded(false);
+        }
       }
     };
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
-    <header>
+    <header className={scrolled ? 'scrolled' : ''}>
       <div className="hbar">
         <div className="logo">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/>
             <path d="M9.5 10.5 12 7l2.5 3.5L12 13z" fill="currentColor" stroke="none"/>
           </svg>
-          Leisure Map
+          {dict.header.titolo}
         </div>
-        <form className="search" onSubmit={handleCitySearch} style={{ display: 'flex', alignItems: 'center', position: 'relative' }} ref={containerRef}>
+        <form className={`search ${isSearchExpanded ? 'expanded' : ''}`} onSubmit={handleCitySearch} style={{ display: 'flex', alignItems: 'center', position: 'relative' }} ref={containerRef}>
           <svg 
+            className="search-icon"
             width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-            style={{ cursor: 'pointer' }}
-            onClick={(e) => { e.preventDefault(); handleCitySearch(); }}
+            onClick={(e) => { 
+              if (window.innerWidth <= 640 && !isSearchExpanded) {
+                e.preventDefault();
+                setIsSearchExpanded(true);
+              } else {
+                e.preventDefault(); 
+                handleCitySearch(); 
+              }
+            }}
           >
             <circle cx="11" cy="11" r="7"/>
             <path d="m20 20-3.5-3.5"/>
           </svg>
           <input 
             type="text" 
-            placeholder="Cerca attività, luoghi, esperienze…" 
+            placeholder={dict.header.cerca_attivita} 
             value={citySearchQuery}
             onFocus={() => setShowDropdown(true)}
             onChange={(e) => {
@@ -130,7 +153,14 @@ export default function Header({ citySearchQuery, setCitySearchQuery, handleCity
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
             )}
           </button>
-          <div className="avatar">R</div>
+          {!loading && user && (
+            <div className="avatar" title={user.email || ''}>{user.email?.charAt(0).toUpperCase() || 'U'}</div>
+          )}
+          {!loading && !user && (
+            <div className="avatar" style={{ background: 'transparent', border: '1px solid var(--border)', color: 'var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+          )}
         </nav>
       </div>
     </header>

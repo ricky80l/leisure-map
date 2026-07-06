@@ -234,9 +234,11 @@ export default function ActivityMap({
 
       map.on("click", (e) => {
         const features = map.queryRenderedFeatures(e.point, { layers: ["clusters", "punti"] });
-        if (features.length === 0) {
-          if (onEmptyMapClickRef.current) onEmptyMapClickRef.current(e.lngLat.lng, e.lngLat.lat);
-        }
+        console.log("Global map click features:", features.length);
+        // DISABILITATO TEMPORANEAMENTE PER RACE CONDITION CON I PIN
+        // if (features.length === 0) {
+        //   if (onEmptyMapClickRef.current) onEmptyMapClickRef.current(e.lngLat.lng, e.lngLat.lat);
+        // }
       });
 
       for (const layer of ["clusters", "punti"]) {

@@ -1,21 +1,42 @@
 'use client';
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import dynamic from 'next/dynamic';
+import { useVirtualizer } from '@tanstack/react-virtual';
+import { track } from '@vercel/analytics';
+import { dict } from '../i18n/it';
 import Header from '../components/Header';
 import Filters from '../components/Filters';
 import ActivityCard from '../components/ActivityCard';
-import ActivityMap from '../components/map/ActivityMap';
 import ActivityDetailPanel from '../components/ActivityDetailPanel';
 import PatchNotesModal from '../components/PatchNotesModal';
 import ReportModal from '../components/ReportModal';
 import { LATEST_PATCH_NOTE } from '../data/patchNotes';
-// Removed unused fetchActivities import
 import { Activity, getDistanceKm } from '../data/mockActivities';
 
-const DEFAULT_LAT = 45.6669;
-const DEFAULT_LNG = 12.2431;
+const ActivityMap = dynamic(() => import('../components/map/ActivityMap'), { 
+  ssr: false, 
+  loading: () => <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', background: 'var(--surface)', color: 'var(--muted)' }}>Caricamento Mappa...</div> 
+});
 
-export default function HomeClient({ initialActivities }: { initialActivities: Activity[] }) {
+const DEFAULT_LAT = process.env.NEXT_PUBLIC_DEFAULT_LAT ? parseFloat(process.env.NEXT_PUBLIC_DEFAULT_LAT) : 45.55;
+const DEFAULT_LNG = process.env.NEXT_PUBLIC_DEFAULT_LNG ? parseFloat(process.env.NEXT_PUBLIC_DEFAULT_LNG) : 11.95;
+
+const DEFAULT_REGION_NAME = process.env.NEXT_PUBLIC_DEFAULT_REGION_NAME || 'Veneto Centrale';
+
+export default function HomeClient({ 
+  initialActivities,
+  initialCity,
+  initialCategory
+}: { 
+  initialActivities: Activity[],
+  initialCity?: string,
+  initialCategory?: string
+}) {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   // --- UI State ---
   const [theme, setTheme] = useState('light');
   const [showPatchNotes, setShowPatchNotes] = useState(false);
@@ -23,19 +44,28 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
   const [mobileMode, setMobileMode] = useState<'map' | 'list'>('map');
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
+  // Layout State
+  const isCompactView = searchParams?.get('vista') === 'elenco';
+
+  // Refs per Virtualizer
+  const listParentRef = useRef<HTMLDivElement>(null);
+
   // --- Data State ---
   const [allActivities, setAllActivities] = useState<Activity[]>(initialActivities);
-  const [activities, setActivities] = useState<Activity[]>([]);
+  const [activities, setActivities] = useState<Activity[]>(initialActivities);
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
 
   // --- GPS / Search State ---
-  const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
-  const [citySearchQuery, setCitySearchQuery] = useState('');
-  const [currentCityName, setCurrentCityName] = useState<string>('');
+  const [userCoords, setUserCoords] = useState<{ lat: number; lng: number }>({ lat: DEFAULT_LAT, lng: DEFAULT_LNG });
+  const [citySearchQuery, setCitySearchQuery] = useState(initialCity || '');
+  const [currentCityName, setCurrentCityName] = useState<string>(initialCity || DEFAULT_REGION_NAME);
+  const [locationSource, setLocationSource] = useState<'gps' | 'search' | 'fallback'>(initialCity ? 'search' : 'fallback');
+  const [isDistanceFilterActive, setIsDistanceFilterActive] = useState<boolean>(!!initialCity);
+  const [isLocating, setIsLocating] = useState<boolean>(!initialCity);
   
   // --- Filters State ---
   const [searchRadius, setSearchRadius] = useState<number>(30);
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory || 'all');
   const [selectedLevel, setSelectedLevel] = useState<string>('all');
   const [selectedTarget, setSelectedTarget] = useState<string>('all');
   const [selectedDay, setSelectedDay] = useState<string>('all');
@@ -61,36 +91,75 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
   };
 
   useEffect(() => {
-    // If the server passes updated initialActivities later, sync it
     setAllActivities(initialActivities);
   }, [initialActivities]);
 
   useEffect(() => {
+    if (initialCity && initialActivities.length > 0) {
+      const match = initialActivities.find(a => a.locationName.toLowerCase() === initialCity.toLowerCase());
+      if (match) {
+        setUserCoords({ lat: match.lat, lng: match.lng });
+        setCurrentCityName(match.locationName);
+        setIsDistanceFilterActive(true);
+        setIsLocating(false);
+        return;
+      }
+    }
+
+    const savedCoords = localStorage.getItem('leisureMap_userCoords');
+    const savedCityName = localStorage.getItem('leisureMap_currentCityName');
+    
+    if (savedCoords && savedCityName) {
+      try {
+        const parsedCoords = JSON.parse(savedCoords);
+        setUserCoords(parsedCoords);
+        setCurrentCityName(savedCityName);
+        setIsDistanceFilterActive(true);
+        setIsLocating(false);
+        return;
+      } catch (e) {
+        console.error('Errore nel parse delle coordinate salvate', e);
+      }
+    }
+
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setUserCoords({ lat: position.coords.latitude, lng: position.coords.longitude });
           setCurrentCityName('Tua Posizione GPS');
+          setLocationSource('gps');
+          setIsDistanceFilterActive(true);
+          setIsLocating(false);
         },
         () => {
           setUserCoords({ lat: DEFAULT_LAT, lng: DEFAULT_LNG });
-          setCurrentCityName('Treviso (Predefinita)');
+          setCurrentCityName(DEFAULT_REGION_NAME);
+          setLocationSource('fallback');
+          setIsDistanceFilterActive(false);
+          setIsLocating(false);
+          track('geo_negata');
         },
-        { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+        { enableHighAccuracy: true, timeout: 3000, maximumAge: 0 }
       );
     } else {
       setUserCoords({ lat: DEFAULT_LAT, lng: DEFAULT_LNG });
-      setCurrentCityName('Treviso (Predefinita)');
+      setCurrentCityName(DEFAULT_REGION_NAME);
+      setLocationSource('fallback');
+      setIsDistanceFilterActive(false);
+      setIsLocating(false);
+      track('geo_negata');
     }
   }, []);
 
-  // Update nearby activities when coords or radius change
   useEffect(() => {
     if (userCoords && allActivities.length > 0) {
-      const nearby = allActivities.filter(act => {
-        const distance = getDistanceKm(userCoords.lat, userCoords.lng, act.lat, act.lng);
-        return distance <= searchRadius;
-      });
+      let nearby = allActivities;
+      if (isDistanceFilterActive) {
+        nearby = allActivities.filter(act => {
+          const distance = getDistanceKm(userCoords.lat, userCoords.lng, act.lat, act.lng);
+          return distance <= searchRadius;
+        });
+      }
       setActivities(nearby);
       setSelectedActivity(prev => {
         if (!prev) return null;
@@ -98,7 +167,7 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
         return isStillNearby ? prev : null;
       });
     }
-  }, [userCoords, searchRadius, allActivities]);
+  }, [userCoords, searchRadius, allActivities, isDistanceFilterActive]);
 
   const availableCategories = useMemo(() => {
     const baseCats = allActivities.map(act => act.category);
@@ -118,18 +187,32 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
     });
 
     if (facilityMatch) {
-      setUserCoords({ lat: facilityMatch.lat, lng: facilityMatch.lng });
+      const coords = { lat: facilityMatch.lat, lng: facilityMatch.lng };
+      setUserCoords(coords);
       setCurrentCityName(facilityMatch.locationName);
+      setLocationSource('search');
       setSelectedActivity(facilityMatch);
+      setIsDistanceFilterActive(true);
+      localStorage.setItem('leisureMap_userCoords', JSON.stringify(coords));
+      localStorage.setItem('leisureMap_currentCityName', facilityMatch.locationName);
+      track('citta_selezionata', { citta: facilityMatch.locationName, metodo: 'match_diretto' });
       return;
     }
 
     try {
-      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(citySearchQuery + ', Treviso, Italia')}`);
+      const regionSuffix = process.env.NEXT_PUBLIC_DEFAULT_REGION || 'Veneto, Italia';
+      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(citySearchQuery + ', ' + regionSuffix)}`);
       const data = await res.json();
       if (data && data.length > 0) {
-        setUserCoords({ lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) });
-        setCurrentCityName(data[0].display_name.split(',')[0]);
+        const coords = { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+        const name = data[0].display_name.split(',')[0];
+        setUserCoords(coords);
+        setCurrentCityName(name);
+        setLocationSource('search');
+        setIsDistanceFilterActive(true);
+        localStorage.setItem('leisureMap_userCoords', JSON.stringify(coords));
+        localStorage.setItem('leisureMap_currentCityName', name);
+        track('citta_selezionata', { citta: name, metodo: 'geocoding' });
       } else {
         alert('Località non trovata.');
       }
@@ -139,7 +222,7 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
   };
 
   const filteredActivities = useMemo(() => {
-    return activities.filter(act => {
+    const filtered = activities.filter(act => {
       if (selectedCategory !== 'all') {
         const matchCategory = act.category?.toLowerCase() === selectedCategory.toLowerCase();
         if (!matchCategory) return false;
@@ -148,7 +231,6 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
       
       if (selectedTarget !== 'all') {
         const actTarget = (act.target || 'tutti').toLowerCase();
-        // If the activity is for 'tutti', it matches anything. Otherwise, it must match specifically.
         if (actTarget !== 'tutti' && actTarget !== selectedTarget.toLowerCase()) return false;
       }
 
@@ -166,12 +248,18 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
 
       return true;
     });
-  }, [activities, selectedCategory, selectedLevel, selectedTarget, selectedDay, startHourLimit, endHourLimit]);
+    
+    return filtered.sort((a, b) => {
+      const distA = getDistanceKm(userCoords.lat, userCoords.lng, a.lat, a.lng);
+      const distB = getDistanceKm(userCoords.lat, userCoords.lng, b.lat, b.lng);
+      return distA - distB;
+    });
+  }, [activities, selectedCategory, selectedLevel, selectedTarget, selectedDay, startHourLimit, endHourLimit, userCoords]);
 
   const handleResetFilters = () => {
     setSelectedCategory('all');
     setSelectedLevel('all');
-    setSearchRadius(1000); // Imposta un raggio grandissimo per mostrare tutti i pin globalmente
+    setSearchRadius(1000);
     setSelectedTarget('all');
     setSelectedDay('all');
     setStartHourLimit('all');
@@ -179,12 +267,28 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
     setSelectedActivity(null);
   };
 
+  const toggleViewMode = () => {
+    const params = new URLSearchParams(searchParams?.toString());
+    if (isCompactView) {
+      params.delete('vista');
+    } else {
+      params.set('vista', 'elenco');
+    }
+    router.replace(`?${params.toString()}`);
+  };
+
   const handleSearchArea = useCallback((b: { west: number; south: number; east: number; north: number }) => {
-    // Basic implementation: update center to the middle of bounds
     const lat = (b.north + b.south) / 2;
     const lng = (b.east + b.west) / 2;
     setUserCoords({ lat, lng });
   }, []);
+
+  const rowVirtualizer = useVirtualizer({
+    count: filteredActivities.length,
+    getScrollElement: () => listParentRef.current,
+    estimateSize: () => isCompactView ? 116 : 400,
+    overscan: 5,
+  });
 
   return (
     <>
@@ -215,46 +319,95 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
         endHourLimit={endHourLimit}
         setEndHourLimit={setEndHourLimit}
         handleResetFilters={handleResetFilters}
+        isDistanceFilterActive={isDistanceFilterActive}
       />
 
       <main className={`split ${mobileMode === 'map' ? 'mode-map' : 'mode-list'}`}>
-        {/* ============ LISTA ============ */}
-        <section className="list" aria-label="Risultati">
-          <div className="list-head">
-            <h1>Vicino a {currentCityName}</h1>
-            <span className="count" aria-live="polite">{filteredActivities.length} attività trovate</span>
+        <section className="list" aria-label="Risultati" ref={listParentRef}>
+          <div className="list-head" style={{ flexWrap: 'wrap', gap: '8px' }}>
+            <h1>
+              {isLocating 
+                ? dict.home.ricerca_in_corso 
+                : (locationSource === 'gps' 
+                    ? dict.home.vicino_gps 
+                    : (locationSource === 'search' 
+                        ? `Vicino a ${currentCityName}` 
+                        : dict.home.vicino_fallback))}
+            </h1>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginLeft: 'auto' }}>
+              <span className="count" aria-live="polite">
+                {isLocating ? dict.home.ricerca_in_corso : dict.home.attivita_trovate(filteredActivities.length)}
+              </span>
+              <button 
+                onClick={toggleViewMode} 
+                style={{ fontSize: '0.8rem', padding: '4px 10px', background: 'var(--card)', border: '1px solid var(--line)', borderRadius: '99px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px' }}
+              >
+                {isCompactView ? '🖼️ Schede' : '📋 Elenco'}
+              </button>
+            </div>
           </div>
 
-          {filteredActivities.map((act) => (
-            <ActivityCard
-              key={act.id}
-              activity={act}
-              userCoords={userCoords}
-              isFlipped={hoveredId === act.id}
-              onMouseEnter={() => {
-                if (window.matchMedia('(hover: hover)').matches) {
-                  setHoveredId(act.id);
-                }
-              }}
-              onMouseLeave={() => {
-                if (window.matchMedia('(hover: hover)').matches) {
-                  setHoveredId(null);
-                }
-              }}
-              onCardClick={() => {
-                if (hoveredId === act.id) {
-                  setHoveredId(null);
-                } else {
-                  setHoveredId(act.id);
-                }
-              }}
-              onDetailsClick={() => {
-                setSelectedActivity(act);
-              }}
-            />
-          ))}
-          {filteredActivities.length === 0 && (
-            <p style={{ color: 'var(--muted)', marginTop: 20 }}>Nessuna attività trovata con questi filtri.</p>
+          {isLocating ? (
+            <div style={{ padding: '60px 20px', textAlign: 'center', color: 'var(--muted)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
+               <style>{`
+                  @keyframes pulseLoc { 0% { opacity:0.6; transform:scale(0.95); } 50% { opacity:1; transform:scale(1.05); } 100% { opacity:0.6; transform:scale(0.95); } }
+               `}</style>
+               <div style={{ width:'40px', height:'40px', borderRadius:'50%', background:'var(--primary)', animation:'pulseLoc 1.5s infinite ease-in-out' }}></div>
+               <p style={{ margin:0, fontWeight:500 }}>Sto cercando le attività migliori...</p>
+            </div>
+          ) : filteredActivities.length === 0 ? (
+            <div style={{ padding: '40px 20px', textAlign: 'center', color: 'var(--muted)', border: '1px dashed var(--line)', borderRadius: '12px', marginTop: '20px' }}>
+              <p style={{ margin: '0 0 16px 0', fontSize: '1.05rem', fontWeight: 500 }}>Non ci sono attività in questa zona con i filtri attuali.</p>
+              <button onClick={handleResetFilters} style={{ padding: '10px 20px', background: 'var(--primary)', color: '#fff', borderRadius: '8px', fontWeight: 600 }}>
+                Azzera tutti i filtri
+              </button>
+            </div>
+          ) : (
+            <div style={{ height: `${rowVirtualizer.getTotalSize()}px`, width: '100%', position: 'relative' }}>
+              {rowVirtualizer.getVirtualItems().map((virtualItem) => {
+                const act = filteredActivities[virtualItem.index];
+                return (
+                  <div
+                    key={act.id}
+                    data-index={virtualItem.index}
+                    ref={rowVirtualizer.measureElement}
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      transform: `translateY(${virtualItem.start}px)`,
+                      paddingBottom: '16px' // spacing below card
+                    }}
+                  >
+                    <div style={{ paddingBottom: '16px' }}>
+                      <ActivityCard
+                        activity={act}
+                        index={virtualItem.index}
+                        userCoords={userCoords}
+                        locationSource={locationSource}
+                        isCompactView={isCompactView}
+                        isFlipped={hoveredId === act.id}
+                        onMouseEnter={() => {
+                          if (window.matchMedia('(hover: hover)').matches) {
+                            setHoveredId(act.id);
+                          }
+                        }}
+                        onMouseLeave={() => setHoveredId(null)}
+                        onCardClick={() => {
+                          if (window.matchMedia('(hover: none)').matches) {
+                            setHoveredId(hoveredId === act.id ? null : act.id);
+                          }
+                        }}
+                        onDetailsClick={() => {
+                          setSelectedActivity(act);
+                        }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           )}
         </section>
 
@@ -274,9 +427,13 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
               }
             }}
             onEmptyMapClick={(lng, lat) => {
-              setUserCoords({ lat, lng });
+              const coords = { lat, lng };
+              setUserCoords(coords);
               setCurrentCityName('Punto selezionato');
               setSelectedActivity(null);
+              setIsDistanceFilterActive(true);
+              localStorage.setItem('leisureMap_userCoords', JSON.stringify(coords));
+              localStorage.setItem('leisureMap_currentCityName', 'Punto selezionato');
             }}
             onSearchArea={handleSearchArea}
           />
@@ -285,13 +442,18 @@ export default function HomeClient({ initialActivities }: { initialActivities: A
         {/* Pulsante Floating per Mobile (Mappa/Elenco) */}
         <button 
           className="mobile-view-toggle"
-          onClick={() => setMobileMode(m => m === 'map' ? 'list' : 'map')}
+          onClick={() => {
+            const nextMode = mobileMode === 'map' ? 'list' : 'map';
+            setMobileMode(nextMode);
+            track('toggle_vista', { vista: nextMode });
+          }}
           aria-label="Cambia visualizzazione"
         >
           {mobileMode === 'map' ? '📋 Mostra Elenco' : '🗺️ Mostra Mappa'}
         </button>
       </main>
 
+      {console.log("Rendering HomeClient, selectedActivity:", selectedActivity?.id)}
       {selectedActivity && (
         <ActivityDetailPanel 
           activity={selectedActivity} 

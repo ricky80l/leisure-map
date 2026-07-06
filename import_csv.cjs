@@ -1,4 +1,5 @@
 const fs = require('fs');
+const crypto = require('crypto');
 
 const csvPath = 'palestre_treviso_COMPLETE_geolocalizzate.csv';
 const jsonPath = 'src/data/activities.json';
@@ -10,7 +11,15 @@ const existingJson = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
 
 // Zona,Comune,Nome Palestra,Indirizzo,Latitudine,Longitudine,Indirizzo Completo,Stato
 const newActivities = [];
-let idCounter = existingJson.length + 1;
+
+function createSlug(text) {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+}
+
+function generateStableId(name, address) {
+  const data = (name + '|' + address).toLowerCase().trim();
+  return crypto.createHash('md5').update(data).digest('hex').substring(0, 10);
+}
 
 for (let i = 1; i < lines.length; i++) {
   const line = lines[i].trim();
@@ -54,8 +63,12 @@ for (let i = 1; i < lines.length; i++) {
       else if (textToSearch.includes('pilates')) category = 'pilates';
       else if (textToSearch.includes('arti marziali') || textToSearch.includes('karate') || textToSearch.includes('judo')) category = 'arti_marziali';
       
+      const stableId = generateStableId(name, address);
+      const slug = createSlug(`${name}-${cols[1].replace(/"/g, '').trim()}`);
+
       newActivities.push({
-        id: `csv_imported_${idCounter++}`,
+        id: stableId,
+        slug: slug,
         name: name,
         category: category,
         level: 'intermedio',

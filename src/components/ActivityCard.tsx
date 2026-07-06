@@ -9,6 +9,9 @@ interface ActivityCardProps {
   onCardClick?: () => void;
   onDetailsClick?: (e: React.MouseEvent) => void;
   userCoords?: { lat: number; lng: number } | null;
+  locationSource?: 'gps' | 'search' | 'fallback';
+  index?: number;
+  isCompactView?: boolean;
 }
 
 const getHash = (str: string) => {
@@ -20,10 +23,11 @@ const getHash = (str: string) => {
   return Math.abs(hash);
 };
 
-const getSvgForCategory = (activity: Activity) => {
+const getSvgForCategory = (activity: Activity, index: number = 0) => {
   const cat = (activity.disciplina || activity.category).toLowerCase();
   
-  const bgVariant = getHash(activity.id) % 3;
+  // FIX: Usa l'indice progressivo invece dell'hash per evitare sfondi identici adiacenti
+  const bgVariant = index % 3;
 
   const getOutdoorBg = () => {
     if (bgVariant === 0) {
@@ -250,7 +254,7 @@ const getSvgForCategory = (activity: Activity) => {
   );
 };
 
-export default function ActivityCard({ activity, isFlipped, onMouseEnter, onMouseLeave, onCardClick, onDetailsClick, userCoords }: ActivityCardProps) {
+export default function ActivityCard({ activity, isFlipped, onMouseEnter, onMouseLeave, onCardClick, onDetailsClick, userCoords, locationSource = 'fallback', index = 0, isCompactView = false }: ActivityCardProps) {
   
   const buttonRef = useRef<HTMLDivElement>(null);
 
@@ -276,7 +280,8 @@ export default function ActivityCard({ activity, isFlipped, onMouseEnter, onMous
     <div 
       ref={buttonRef}
       id={`card-${activity.id}`}
-      className={`card ${isFlipped ? 'selected' : ''}`} 
+      className={`card ${isCompactView ? 'compact' : ''} ${isFlipped ? 'selected' : ''}`} 
+
       tabIndex={0}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -297,24 +302,26 @@ export default function ActivityCard({ activity, isFlipped, onMouseEnter, onMous
             <path d="M19 14c1.5-1.5 2-3.2 2-5a5 5 0 0 0-9-3 5 5 0 0 0-9 3c0 1.8.5 3.5 2 5l7 7z"/>
           </svg>
         </div>
-        {getSvgForCategory(activity)}
+        {getSvgForCategory(activity, index)}
         <div className="tname">{activity.name}</div>
       </div>
-      <div className="cbody">
+      <div className="cbody" data-title={activity.name}>
         <div className="meta">
           {(() => {
             if (!userCoords) return null;
             const distance = getDistanceKm(userCoords.lat, userCoords.lng, activity.lat, activity.lng);
+            const labelSuffix = locationSource === 'gps' ? 'da te' : 'dal centro mappa';
             if (distance < 1) {
               const meters = Math.round(distance * 10) * 100;
-              return <span><b style={{ fontVariantNumeric: 'tabular-nums' }}>{meters >= 1000 ? '1 km' : `${meters} m`}</b> da te</span>;
+              return <span><b style={{ fontVariantNumeric: 'tabular-nums' }}>{meters >= 1000 ? '1 km' : `${meters} m`}</b> {labelSuffix}</span>;
             }
             const km = Math.round(distance);
-            return <span><b style={{ fontVariantNumeric: 'tabular-nums' }}>{km} km</b> da te</span>;
+            return <span><b style={{ fontVariantNumeric: 'tabular-nums' }}>{km} km</b> {labelSuffix}</span>;
           })()}
           {activity.locationName && <span><b>{activity.locationName}</b></span>}
           <span><b>{activity.price.toLowerCase() === 'gratis' ? 'Gratis' : '€€'}</b></span>
           <span>{LEVEL_LABELS[activity.level] || 'Tutti i livelli'}</span>
+          {(activity as any).duration && <span>{(activity as any).duration} min</span>}
         </div>
         {(() => {
           let dateStr = 'sconosciuta';
@@ -333,7 +340,8 @@ export default function ActivityCard({ activity, isFlipped, onMouseEnter, onMous
             }
             
             if (!isNaN(d.getTime())) {
-              dateStr = d.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+              // FIX: Formattazione "mese anno" per il badge Verificato
+              dateStr = d.toLocaleDateString('it-IT', { month: 'long', year: 'numeric' });
               
               const sixMonthsAgo = new Date();
               sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
@@ -375,7 +383,7 @@ export default function ActivityCard({ activity, isFlipped, onMouseEnter, onMous
         
         {/* Decorazione di Sfondo (Watermark SVG della categoria) */}
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, opacity: 0.05, pointerEvents: 'none', overflow: 'hidden', transform: 'scale(1.15) translateY(10px)' }}>
-          {getSvgForCategory(activity)}
+          {getSvgForCategory(activity, index)}
         </div>
 
         <div style={{ zIndex: 1, display: 'flex', flexDirection: 'column', height: '100%' }}>

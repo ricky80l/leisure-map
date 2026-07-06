@@ -1,5 +1,6 @@
 export interface Activity {
   id: string;
+  slug?: string;
   name: string;
   category: string; // Libero per supportare dinamicamente qualsiasi sport
   disciplina?: string; // Disciplina da vocabolario controllato

@@ -1,33 +1,18 @@
-# Piano di Migrazione a Server-Side Rendering (Next.js)
+# Migration Notes & SSR Diagnosis (FIX 1)
 
-## 1. Analisi dello Stato Attuale
-Attualmente, **Leisure Map è una Single Page Application (SPA) basata su Vite e React Router**.
-Tutto il rendering avviene **interamente lato client**. Questo significa che il browser scarica un file `index.html` pressoché vuoto (con soli meta tag generici) e demanda l'intero rendering del contenuto (mappa, lista attività, filtri) all'esecuzione del bundle JavaScript.
-Sebbene ottimale per interazioni ricche, questo approccio penalizza pesantemente la SEO: i motori di ricerca fanno fatica a indicizzare le singole attività e non c'è possibilità di avere meta tag dinamici per ogni specifica palestra o corso quando condivisi sui social.
+## Diagnosi SSR / CSR
+Attualmente l'applicazione carica le attività tramite il file JSON `src/data/activities.json` in modo asincrono (mock) o li importa staticamente (SSG) in alcune viste di dettaglio.
+L'HTML iniziale della Home, come verificato tramite `curl`, contiene tutti i Meta Tag e Open Graph corretti (`og:url`, `og:image`, `canonical` parametrizzati con `NEXT_PUBLIC_SITE_URL`).
+Tuttavia, il *markup* delle card `ActivityCard` NON viene renderizzato interamente sul server nel payload HTML, ma delegato al Client Side Rendering (CSR) dentro `HomeClient.tsx` (il browser idrata le liste tramite state `filteredActivities`).
 
-## 2. Obiettivo della Migrazione
-L'obiettivo è migrare l'architettura verso **Next.js (App Router)** per sfruttare il Server-Side Rendering (SSR) e la Static Site Generation (SSG).
-Questo permetterà di pre-renderizzare sul server la lista delle attività e le singole schede, massimizzando l'indicizzazione e le performance SEO, mantenendo però la mappa interattiva come "isola client" (Client Component).
+### Conseguenze
+- ✅ **TTFB (Time to First Byte) rapido** perché la shell HTML statica è leggera.
+- ❌ **SEO Profonda**: I crawler che non eseguono Javascript non vedranno le singole attività nella Home (vedranno "0 attività trovate" iniziale). Fortunatamente le pagine di dettaglio singole sono esportate staticamente via `generateStaticParams`.
+- ❌ **Bundle Size**: Il payload completo JSON viene accorpato nel bundle JS, appesantendo l'idratazione su dispositivi di fascia bassa.
 
-## 3. Piano di Migrazione Sintetico
-
-### Fase 1: Setup di Next.js e Porting dell'Architettura
-- Inizializzare un nuovo progetto Next.js con App Router (`app/` directory).
-- Spostare le dipendenze e i componenti UI dall'attuale progetto Vite al nuovo.
-- Rimuovere `react-router-dom` in favore del file-system routing di Next.js.
-- Sostituire l'attuale `index.html` con il layout di root `app/layout.tsx`.
-
-### Fase 2: Rendering Lato Server (Lista e Contenuti)
-- **Home Page (`app/page.tsx`)**: Verrà resa un **Server Component**. La chiamata al database Supabase (o lettura locale) per ottenere le attività verrà fatta direttamente sul server. Il server restituirà l'HTML già compilato della lista delle attività.
-- **Isola Client per la Mappa**: Il componente `ActivityMap` diventerà un **Client Component** (dichiarato con `"use client"` in cima al file). Questo riceverà le attività come *props* dal Server Component padre, isolando la logica di Mapbox, lo stato dell'utente e i filtri lato client, garantendo massima interattività.
-
-### Fase 3: Pagine Dettaglio Dinamiche e SEO
-- **Dynamic Routes**: Creare la rotta dinamica `app/activity/[id]/page.tsx`. Questa pagina (anch'essa Server Component) renderizzerà i dettagli della singola attività prima di inviarli al browser.
-- **generateMetadata()**: In `app/activity/[id]/page.tsx`, implementare la funzione `generateMetadata` fornita da Next.js. Questo permetterà di generare in modo dinamico i tag `title`, `meta description` e le *Open Graph Cards* (inclusa la `og:image`) specifiche per quella particolare attività (es: "Corsi di Yoga a Padova", invece del generico "Leisure Map").
-
-### Fase 4: Sitemap e Indicizzazione
-- Sfruttare la funzione integrata `app/sitemap.ts` di Next.js per generare un file `sitemap.xml` dinamico.
-- Questo file mapperà automaticamente l'URL principale e ciclerà l'intero database delle attività per generare URL puntuali per ogni singola entità (es: `/activity/officina-del-movimento`), rendendoli facilmente esplorabili dai crawler di Google.
-
----
-**Nota:** Come concordato, questo documento rappresenta unicamente un'analisi e una pianificazione. *La migrazione non è stata ancora avviata.*
+## Piano a Lungo Termine
+Per progetti futuri o scale-up a 10.000+ attività:
+1. Sostituire il fetching basato su import/client con **React Server Components (RSC)** per `page.tsx`.
+2. Eseguire il filter query params lato Server.
+3. Passare al Client solo le attività vicine e filtrate, riducendo drasticamente il JSON idratato nel DOM.
+4. Introdurre **ISR** (Incremental Static Regeneration) sulle card di dettaglio.

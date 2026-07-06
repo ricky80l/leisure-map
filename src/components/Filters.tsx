@@ -1,4 +1,5 @@
 
+import { track } from '@vercel/analytics';
 
 interface FiltersProps {
   selectedCategory: string;
@@ -17,6 +18,7 @@ interface FiltersProps {
   endHourLimit: number | 'all';
   setEndHourLimit: (t: number | 'all') => void;
   handleResetFilters: () => void;
+  isDistanceFilterActive: boolean;
 }
 
 export default function Filters({
@@ -35,7 +37,8 @@ export default function Filters({
   setStartHourLimit,
   endHourLimit,
   setEndHourLimit,
-  handleResetFilters
+  handleResetFilters,
+  isDistanceFilterActive
 }: FiltersProps) {
   
   const mainCategories = availableCategories.length > 0 
@@ -58,7 +61,10 @@ export default function Filters({
           className="chip"
           style={selectStyle}
           value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
+          onChange={(e) => {
+            setSelectedCategory(e.target.value);
+            track('filtro_applicato', { tipo: 'categoria', valore: e.target.value });
+          }}
         >
           <option value="all">Attività: Tutte</option>
           {mainCategories.map(cat => (
@@ -70,9 +76,14 @@ export default function Filters({
         
         <select 
           className="chip"
-          style={selectStyle}
+          style={{ ...selectStyle, opacity: isDistanceFilterActive ? 1 : 0.5, cursor: isDistanceFilterActive ? 'pointer' : 'not-allowed' }}
           value={searchRadius}
-          onChange={(e) => setSearchRadius(Number(e.target.value))}
+          onChange={(e) => {
+            setSearchRadius(Number(e.target.value));
+            track('filtro_applicato', { tipo: 'distanza', valore: e.target.value });
+          }}
+          disabled={!isDistanceFilterActive}
+          title={!isDistanceFilterActive ? "Attiva la posizione o seleziona un'area per filtrare per distanza" : "Distanza massima"}
         >
           <option value={5}>Distanza: ≤ 5 km</option>
           <option value={15}>Distanza: ≤ 15 km</option>
@@ -84,7 +95,10 @@ export default function Filters({
           className="chip"
           style={selectStyle}
           value={selectedDay}
-          onChange={(e) => setSelectedDay(e.target.value)}
+          onChange={(e) => {
+            setSelectedDay(e.target.value);
+            track('filtro_applicato', { tipo: 'giorno', valore: e.target.value });
+          }}
         >
           <option value="all">Giorno: Qualsiasi</option>
           <option value="1">Lunedì</option>
@@ -96,34 +110,56 @@ export default function Filters({
           <option value="7">Domenica</option>
         </select>
 
-        <div className="chip" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0 12px' }}>
-          <span>Orario:</span>
+        <div className="chip" style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '0 12px' }}>
+          {startHourLimit === 'all' && endHourLimit === 'all' ? (
+            <span>Orario:</span>
+          ) : (
+            <span style={{ display: 'none' }}>Orario:</span> // Nascosto per risparmiare spazio se ci sono valori
+          )}
           <input 
             type="number" 
             min="0" 
             max="24" 
-            placeholder="Inizio"
-            style={{ width: '45px', border: 'none', background: 'transparent', textAlign: 'center', fontWeight: 'bold', outline: 'none' }}
+            placeholder={startHourLimit === 'all' && endHourLimit === 'all' ? "Qualsiasi" : "Da"}
+            style={{ 
+              width: startHourLimit === 'all' && endHourLimit === 'all' ? '65px' : '30px', 
+              border: 'none', background: 'transparent', textAlign: 'center', fontWeight: 'bold', outline: 'none' 
+            }}
             value={startHourLimit === 'all' ? '' : startHourLimit}
-            onChange={(e) => setStartHourLimit(e.target.value === '' ? 'all' : Number(e.target.value))}
+            onChange={(e) => {
+              const val = e.target.value === '' ? 'all' : Number(e.target.value);
+              setStartHourLimit(val);
+              track('filtro_applicato', { tipo: 'orario_inizio', valore: String(val) });
+            }}
           />
-          <span>-</span>
-          <input 
-            type="number" 
-            min="0" 
-            max="24" 
-            placeholder="Fine"
-            style={{ width: '45px', border: 'none', background: 'transparent', textAlign: 'center', fontWeight: 'bold', outline: 'none' }}
-            value={endHourLimit === 'all' ? '' : endHourLimit}
-            onChange={(e) => setEndHourLimit(e.target.value === '' ? 'all' : Number(e.target.value))}
-          />
+          {(startHourLimit !== 'all' || endHourLimit !== 'all') && (
+            <>
+              <span>-</span>
+              <input 
+                type="number" 
+                min="0" 
+                max="24" 
+                placeholder="A"
+                style={{ width: '30px', border: 'none', background: 'transparent', textAlign: 'center', fontWeight: 'bold', outline: 'none' }}
+                value={endHourLimit === 'all' ? '' : endHourLimit}
+                onChange={(e) => {
+                  const val = e.target.value === '' ? 'all' : Number(e.target.value);
+                  setEndHourLimit(val);
+                  track('filtro_applicato', { tipo: 'orario_fine', valore: String(val) });
+                }}
+              />
+            </>
+          )}
         </div>
 
         <select 
           className="chip"
           style={selectStyle}
           value={selectedTarget}
-          onChange={(e) => setSelectedTarget(e.target.value)}
+          onChange={(e) => {
+            setSelectedTarget(e.target.value);
+            track('filtro_applicato', { tipo: 'per_chi', valore: e.target.value });
+          }}
         >
           <option value="all">Per chi: Tutti</option>
           <option value="bambini">Bambini</option>
@@ -135,7 +171,10 @@ export default function Filters({
           className="chip"
           style={selectStyle}
           value={selectedLevel}
-          onChange={(e) => setSelectedLevel(e.target.value)}
+          onChange={(e) => {
+            setSelectedLevel(e.target.value);
+            track('filtro_applicato', { tipo: 'livello', valore: e.target.value });
+          }}
         >
           <option value="all">Livello: Tutti</option>
           <option value="principianti">Principianti</option>
@@ -143,7 +182,10 @@ export default function Filters({
           <option value="avanzato">Avanzato</option>
         </select>
         
-        <button className="reset" onClick={handleResetFilters}>
+        <button className="reset" onClick={() => {
+          handleResetFilters();
+          track('filtro_applicato', { tipo: 'reset_tutti', valore: 'all' });
+        }}>
           Azzera
         </button>
       </div>

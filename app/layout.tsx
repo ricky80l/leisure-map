@@ -1,18 +1,22 @@
 import type { Metadata, Viewport } from 'next';
+import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 import { AuthProvider } from '../src/context/AuthContext';
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://leisure-map-zhso.vercel.app';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: 'Leisure Map - Trova il tuo tempo libero',
   description: 'Leisure Map: scopri attività, corsi e palestre in Veneto. Outdoor, sport, natura e gusto vicino a te.',
   openGraph: {
     title: 'Leisure Map - Trova il tuo tempo libero',
     description: 'Leisure Map: scopri attività, corsi e palestre in Veneto. Outdoor, sport, natura e gusto vicino a te.',
-    url: 'https://leisure-map.netlify.app',
+    url: SITE_URL,
     siteName: 'Leisure Map',
     images: [
       {
-        url: 'https://leisure-map.netlify.app/og-default.png',
+        url: `${SITE_URL}/og-default.png`,
         width: 1200,
         height: 630,
         alt: 'Leisure Map',
@@ -25,7 +29,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Leisure Map - Trova il tuo tempo libero',
     description: 'Leisure Map: scopri attività, corsi e palestre in Veneto. Outdoor, sport, natura e gusto vicino a te.',
-    images: ['https://leisure-map.netlify.app/og-default.png'],
+    images: [`${SITE_URL}/og-default.png`],
   },
 };
 
@@ -47,6 +51,7 @@ export default function RootLayout({
       <body>
         <AuthProvider>
           {children}
+          <Analytics />
         </AuthProvider>
       </body>
     </html>

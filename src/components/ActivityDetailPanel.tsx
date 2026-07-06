@@ -96,8 +96,13 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
         onClick={onClose}
       />
 
-      <div className="fixed right-0 top-0 h-full w-full max-w-[450px] bg-white shadow-2xl z-[2010] flex flex-col transform transition-transform duration-300 ease-in-out translate-x-0 overflow-hidden">
+      <div className="fixed z-[2010] bg-white shadow-2xl flex flex-col overflow-hidden animate-slide-up sm:animate-slide-left bottom-0 left-0 right-0 h-[90%] w-full rounded-t-3xl sm:bottom-auto sm:top-0 sm:left-auto sm:right-0 sm:h-full sm:w-full sm:max-w-[450px] sm:rounded-none">
         
+        {/* Drag handle per Bottom Sheet su mobile */}
+        <div className="w-full flex justify-center pt-3 pb-1 sm:hidden absolute top-0 z-[2030] pointer-events-none">
+          <div className="w-12 h-1.5 bg-white/40 backdrop-blur-md rounded-full" />
+        </div>
+
         <button 
           onClick={onClose}
           className="absolute top-4 right-4 z-[2020] bg-white/80 backdrop-blur hover:bg-white p-2 rounded-full shadow-lg text-slate-800 transition-all border border-slate-100"
