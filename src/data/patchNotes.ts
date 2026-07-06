@@ -7,17 +7,18 @@ export interface PatchNote {
 }
 
 export const LATEST_PATCH_NOTE: PatchNote = {
-  version: "2.2.0",
-  date: "4 Luglio 2026",
-  title: "Schede 3D, Distanze & Segnalazioni 🌟",
+  version: "2.3.0",
+  date: "7 Luglio 2026",
+  title: "Ottimizzazioni Mobile, Prestazioni & SEO 🚀",
   features: [
-    "Card 3D Interattive: Le schede delle attività ora hanno un fantastico effetto di rotazione 3D al passaggio del mouse. Il retro offre un layout premium con icone e design ad alto contrasto.",
-    "Distanza Geografica in tempo reale: Aggiunta un'etichetta in cima a ogni scheda che mostra istantaneamente a che distanza ti trovi dalla struttura (calcolata con formula di Haversine).",
-    "Sistema di Verifica Dati: Implementata la visibilità sull'ultima data di verifica delle informazioni e sulla fonte originaria. I dati non aggiornati da oltre 6 mesi verranno evidenziati in rosso.",
-    "Segnalazioni Utenti: Aggiunto un nuovo modulo integrato per permettere alla community di segnalare aggiornamenti, inviare correzioni e proporre nuove strutture da aggiungere alla mappa."
+    "Navigazione Mobile Migliorata: L'header è stato ridisegnato per occupare meno spazio. Inoltre, il dettaglio delle attività ora si apre in un comodo 'Bottom Sheet' (pannello a scorrimento dal basso) che non interrompe la navigazione sulla mappa.",
+    "Prestazioni di Livello Enterprise: L'elenco attività ora utilizza la 'virtualizzazione'. Anche con centinaia di risultati, l'app scorrerà fluidamente senza mai rallentare il tuo smartphone.",
+    "Infrastruttura SEO (Server-Side Rendering): Le singole attività ora sono indicizzabili dai motori di ricerca, con URL dedicati e meta-tag ottimizzati pronti per essere condivisi sui social.",
+    "Gestione Geolocalizzazione Intelligente: Se non condividi la posizione, l'app calcola automaticamente le distanze dal centro della mappa, garantendoti sempre risultati coerenti."
   ],
   fixes: [
-    "Ottimizzazione Touch: Risolto il fastidioso comportamento 'Sticky Hover' sui dispositivi mobile che teneva le schede bloccate sul lato posteriore.",
-    "Riformattazione Date: Standardizzato globalmente il formato delle date nel corretto standard italiano (GG/MM/AAAA)."
+    "Fix: Sistemato il problema che impediva l'apertura delle schede dettaglio su mobile interagendo con i pin della mappa.",
+    "Fix: Eliminati i 'layout shift' visivi durante il caricamento dei filtri e rimosse label anomale senza selezione.",
+    "Refactoring: Centralizzate le etichette dell'app in un dizionario unificato (i18n) per prepararsi a futuri aggiornamenti multilingua."
   ]
 };
