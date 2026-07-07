@@ -247,6 +247,14 @@ export default function HomeClient({
   const handleActivitySelect = (activityId: string) => {
     const act = allActivities.find(a => a.id === activityId);
     if (act) {
+      const coords = { lat: act.lat, lng: act.lng };
+      setUserCoords(coords);
+      setCurrentCityName(act.locationName);
+      setLocationSource('search');
+      setIsDistanceFilterActive(true);
+      localStorage.setItem('leisureMap_userCoords', JSON.stringify(coords));
+      localStorage.setItem('leisureMap_currentCityName', act.locationName);
+      
       handleSelectActivity(act);
     }
   };

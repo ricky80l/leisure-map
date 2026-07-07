@@ -276,6 +276,21 @@ export default function ActivityMap({
     }
   }, [activities, isMapLoaded]);
 
+  // Sync su nuove coordinate di ricerca (Abano, Trebaseleghe, ecc)
+  const prevCenterRef = useRef(initialCenter);
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !isMapLoaded || !initialCenter) return;
+
+    const [prevLng, prevLat] = prevCenterRef.current || [];
+    const [newLng, newLat] = initialCenter;
+    
+    if (prevLng !== newLng || prevLat !== newLat) {
+      map.flyTo({ center: [newLng, newLat], zoom: 12, duration: 1500 });
+      prevCenterRef.current = initialCenter;
+    }
+  }, [initialCenter, isMapLoaded]);
+
   // Cambio tema
   useEffect(() => {
     const map = mapRef.current;
