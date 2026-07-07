@@ -50,6 +50,7 @@ interface ActivityMapProps {
   onSearchArea?: (bounds: { west: number; south: number; east: number; north: number; }) => void;
   onViewChange?: (center: [number, number], zoom: number) => void;
   onEmptyMapClick?: (lng: number, lat: number) => void;
+  locationSource?: string;
 }
 
 const getMacroColor = (macroCat: string) => {
@@ -106,6 +107,7 @@ export default function ActivityMap({
   onSearchArea,
   onViewChange,
   onEmptyMapClick,
+  locationSource,
 }: ActivityMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MLMap | null>(null);
@@ -275,7 +277,7 @@ export default function ActivityMap({
     }
   }, [activities, isMapLoaded]);
 
-  // Sync su nuove coordinate di ricerca (Abano, Trebaseleghe, ecc)
+  // Sync su nuove coordinate di ricerca, tranne se provengono dal click mappa
   const prevCenterRef = useRef(initialCenter);
   useEffect(() => {
     const map = mapRef.current;
@@ -285,10 +287,12 @@ export default function ActivityMap({
     const [newLng, newLat] = initialCenter;
     
     if (prevLng !== newLng || prevLat !== newLat) {
-      map.flyTo({ center: [newLng, newLat], zoom: 12, duration: 1500 });
+      if (locationSource !== 'map_click') {
+        map.flyTo({ center: [newLng, newLat], zoom: 12, duration: 1500 });
+      }
       prevCenterRef.current = initialCenter;
     }
-  }, [initialCenter, isMapLoaded]);
+  }, [initialCenter, isMapLoaded, locationSource]);
 
   // Cambio tema
   useEffect(() => {

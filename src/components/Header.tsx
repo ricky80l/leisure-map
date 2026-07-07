@@ -218,7 +218,7 @@ export default function Header({
                           key={`rem-${idx}`}
                           role="option"
                           style={{ padding: '10px 16px', cursor: 'pointer', borderBottom: '1px solid var(--border)', minHeight: '44px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-                          onMouseDown={(e) => {
+                          onClick={(e) => {
                             e.preventDefault();
                             setCitySearchQuery(displayName);
                             setShowDropdown(false);
@@ -248,7 +248,7 @@ export default function Header({
                         key={`loc-${act.id}`}
                         role="option"
                         style={{ padding: '10px 16px', cursor: 'pointer', borderBottom: '1px solid var(--border)', minHeight: '44px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-                        onMouseDown={(e) => {
+                        onClick={(e) => {
                           e.preventDefault();
                           setCitySearchQuery(act.name);
                           setShowDropdown(false);

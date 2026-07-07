@@ -471,6 +471,7 @@ export default function HomeClient({
               hoveredId={hoveredId}
               selectedId={selectedActivity?.id}
               initialCenter={userCoords ? [userCoords.lng, userCoords.lat] : undefined}
+              locationSource={locationSource}
               onMarkerClick={(id) => {
                 const index = filteredActivities.findIndex(a => a.id === id);
                 if (index !== -1) {
@@ -485,11 +486,13 @@ export default function HomeClient({
                 const coords = { lat, lng };
                 setUserCoords(coords);
                 setCurrentCityName('Punto selezionato');
-                handleSelectActivity(null);
+                setLocationSource('map_click' as any);
                 setIsDistanceFilterActive(true);
+                handleSelectActivity(null);
                 localStorage.setItem('leisureMap_userCoords', JSON.stringify(coords));
                 localStorage.setItem('leisureMap_currentCityName', 'Punto selezionato');
               }}
+              onViewChange={(center, zoom) => {}}
               onSearchArea={handleSearchArea}
             />
           )}
