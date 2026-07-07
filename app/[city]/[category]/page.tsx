@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { fetchActivities } from '../../../src/data/db';
 import HomeClient from '../../../src/components/HomeClient';
@@ -63,5 +64,9 @@ export default async function CategoryPage({ params }: Props) {
   const catMatch = activities.find(a => slugify(a.category) === resolvedParams.category);
   const categoryName = catMatch ? catMatch.category : resolvedParams.category;
 
-  return <HomeClient initialActivities={activities} initialCity={cityName} initialCategory={categoryName} />;
+  return (
+    <Suspense fallback={<div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center' }}>Caricamento corsi di {categoryName} a {cityName}...</div>}>
+      <HomeClient initialActivities={activities} initialCity={cityName} initialCategory={categoryName} />
+    </Suspense>
+  );
 }

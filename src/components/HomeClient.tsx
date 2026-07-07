@@ -37,15 +37,16 @@ export default function HomeClient({
   const searchParams = useSearchParams();
   const router = useRouter();
 
+  // Layout State
+  const isCompactView = searchParams?.get('vista') === 'elenco';
+
   // --- UI State ---
   const [theme, setTheme] = useState('light');
   const [showPatchNotes, setShowPatchNotes] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
-  const [mobileMode, setMobileMode] = useState<'map' | 'list'>('map');
+  const [mobileMode, setMobileMode] = useState<'map' | 'list'>(isCompactView ? 'list' : 'map');
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-
-  // Layout State
-  const isCompactView = searchParams?.get('vista') === 'elenco';
+  const [hasRequestedMap, setHasRequestedMap] = useState(false);
 
   // Refs per Virtualizer
   const listParentRef = useRef<HTMLDivElement>(null);
@@ -54,6 +55,13 @@ export default function HomeClient({
   const [allActivities, setAllActivities] = useState<Activity[]>(initialActivities);
   const [activities, setActivities] = useState<Activity[]>(initialActivities);
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
+
+  const handleSelectActivity = useCallback((act: Activity | null) => {
+    setSelectedActivity(act);
+    if (act) {
+      track('activity_viewed', { id: act.id, name: act.name, category: act.category });
+    }
+  }, []);
 
   // --- GPS / Search State ---
   const [userCoords, setUserCoords] = useState<{ lat: number; lng: number }>({ lat: DEFAULT_LAT, lng: DEFAULT_LNG });
@@ -142,6 +150,7 @@ export default function HomeClient({
         { enableHighAccuracy: true, timeout: 3000, maximumAge: 0 }
       );
     } else {
+      // Fallback in assenza di geolocation API
       setUserCoords({ lat: DEFAULT_LAT, lng: DEFAULT_LNG });
       setCurrentCityName(DEFAULT_REGION_NAME);
       setLocationSource('fallback');
@@ -149,7 +158,22 @@ export default function HomeClient({
       setIsLocating(false);
       track('geo_negata');
     }
-  }, []);
+  }, [initialCity, initialActivities]);
+
+  // Lazy load map initialization
+  useEffect(() => {
+    if (window.innerWidth >= 640 || mobileMode === 'map') {
+      setHasRequestedMap(true);
+    }
+  }, [mobileMode]);
+
+  // Analytics for filters
+  useEffect(() => {
+    // Evita di tracciare i valori iniziali se sono di default
+    if (selectedCategory !== 'all' || searchRadius !== 30) {
+      track('filter_applied', { category: selectedCategory, distance: searchRadius });
+    }
+  }, [selectedCategory, searchRadius]);
 
   useEffect(() => {
     if (userCoords && allActivities.length > 0) {
@@ -191,7 +215,7 @@ export default function HomeClient({
       setUserCoords(coords);
       setCurrentCityName(facilityMatch.locationName);
       setLocationSource('search');
-      setSelectedActivity(facilityMatch);
+      handleSelectActivity(facilityMatch);
       setIsDistanceFilterActive(true);
       localStorage.setItem('leisureMap_userCoords', JSON.stringify(coords));
       localStorage.setItem('leisureMap_currentCityName', facilityMatch.locationName);
@@ -264,7 +288,7 @@ export default function HomeClient({
     setSelectedDay('all');
     setStartHourLimit('all');
     setEndHourLimit('all');
-    setSelectedActivity(null);
+    handleSelectActivity(null);
   };
 
   const toggleViewMode = () => {
@@ -400,7 +424,7 @@ export default function HomeClient({
                           }
                         }}
                         onDetailsClick={() => {
-                          setSelectedActivity(act);
+                          handleSelectActivity(act);
                         }}
                       />
                     </div>
@@ -413,30 +437,32 @@ export default function HomeClient({
 
         {/* ============ MAPPA ============ */}
         <section className="mapwrap" aria-label="Mappa dei risultati">
-          <ActivityMap 
-            activities={filteredActivities}
-            theme={theme as "light" | "dark"}
-            hoveredId={hoveredId}
-            selectedId={selectedActivity?.id}
-            initialCenter={userCoords ? [userCoords.lng, userCoords.lat] : undefined}
-            onMarkerClick={(id) => {
-              const act = allActivities.find(a => a.id === id);
-              if (act) {
-                setSelectedActivity(act);
-                document.getElementById(`card-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              }
-            }}
-            onEmptyMapClick={(lng, lat) => {
-              const coords = { lat, lng };
-              setUserCoords(coords);
-              setCurrentCityName('Punto selezionato');
-              setSelectedActivity(null);
-              setIsDistanceFilterActive(true);
-              localStorage.setItem('leisureMap_userCoords', JSON.stringify(coords));
-              localStorage.setItem('leisureMap_currentCityName', 'Punto selezionato');
-            }}
-            onSearchArea={handleSearchArea}
-          />
+          {hasRequestedMap && (
+            <ActivityMap 
+              activities={filteredActivities}
+              theme={theme as "light" | "dark"}
+              hoveredId={hoveredId}
+              selectedId={selectedActivity?.id}
+              initialCenter={userCoords ? [userCoords.lng, userCoords.lat] : undefined}
+              onMarkerClick={(id) => {
+                const act = allActivities.find(a => a.id === id);
+                if (act) {
+                  handleSelectActivity(act);
+                  document.getElementById(`card-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+              }}
+              onEmptyMapClick={(lng, lat) => {
+                const coords = { lat, lng };
+                setUserCoords(coords);
+                setCurrentCityName('Punto selezionato');
+                handleSelectActivity(null);
+                setIsDistanceFilterActive(true);
+                localStorage.setItem('leisureMap_userCoords', JSON.stringify(coords));
+                localStorage.setItem('leisureMap_currentCityName', 'Punto selezionato');
+              }}
+              onSearchArea={handleSearchArea}
+            />
+          )}
         </section>
 
         {/* Pulsante Floating per Mobile (Mappa/Elenco) */}
@@ -453,11 +479,10 @@ export default function HomeClient({
         </button>
       </main>
 
-      {console.log("Rendering HomeClient, selectedActivity:", selectedActivity?.id)}
       {selectedActivity && (
         <ActivityDetailPanel 
           activity={selectedActivity} 
-          onClose={() => setSelectedActivity(null)} 
+          onClose={() => handleSelectActivity(null)} 
         />
       )}
 

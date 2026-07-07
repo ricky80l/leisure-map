@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { fetchActivities } from '../../src/data/db';
 import HomeClient from '../../src/components/HomeClient';
@@ -44,5 +45,9 @@ export default async function CityPage({ params }: Props) {
   const match = activities.find(a => slugify(a.locationName) === resolvedParams.city);
   const cityName = match ? match.locationName : resolvedParams.city;
 
-  return <HomeClient initialActivities={activities} initialCity={cityName} />;
+  return (
+    <Suspense fallback={<div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center' }}>Caricamento attività a {cityName}...</div>}>
+      <HomeClient initialActivities={activities} initialCity={cityName} />
+    </Suspense>
+  );
 }
