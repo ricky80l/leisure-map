@@ -11,7 +11,9 @@ interface ActivityCardProps {
   userCoords?: { lat: number; lng: number } | null;
   locationSource?: 'gps' | 'search' | 'fallback';
   index?: number;
+  index?: number;
   isCompactView?: boolean;
+  isSelected?: boolean;
 }
 
 
@@ -247,7 +249,19 @@ const getSvgForCategory = (activity: Activity, index: number = 0) => {
   );
 };
 
-export default function ActivityCard({ activity, isFlipped, onMouseEnter, onMouseLeave, onCardClick, onDetailsClick, userCoords, locationSource = 'fallback', index = 0, isCompactView = false }: ActivityCardProps) {
+export default function ActivityCard({ 
+  activity, 
+  isFlipped, 
+  onMouseEnter, 
+  onMouseLeave, 
+  onCardClick, 
+  onDetailsClick,
+  userCoords,
+  locationSource = 'fallback',
+  index = 0,
+  isCompactView = false,
+  isSelected = false
+}: ActivityCardProps) {
   
   const buttonRef = useRef<HTMLDivElement>(null);
 
@@ -273,7 +287,7 @@ export default function ActivityCard({ activity, isFlipped, onMouseEnter, onMous
     <div 
       ref={buttonRef}
       id={`card-${activity.id}`}
-      className={`card ${isCompactView ? 'compact' : ''} ${isFlipped ? 'selected' : ''}`} 
+      className={`card ${isCompactView ? 'compact' : ''} ${isFlipped ? 'selected' : ''} ${isSelected ? 'selected' : ''}`} 
 
       tabIndex={0}
       onMouseEnter={onMouseEnter}
@@ -282,7 +296,7 @@ export default function ActivityCard({ activity, isFlipped, onMouseEnter, onMous
       onBlur={onMouseLeave}
       onClick={onCardClick}
     >
-      <div className="flipper" style={{ outline: isFlipped ? '2px solid var(--primary)' : undefined, outlineOffset: '2px' }}>
+      <div className="flipper" style={{ outline: (isFlipped || isSelected) ? '2px solid var(--primary)' : undefined, outlineOffset: '2px' }}>
         
         {/* LATO FRONTALE */}
         <div className="front">

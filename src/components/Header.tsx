@@ -102,7 +102,7 @@ export default function Header({
     
     const timer = setTimeout(async () => {
       try {
-        const res = await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(citySearchQuery)}&bbox=10.6,44.8,13.1,46.7&lang=it&limit=5`, { signal: controller.signal });
+        const res = await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(citySearchQuery)}&bbox=10.6,44.8,13.1,46.7&limit=5`, { signal: controller.signal });
         if (!res.ok) throw new Error('Network response was not ok');
         const data = await res.json();
         setRemoteSuggestions(data.features || []);

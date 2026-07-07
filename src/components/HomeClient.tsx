@@ -438,6 +438,7 @@ export default function HomeClient({
                         locationSource={locationSource}
                         isCompactView={isCompactView}
                         isFlipped={hoveredId === act.id}
+                        isSelected={selectedActivity?.id === act.id}
                         onMouseEnter={() => {
                           if (window.matchMedia('(hover: hover)').matches) {
                             setHoveredId(act.id);
@@ -471,10 +472,13 @@ export default function HomeClient({
               selectedId={selectedActivity?.id}
               initialCenter={userCoords ? [userCoords.lng, userCoords.lat] : undefined}
               onMarkerClick={(id) => {
+                const index = filteredActivities.findIndex(a => a.id === id);
+                if (index !== -1) {
+                  rowVirtualizer.scrollToIndex(index, { align: 'center' });
+                }
                 const act = allActivities.find(a => a.id === id);
                 if (act) {
                   handleSelectActivity(act);
-                  document.getElementById(`card-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
               }}
               onEmptyMapClick={(lng, lat) => {
