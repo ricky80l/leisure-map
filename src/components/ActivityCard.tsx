@@ -11,7 +11,6 @@ interface ActivityCardProps {
   userCoords?: { lat: number; lng: number } | null;
   locationSource?: 'gps' | 'search' | 'fallback';
   index?: number;
-  index?: number;
   isCompactView?: boolean;
   isSelected?: boolean;
 }
