@@ -492,7 +492,7 @@ export default function HomeClient({
                 localStorage.setItem('leisureMap_userCoords', JSON.stringify(coords));
                 localStorage.setItem('leisureMap_currentCityName', 'Punto selezionato');
               }}
-              onViewChange={(center, zoom) => {}}
+              onViewChange={() => {}}
               onSearchArea={handleSearchArea}
             />
           )}
