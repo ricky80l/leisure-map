@@ -200,40 +200,14 @@ export default function Header({
                 </div>
               )}
               
-              {localSuggestions.length > 0 && (
-                <div style={{ padding: '8px 0' }}>
-                  <div style={{ padding: '4px 16px', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Palestre</div>
-                  <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-                    {localSuggestions.map(act => (
-                      <li 
-                        key={`loc-${act.id}`}
-                        role="option"
-                        style={{ padding: '10px 16px', cursor: 'pointer', borderBottom: '1px solid var(--border)', minHeight: '44px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          setCitySearchQuery(act.name);
-                          setShowDropdown(false);
-                          onActivitySelect(act.id);
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg)'}
-                        onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
-                      >
-                        <div style={{ fontWeight: 500, fontSize: '0.95rem' }}>{act.name}</div>
-                        <div style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: '2px' }}>{act.locationName}</div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
               {remoteError && citySearchQuery.length >= 3 && (
-                 <div style={{ padding: '12px 16px', color: 'var(--muted)', fontSize: '0.85rem', background: 'var(--bg)', borderTop: '1px solid var(--border)' }}>
+                 <div style={{ padding: '12px 16px', color: 'var(--muted)', fontSize: '0.85rem', background: 'var(--bg)', borderBottom: localSuggestions.length > 0 ? '1px solid var(--border)' : 'none' }}>
                     Ricerca indirizzi non disponibile in questo momento, riprova più tardi. Le palestre sono comunque ricercabili.
                  </div>
               )}
 
               {remoteSuggestions.length > 0 && (
-                <div style={{ padding: '8px 0', borderTop: localSuggestions.length > 0 ? '1px solid var(--border)' : 'none' }}>
+                <div style={{ padding: '8px 0', borderBottom: localSuggestions.length > 0 ? '1px solid var(--border)' : 'none' }}>
                   <div style={{ padding: '4px 16px', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Luoghi e Indirizzi</div>
                   <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
                     {remoteSuggestions.map((feat, idx) => {
@@ -261,6 +235,32 @@ export default function Header({
                         </li>
                       );
                     })}
+                  </ul>
+                </div>
+              )}
+
+              {localSuggestions.length > 0 && (
+                <div style={{ padding: '8px 0' }}>
+                  <div style={{ padding: '4px 16px', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Palestre</div>
+                  <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                    {localSuggestions.map(act => (
+                      <li 
+                        key={`loc-${act.id}`}
+                        role="option"
+                        style={{ padding: '10px 16px', cursor: 'pointer', borderBottom: '1px solid var(--border)', minHeight: '44px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          setCitySearchQuery(act.name);
+                          setShowDropdown(false);
+                          onActivitySelect(act.id);
+                        }}
+                        onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg)'}
+                        onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                      >
+                        <div style={{ fontWeight: 500, fontSize: '0.95rem' }}>{act.name}</div>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: '2px' }}>{act.locationName}</div>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               )}
