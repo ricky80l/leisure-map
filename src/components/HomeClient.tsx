@@ -199,49 +199,55 @@ export default function HomeClient({
     return uniqueCats;
   }, [allActivities]);
 
-  const handleCitySearch = async (e?: any, overrideQuery?: string) => {
-    if (e && e.preventDefault) e.preventDefault();
-    const queryToUse = overrideQuery !== undefined ? overrideQuery : citySearchQuery;
-    if (!queryToUse.trim()) return;
+  const resetLocation = () => {
+    setIsLocating(true);
+    setCitySearchQuery('');
+    localStorage.removeItem('leisureMap_userCoords');
+    localStorage.removeItem('leisureMap_currentCityName');
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserCoords({ lat: position.coords.latitude, lng: position.coords.longitude });
+          setCurrentCityName('Tua Posizione GPS');
+          setLocationSource('gps');
+          setIsDistanceFilterActive(true);
+          setIsLocating(false);
+        },
+        () => {
+          setUserCoords({ lat: DEFAULT_LAT, lng: DEFAULT_LNG });
+          setCurrentCityName(DEFAULT_REGION_NAME);
+          setLocationSource('fallback');
+          setIsDistanceFilterActive(false);
+          setIsLocating(false);
+        },
+        { enableHighAccuracy: true, timeout: 3000, maximumAge: 0 }
+      );
+    } else {
+      setUserCoords({ lat: DEFAULT_LAT, lng: DEFAULT_LNG });
+      setCurrentCityName(DEFAULT_REGION_NAME);
+      setLocationSource('fallback');
+      setIsDistanceFilterActive(false);
+      setIsLocating(false);
+    }
+  };
 
-    const queryTerms = queryToUse.toLowerCase().trim().split(/\s+/);
-    const facilityMatch = allActivities.find(act => {
-      const searchStr = `${act.name} ${act.locationName} ${act.organizer} ${act.address} ${act.category}`.toLowerCase();
-      return queryTerms.every(term => searchStr.includes(term));
-    });
-
-    if (facilityMatch) {
-      const coords = { lat: facilityMatch.lat, lng: facilityMatch.lng };
+  const handleLocationSearch = (locName: string, lat?: number, lng?: number) => {
+    if (lat !== undefined && lng !== undefined) {
+      const coords = { lat, lng };
       setUserCoords(coords);
-      setCurrentCityName(facilityMatch.locationName);
+      setCurrentCityName(locName);
       setLocationSource('search');
-      handleSelectActivity(facilityMatch);
       setIsDistanceFilterActive(true);
       localStorage.setItem('leisureMap_userCoords', JSON.stringify(coords));
-      localStorage.setItem('leisureMap_currentCityName', facilityMatch.locationName);
-      track('citta_selezionata', { citta: facilityMatch.locationName, metodo: 'match_diretto' });
-      return;
+      localStorage.setItem('leisureMap_currentCityName', locName);
+      track('citta_selezionata', { citta: locName, metodo: 'geocoding_photon' });
     }
+  };
 
-    try {
-      const regionSuffix = process.env.NEXT_PUBLIC_DEFAULT_REGION || 'Veneto, Italia';
-      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(citySearchQuery + ', ' + regionSuffix)}`);
-      const data = await res.json();
-      if (data && data.length > 0) {
-        const coords = { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
-        const name = data[0].display_name.split(',')[0];
-        setUserCoords(coords);
-        setCurrentCityName(name);
-        setLocationSource('search');
-        setIsDistanceFilterActive(true);
-        localStorage.setItem('leisureMap_userCoords', JSON.stringify(coords));
-        localStorage.setItem('leisureMap_currentCityName', name);
-        track('citta_selezionata', { citta: name, metodo: 'geocoding' });
-      } else {
-        alert('Località non trovata.');
-      }
-    } catch (error) {
-      console.error('Errore nel geocoding:', error);
+  const handleActivitySelect = (activityId: string) => {
+    const act = allActivities.find(a => a.id === activityId);
+    if (act) {
+      handleSelectActivity(act);
     }
   };
 
@@ -319,7 +325,8 @@ export default function HomeClient({
       <Header 
         citySearchQuery={citySearchQuery} 
         setCitySearchQuery={setCitySearchQuery} 
-        handleCitySearch={handleCitySearch}
+        handleLocationSearch={handleLocationSearch}
+        onActivitySelect={handleActivitySelect}
         theme={theme}
         toggleTheme={toggleTheme}
         allActivities={allActivities}
@@ -355,7 +362,18 @@ export default function HomeClient({
                 : (locationSource === 'gps' 
                     ? dict.home.vicino_gps 
                     : (locationSource === 'search' 
-                        ? `Vicino a ${currentCityName}` 
+                        ? (
+                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                            Vicino a {currentCityName}
+                            <button 
+                              onClick={(e) => { e.preventDefault(); resetLocation(); }}
+                              style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--ink)' }}
+                              aria-label="Rimuovi filtro località"
+                            >
+                              ✕
+                            </button>
+                          </span>
+                        ) 
                         : dict.home.vicino_fallback))}
             </h1>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginLeft: 'auto' }}>

@@ -67,3 +67,11 @@ Questo documento funge da **handoff tra sessioni**. Va letto all'inizio di ogni 
 - **Scelte Motivate**: Il tracking di Vercel è l'unica via cookieless a costo zero inclusa nella piattaforma, ed è stato scelto per non intaccare la compliance GDPR del progetto.
 - **Criteri Verificati**: Build completata. Le funzioni di tracciamento passano i parametri esatti in maniera non bloccante. 
 - **Criteri NON Verificati**: Assenza di test reali su device di fascia molto bassa per confermare l'aumento netto del punteggio Lighthouse, anche se teoricamente garantito dal de-coupling del canvas JS.
+
+## TASK EXTRA: Barra di ricerca unificata (palestre + indirizzi)
+*Status: Completato*
+- **Scelte e Provider**: Abbiamo integrato **Photon** (`photon.komoot.io`) come provider di geocoding per la ricerca degli indirizzi. È gratuito, non richiede API key ed espone un endpoint ottimizzato per il typeahead.
+- **Implementazione**: 
+  - La logica in `Header.tsx` esegue una ricerca in parallelo (una istantanea accent/case-insensitive sul JSON locale per le palestre, e una via `fetch` asincrono con debounce di 300ms verso Photon).
+  - La UI ora usa un dropdown diviso in 2 sezioni (Palestre e Indirizzi) ed è robusta contro i problemi di rete: se Photon fallisce o rate-limita, il fallback silenzioso continua a mostrare le palestre senza bloccare l'esperienza.
+- **Limiti Noti**: Photon aggiorna regolarmente i propri dati da OpenStreetMap ma potrebbe non includere i civici ultra-recenti o i numeri interni non mappati; l'affidabilità dipende dalla qualità del dato OSM per le province di Treviso/Padova, che comunque è molto alta. Nessun salvataggio storico lato server per privacy.

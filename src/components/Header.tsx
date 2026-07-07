@@ -5,23 +5,39 @@ import { dict } from '../i18n/it';
 interface HeaderProps {
   citySearchQuery: string;
   setCitySearchQuery: (q: string) => void;
-  handleCitySearch: (e?: any, overrideQuery?: string) => void;
+  handleLocationSearch: (locName: string, lat?: number, lng?: number) => void;
+  onActivitySelect: (activityId: string) => void;
   theme: string;
   toggleTheme: () => void;
   allActivities: any[];
   onReportClick: () => void;
 }
 
-export default function Header({ citySearchQuery, setCitySearchQuery, handleCitySearch, theme, toggleTheme, allActivities, onReportClick }: HeaderProps) {
+const normalizeStr = (str: string) => 
+  str ? str.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase() : '';
+
+export default function Header({ 
+  citySearchQuery, 
+  setCitySearchQuery, 
+  handleLocationSearch, 
+  onActivitySelect,
+  theme, 
+  toggleTheme, 
+  allActivities, 
+  onReportClick 
+}: HeaderProps) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  
+  const [localSuggestions, setLocalSuggestions] = useState<any[]>([]);
+  const [remoteSuggestions, setRemoteSuggestions] = useState<any[]>([]);
+  const [remoteError, setRemoteError] = useState(false);
+  
   const containerRef = useRef<HTMLFormElement>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
+  
   const { user, loading } = useAuth();
-
-  const suggestions = Array.from(new Set(allActivities.map(a => a.locationName)))
-    .filter((loc: any) => loc.toLowerCase().includes(citySearchQuery.toLowerCase()))
-    .sort();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -35,13 +51,72 @@ export default function Header({ citySearchQuery, setCitySearchQuery, handleCity
     const handleScroll = () => {
       setScrolled(window.scrollY > 0);
     };
+    
+    // Close dropdown with ESC
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setShowDropdown(false);
+      }
+    };
+
     document.addEventListener("mousedown", handleClickOutside);
     window.addEventListener("scroll", handleScroll);
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [citySearchQuery]);
+
+  // Local matching (activities)
+  useEffect(() => {
+    if (citySearchQuery.length >= 2) {
+      const normVal = normalizeStr(citySearchQuery);
+      const matched = allActivities.filter(a => 
+        normalizeStr(a.name).includes(normVal) || 
+        normalizeStr(a.address).includes(normVal) ||
+        normalizeStr(a.locationName).includes(normVal)
+      ).slice(0, 5); // Max 5 risultati
+      setLocalSuggestions(matched);
+    } else {
+      setLocalSuggestions([]);
+    }
+  }, [citySearchQuery, allActivities]);
+
+  // Remote matching (Photon Geocoding)
+  useEffect(() => {
+    if (citySearchQuery.length < 3) {
+      setRemoteSuggestions([]);
+      setRemoteError(false);
+      if (abortControllerRef.current) abortControllerRef.current.abort();
+      return;
+    }
+    
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+    
+    const timer = setTimeout(async () => {
+      try {
+        const res = await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(citySearchQuery)}&bbox=10.6,44.8,13.1,46.7&lang=it&limit=5`, { signal: controller.signal });
+        if (!res.ok) throw new Error('Network response was not ok');
+        const data = await res.json();
+        setRemoteSuggestions(data.features || []);
+        setRemoteError(false);
+      } catch (e: any) {
+        if (e.name !== 'AbortError') {
+          setRemoteError(true);
+          setRemoteSuggestions([]);
+        }
+      }
+    }, 300);
+    
+    return () => clearTimeout(timer);
+  }, [citySearchQuery]);
 
   return (
     <header className={scrolled ? 'scrolled' : ''}>
@@ -53,7 +128,8 @@ export default function Header({ citySearchQuery, setCitySearchQuery, handleCity
           </svg>
           {dict.header.titolo}
         </div>
-        <form className={`search ${isSearchExpanded ? 'expanded' : ''}`} onSubmit={handleCitySearch} style={{ display: 'flex', alignItems: 'center', position: 'relative' }} ref={containerRef}>
+        
+        <form className={`search ${isSearchExpanded ? 'expanded' : ''}`} onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', alignItems: 'center', position: 'relative' }} ref={containerRef}>
           <svg 
             className="search-icon"
             width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
@@ -61,43 +137,35 @@ export default function Header({ citySearchQuery, setCitySearchQuery, handleCity
               if (window.innerWidth <= 640 && !isSearchExpanded) {
                 e.preventDefault();
                 setIsSearchExpanded(true);
-              } else {
-                e.preventDefault(); 
-                handleCitySearch(); 
               }
             }}
           >
             <circle cx="11" cy="11" r="7"/>
             <path d="m20 20-3.5-3.5"/>
           </svg>
+          
           <input 
             type="text" 
-            placeholder={dict.header.cerca_attivita} 
+            placeholder="Cerca palestra, indirizzo o località…" 
             value={citySearchQuery}
             onFocus={() => setShowDropdown(true)}
             onChange={(e) => {
-              const val = e.target.value;
-              setCitySearchQuery(val);
+              setCitySearchQuery(e.target.value);
               setShowDropdown(true);
             }}
             onKeyDown={(e) => {
-              if (e.key === 'Tab') {
-                const val = e.currentTarget.value;
-                if (!val) return;
-                const match = allActivities.find(a => a.locationName.toLowerCase().startsWith(val.toLowerCase()));
-                if (match) {
-                  e.preventDefault();
-                  setCitySearchQuery(match.locationName);
-                  setShowDropdown(false);
-                  handleCitySearch(null, match.locationName);
-                }
-              }
+              // Basic keyboard nav: just closing on Enter for now to avoid complexity without focus management
               if (e.key === 'Enter') {
+                e.preventDefault();
                 setShowDropdown(false);
               }
             }}
             style={{background: 'transparent', border: 'none', outline: 'none', width: '100%', color: 'inherit'}}
+            role="combobox"
+            aria-expanded={showDropdown}
+            aria-controls="search-dropdown"
           />
+          
           {citySearchQuery && (
             <svg 
               width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
@@ -113,33 +181,90 @@ export default function Header({ citySearchQuery, setCitySearchQuery, handleCity
           )}
           
           {/* Custom Dropdown */}
-          {showDropdown && suggestions.length > 0 && (
-            <ul 
+          {showDropdown && citySearchQuery.length >= 2 && (
+            <div 
+              id="search-dropdown"
+              role="listbox"
               style={{ 
                 position: 'absolute', top: 'calc(100% + 8px)', left: 0, right: 0, 
                 background: 'var(--surface)', border: '1px solid var(--border)', 
-                borderRadius: '8px', maxHeight: '240px', overflowY: 'auto', 
-                zIndex: 1000, margin: 0, padding: 0, listStyle: 'none',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                borderRadius: '8px', maxHeight: '350px', overflowY: 'auto', 
+                zIndex: 1000, margin: 0, padding: 0,
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                display: 'flex', flexDirection: 'column'
               }}
             >
-              {suggestions.map((loc: any) => (
-                <li 
-                  key={loc}
-                  style={{ padding: '10px 16px', cursor: 'pointer', borderBottom: '1px solid var(--border)' }}
-                  onMouseDown={(e) => {
-                    e.preventDefault(); 
-                    setCitySearchQuery(loc);
-                    setShowDropdown(false);
-                    handleCitySearch(null, loc);
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg)'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
-                >
-                  {loc}
-                </li>
-              ))}
-            </ul>
+              {localSuggestions.length === 0 && remoteSuggestions.length === 0 && !remoteError && (
+                <div style={{ padding: '16px', color: 'var(--muted)', textAlign: 'center', fontSize: '0.9rem' }}>
+                  Nessun risultato. Prova con il nome del comune o un'altra palestra.
+                </div>
+              )}
+              
+              {localSuggestions.length > 0 && (
+                <div style={{ padding: '8px 0' }}>
+                  <div style={{ padding: '4px 16px', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Palestre</div>
+                  <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                    {localSuggestions.map(act => (
+                      <li 
+                        key={`loc-${act.id}`}
+                        role="option"
+                        style={{ padding: '10px 16px', cursor: 'pointer', borderBottom: '1px solid var(--border)', minHeight: '44px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          setCitySearchQuery(act.name);
+                          setShowDropdown(false);
+                          onActivitySelect(act.id);
+                        }}
+                        onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg)'}
+                        onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                      >
+                        <div style={{ fontWeight: 500, fontSize: '0.95rem' }}>{act.name}</div>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: '2px' }}>{act.locationName}</div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {remoteError && citySearchQuery.length >= 3 && (
+                 <div style={{ padding: '12px 16px', color: 'var(--muted)', fontSize: '0.85rem', background: 'var(--bg)', borderTop: '1px solid var(--border)' }}>
+                    Ricerca indirizzi non disponibile in questo momento, riprova più tardi. Le palestre sono comunque ricercabili.
+                 </div>
+              )}
+
+              {remoteSuggestions.length > 0 && (
+                <div style={{ padding: '8px 0', borderTop: localSuggestions.length > 0 ? '1px solid var(--border)' : 'none' }}>
+                  <div style={{ padding: '4px 16px', fontSize: '0.75rem', fontWeight: 600, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Luoghi e Indirizzi</div>
+                  <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                    {remoteSuggestions.map((feat, idx) => {
+                      const props = feat.properties;
+                      const displayName = [props.name, props.street, props.city, props.state].filter(Boolean).join(', ');
+                      return (
+                        <li 
+                          key={`rem-${idx}`}
+                          role="option"
+                          style={{ padding: '10px 16px', cursor: 'pointer', borderBottom: '1px solid var(--border)', minHeight: '44px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            setCitySearchQuery(displayName);
+                            setShowDropdown(false);
+                            const [lng, lat] = feat.geometry.coordinates;
+                            handleLocationSearch(displayName, lat, lng);
+                          }}
+                          onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg)'}
+                          onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                        >
+                          <div style={{ fontWeight: 500, fontSize: '0.95rem' }}>{props.name || props.street || props.city}</div>
+                          <div style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: '2px' }}>
+                            {[props.street, props.city, props.state].filter(Boolean).filter(x => x !== (props.name || props.street || props.city)).join(', ')}
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
+            </div>
           )}
         </form>
         <nav className="hnav">
