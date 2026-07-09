@@ -7,12 +7,12 @@ function slugify(text: string) {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://leisure-map-zhso.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://leisure-map.vercel.app';
   
   const activities = await fetchActivities();
 
   const activityUrls = activities.map((activity) => ({
-    url: `${baseUrl}/attivita/${activity.id}/${activity.slug || 'dettaglio'}`,
+    url: `${baseUrl}/attivita/${activity.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.8,

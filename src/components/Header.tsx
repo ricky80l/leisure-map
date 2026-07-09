@@ -166,13 +166,22 @@ export default function Header({
             aria-controls="search-dropdown"
           />
           
-          {citySearchQuery && (
+          {(citySearchQuery || isSearchExpanded) && (
             <svg 
               width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
               style={{ cursor: 'pointer', marginLeft: '8px', opacity: 0.6 }}
-              onClick={() => {
-                setCitySearchQuery('');
-                setShowDropdown(true);
+              onClick={(e) => {
+                if (citySearchQuery) {
+                  setCitySearchQuery('');
+                  setShowDropdown(true);
+                  if (typeof document !== 'undefined') {
+                    const input = document.querySelector('.search input') as HTMLInputElement;
+                    if (input) input.focus();
+                  }
+                } else if (isSearchExpanded) {
+                  setIsSearchExpanded(false);
+                  setShowDropdown(false);
+                }
               }}
             >
               <line x1="18" y1="6" x2="6" y2="18"></line>

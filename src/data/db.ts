@@ -8,6 +8,27 @@ export const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, s
 
 let cachedActivitiesPromise: Promise<Activity[]> | null = null;
 
+export function slugify(text: string) {
+  if (!text) return '';
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+}
+
+function enforceStableSlugs(activities: Activity[]): Activity[] {
+  const seen = new Set<string>();
+  return activities.map(a => {
+    let baseSlug = a.slug || `${slugify(a.name)}-${slugify(a.locationName)}${a.category ? '-' + slugify(a.category) : ''}`;
+    let uniqueSlug = baseSlug;
+    let counter = 1;
+    // Fallback in case of exact duplicates to avoid crash, though it should be rare
+    while (seen.has(uniqueSlug)) {
+      uniqueSlug = `${baseSlug}-${counter}`;
+      counter++;
+    }
+    seen.add(uniqueSlug);
+    return { ...a, id: String(a.id), slug: uniqueSlug };
+  });
+}
+
 /**
  * Funzione centralizzata per recuperare i dati.
  * Se Supabase è configurato e contiene dati, li restituisce.
@@ -20,38 +41,32 @@ export async function fetchActivities(): Promise<Activity[]> {
   }
 
   cachedActivitiesPromise = (async () => {
+    let rawResult: Activity[] = [];
     if (!supabase) {
       console.log("Supabase non configurato (chiavi mancanti). Fallback al JSON locale.");
-      return rawActivities as Activity[];
-    }
-
-    try {
-      // Al momento, la query legge da un'ipotetica vista o tabella 'activities'
-      // che riproduce la struttura piatta attuale. 
-      // In futuro, questa query sarà una JOIN tra 'facilities' e 'courses'.
-      const { data, error } = await supabase.from('activities').select('id, name, category, level, target, days, startHour, endHour, price, description, locationName, address, lat, lng, contact, organizer, verificato_il, fonte_tipo');
-      
-      if (error) {
-        console.warn("Errore durante il fetch da Supabase:", error.message);
-        console.log("Fallback al JSON locale.");
-        return rawActivities as Activity[];
+      rawResult = rawActivities as Activity[];
+    } else {
+      try {
+        const { data, error } = await supabase.from('activities').select('*');
+        
+        if (error) {
+          console.warn("Errore durante il fetch da Supabase:", error.message);
+          console.log("Fallback al JSON locale.");
+          rawResult = rawActivities as Activity[];
+        } else if (!data || data.length === 0) {
+          console.log("Nessun dato trovato su Supabase. Fallback al JSON locale.");
+          rawResult = rawActivities as Activity[];
+        } else {
+          const localImported = (rawActivities as Activity[]).filter(a => String(a.id).startsWith('csv_imported'));
+          rawResult = [...(data as Activity[]), ...localImported];
+        }
+      } catch (error) {
+        console.error("Errore imprevisto di rete con Supabase:", error);
+        rawResult = rawActivities as Activity[];
       }
-
-      if (!data || data.length === 0) {
-        console.log("Nessun dato trovato su Supabase. Fallback al JSON locale.");
-        return (rawActivities as Activity[]).map(a => ({ ...a, id: String(a.id) }));
-      }
-
-      // Uniamo i dati che abbiamo appena importato localmente dal CSV!
-      const localImported = (rawActivities as Activity[]).filter(a => String(a.id).startsWith('csv_imported'));
-      const combined = [...(data as Activity[]), ...localImported];
-      
-      // Forziamo tutti gli ID a essere stringhe per evitare crash nei filtri di Mapbox
-      return combined.map(a => ({ ...a, id: String(a.id) }));
-    } catch (error) {
-      console.error("Errore imprevisto di rete con Supabase:", error);
-      return (rawActivities as Activity[]).map(a => ({ ...a, id: String(a.id) }));
     }
+    
+    return enforceStableSlugs(rawResult);
   })();
 
   return cachedActivitiesPromise;

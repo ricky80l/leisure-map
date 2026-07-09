@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { Activity, getCategoryLabel, LEVEL_LABELS, TARGET_LABELS, DAY_LABELS } from '../data/mockActivities';
 import { X, MapPin, Navigation, Share2, CalendarPlus, Mail, Phone, Clock, Calendar } from 'lucide-react';
 
@@ -23,6 +24,14 @@ const getCategoryVisuals = (category: string) => {
 };
 
 export default function ActivityDetailPanel({ activity, onClose }: ActivityDetailPanelProps) {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    // Piccolo delay per innescare la transizione CSS in modo affidabile
+    const timer = setTimeout(() => setMounted(true), 10);
+    return () => clearTimeout(timer);
+  }, []);
+
   if (!activity) return null;
 
   const badgeKey = activity.disciplina || activity.category;
@@ -69,12 +78,13 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
 
   const handleShare = async () => {
     const shareText = `Vieni a fare ${activity.name} da ${activity.locationName}!\nOrario: ${activity.startHour}:00 - ${activity.endHour}:00\n`;
+    const shareUrl = `${window.location.origin}/attivita/${activity.slug}`;
     if (navigator.share) {
       try {
         await navigator.share({
           title: activity.name,
           text: shareText,
-          url: window.location.href,
+          url: shareUrl,
         });
       } catch (err) {
         console.warn("Share interrotto", err);
@@ -92,20 +102,25 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
   return (
     <>
       <div 
-        className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[2000] transition-opacity"
+        className={`fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity duration-300 ${mounted ? 'opacity-100' : 'opacity-0'}`}
+        style={{ zIndex: 2000 }}
         onClick={onClose}
       />
 
-      <div className="fixed z-[2010] bg-white shadow-2xl flex flex-col overflow-hidden animate-slide-up sm:animate-slide-left bottom-0 left-0 right-0 h-[90%] w-full rounded-t-3xl sm:bottom-auto sm:top-0 sm:left-auto sm:right-0 sm:h-full sm:w-full sm:max-w-[450px] sm:rounded-none">
+      <div 
+        className={`fixed bg-white shadow-2xl flex flex-col overflow-hidden bottom-0 left-0 right-0 w-full h-[85vh] rounded-t-3xl sm:bottom-auto sm:top-0 sm:left-auto sm:right-0 sm:h-full sm:w-full sm:max-w-[450px] sm:rounded-none transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)] ${mounted ? 'translate-y-0 sm:translate-x-0' : 'translate-y-full sm:translate-y-0 sm:translate-x-full'}`}
+        style={{ zIndex: 2010 }}
+      >
         
         {/* Drag handle per Bottom Sheet su mobile */}
-        <div className="w-full flex justify-center pt-3 pb-1 sm:hidden absolute top-0 z-[2030] pointer-events-none">
+        <div className="w-full flex justify-center pt-3 pb-1 sm:hidden absolute top-0 pointer-events-none" style={{ zIndex: 2030 }}>
           <div className="w-12 h-1.5 bg-white/40 backdrop-blur-md rounded-full" />
         </div>
 
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 z-[2020] bg-white/80 backdrop-blur hover:bg-white p-2 rounded-full shadow-lg text-slate-800 transition-all border border-slate-100"
+          className="absolute top-4 right-4 bg-white/80 backdrop-blur hover:bg-white p-2 rounded-full shadow-lg text-slate-800 transition-all border border-slate-100"
+          style={{ zIndex: 2020 }}
         >
           <X size={20} />
         </button>

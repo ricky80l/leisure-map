@@ -3,10 +3,13 @@ import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 import { AuthProvider } from '../src/context/AuthContext';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://leisure-map-zhso.vercel.app';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://leisure-map.vercel.app';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: '/',
+  },
   title: 'Leisure Map - Trova il tuo tempo libero',
   description: 'Leisure Map: scopri attività, corsi e palestre in Veneto. Outdoor, sport, natura e gusto vicino a te.',
   openGraph: {
@@ -49,6 +52,11 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🗺️%3C/text%3E%3C/svg%3E" />
       </head>
       <body>
+        <noscript>
+          <div style={{ padding: '20px', textAlign: 'center', background: '#fff3cd', color: '#856404', fontFamily: 'sans-serif' }}>
+            <strong>JavaScript disabilitato:</strong> Questa applicazione richiede JavaScript per esplorare la mappa e le attività.
+          </div>
+        </noscript>
         <AuthProvider>
           {children}
           <Analytics />

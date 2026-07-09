@@ -1,18 +1,17 @@
 import { Metadata } from 'next';
-import { fetchActivities } from '../../../../src/data/db';
-import ActivityDetailPanel from '../../../../src/components/ActivityDetailPanel';
+import { fetchActivities } from '../../../src/data/db';
+import ActivityDetailPanel from '../../../src/components/ActivityDetailPanel';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 type Props = {
-  params: Promise<{ id: string; slug: string }>
+  params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
   const activities = await fetchActivities();
   return activities.map((activity) => ({
-    id: String(activity.id),
-    slug: activity.slug || 'dettaglio',
+    slug: activity.slug,
   }));
 }
 
@@ -21,7 +20,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const resolvedParams = await params;
   const activities = await fetchActivities();
-  const activity = activities.find(a => String(a.id) === resolvedParams.id);
+  const activity = activities.find(a => a.slug === resolvedParams.slug);
 
   if (!activity) {
     return {
@@ -29,7 +28,7 @@ export async function generateMetadata(
     }
   }
 
-  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://leisure-map-zhso.vercel.app';
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://leisure-map.vercel.app';
 
   return {
     title: `${activity.name} | Leisure Map`,
@@ -37,7 +36,7 @@ export async function generateMetadata(
     openGraph: {
       title: `${activity.name} - Leisure Map`,
       description: activity.description || `Dettagli su ${activity.name} a ${activity.locationName}.`,
-      url: `${SITE_URL}/attivita/${activity.id}/${activity.slug}`,
+      url: `${SITE_URL}/attivita/${activity.slug}`,
       type: 'website',
       locale: 'it_IT',
       images: [
@@ -61,15 +60,11 @@ export async function generateMetadata(
 export default async function ActivityPage({ params }: Props) {
   const resolvedParams = await params;
   const activities = await fetchActivities();
-  const activity = activities.find(a => String(a.id) === resolvedParams.id);
+  const activity = activities.find(a => a.slug === resolvedParams.slug);
 
   if (!activity) {
     // Redirect verso la Home evitando 404
     redirect('/');
-  }
-
-  if (activity.slug && activity.slug !== resolvedParams.slug) {
-    redirect(`/attivita/${activity.id}/${activity.slug}`);
   }
 
   // Genera JSON-LD (schema.org)

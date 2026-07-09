@@ -446,11 +446,10 @@ export default function HomeClient({
                         }}
                         onMouseLeave={() => setHoveredId(null)}
                         onCardClick={() => {
-                          if (window.matchMedia('(hover: none)').matches) {
-                            setHoveredId(hoveredId === act.id ? null : act.id);
-                          }
+                          handleSelectActivity(act);
                         }}
-                        onDetailsClick={() => {
+                        onDetailsClick={(e) => {
+                          e.stopPropagation();
                           handleSelectActivity(act);
                         }}
                       />
@@ -473,11 +472,16 @@ export default function HomeClient({
               initialCenter={userCoords ? [userCoords.lng, userCoords.lat] : undefined}
               locationSource={locationSource}
               onMarkerClick={(id) => {
-                const index = filteredActivities.findIndex(a => a.id === id);
+                const actId = String(id);
+                const index = filteredActivities.findIndex(a => String(a.id) === actId);
                 if (index !== -1) {
-                  rowVirtualizer.scrollToIndex(index, { align: 'center' });
+                  try {
+                    rowVirtualizer.scrollToIndex(index, { align: 'center' });
+                  } catch (e) {
+                    console.warn("Virtualizer scroll skipped", e);
+                  }
                 }
-                const act = allActivities.find(a => a.id === id);
+                const act = allActivities.find(a => String(a.id) === actId);
                 if (act) {
                   handleSelectActivity(act);
                 }
