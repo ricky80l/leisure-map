@@ -23,24 +23,48 @@ const getCategoryVisuals = (category: string) => {
   return map[category.toLowerCase()] || map['default'];
 };
 
+// Gradient backgrounds as inline styles (Tailwind v4 arbitrary bg may not compile)
+const GRADIENT_MAP: Record<string, string> = {
+  'from-blue-500 to-cyan-400': 'linear-gradient(to bottom right, #3b82f6, #22d3ee)',
+  'from-cyan-500 to-blue-600': 'linear-gradient(to bottom right, #06b6d4, #2563eb)',
+  'from-green-500 to-emerald-400': 'linear-gradient(to bottom right, #22c55e, #34d399)',
+  'from-purple-500 to-pink-400': 'linear-gradient(to bottom right, #a855f7, #f472b6)',
+  'from-green-600 to-lime-500': 'linear-gradient(to bottom right, #16a34a, #84cc16)',
+  'from-red-500 to-orange-400': 'linear-gradient(to bottom right, #ef4444, #fb923c)',
+  'from-slate-600 to-slate-400': 'linear-gradient(to bottom right, #475569, #94a3b8)',
+};
+
 export default function ActivityDetailPanel({ activity, onClose }: ActivityDetailPanelProps) {
   const [mounted, setMounted] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   
   useEffect(() => {
-    // Piccolo delay per innescare la transizione CSS in modo affidabile
-    const timer = setTimeout(() => setMounted(true), 10);
-    return () => clearTimeout(timer);
+    // Detect desktop vs mobile
+    const mq = window.matchMedia('(min-width: 640px)');
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener('change', handler);
+    
+    // Trigger mount animation after a frame
+    const timer = requestAnimationFrame(() => {
+      setTimeout(() => setMounted(true), 20);
+    });
+    
+    return () => {
+      cancelAnimationFrame(timer);
+      mq.removeEventListener('change', handler);
+    };
   }, []);
 
   if (!activity) return null;
 
   const badgeKey = activity.disciplina || activity.category;
   const visuals = getCategoryVisuals(badgeKey);
+  const gradientBg = GRADIENT_MAP[visuals.bg] || GRADIENT_MAP['from-slate-600 to-slate-400'];
   const daysString = activity.days.map(d => DAY_LABELS.find(l => l.value === d)?.label).join(', ');
 
   const handleDirections = () => {
     let destination = `${activity.lat},${activity.lng}`;
-    // Se l'indirizzo sembra esatto (es. via e comune), usiamo quello per avere il civico preciso su Maps
     if (activity.address && activity.address !== "Indirizzo non disponibile" && activity.address.includes(',')) {
       destination = encodeURIComponent(activity.address);
     }
@@ -52,7 +76,6 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
       alert("Purtroppo non abbiamo recapiti per questa struttura. Cerca il nome su Google!");
       return;
     }
-    
     if (activity.contact.startsWith('http') || activity.contact.startsWith('www')) {
       const url = activity.contact.startsWith('www') ? `https://${activity.contact}` : activity.contact;
       window.open(url, '_blank');
@@ -81,11 +104,7 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
     const shareUrl = `${window.location.origin}/attivita/${activity.slug}`;
     if (navigator.share) {
       try {
-        await navigator.share({
-          title: activity.name,
-          text: shareText,
-          url: shareUrl,
-        });
+        await navigator.share({ title: activity.name, text: shareText, url: shareUrl });
       } catch (err) {
         console.warn("Share interrotto", err);
       }
@@ -99,56 +118,95 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
     alert("Funzionalità 'Aggiungi a Calendario' (.ics) in arrivo presto!");
   };
 
+  // ── Inline styles for critical layout (bypasses Tailwind v4 arbitrary value issues) ──
+
+  const backdropStyle: React.CSSProperties = {
+    position: 'fixed',
+    inset: 0,
+    zIndex: 2000,
+    background: 'rgba(15, 23, 42, 0.4)',
+    backdropFilter: 'blur(4px)',
+    WebkitBackdropFilter: 'blur(4px)',
+    transition: 'opacity 0.3s ease',
+    opacity: mounted ? 1 : 0,
+  };
+
+  const panelStyle: React.CSSProperties = isDesktop ? {
+    position: 'fixed', top: 0, right: 0, bottom: 0,
+    width: '100%', maxWidth: 450, height: '100%',
+    zIndex: 2010, background: '#fff',
+    boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
+    display: 'flex', flexDirection: 'column', overflow: 'hidden',
+    transition: 'transform 0.4s cubic-bezier(0.2, 0, 0, 1)',
+    transform: mounted ? 'translateX(0)' : 'translateX(100%)',
+  } : {
+    position: 'fixed', bottom: 0, left: 0, right: 0,
+    width: '100%', height: '85vh',
+    zIndex: 2010, background: '#fff',
+    borderRadius: '24px 24px 0 0',
+    boxShadow: '0 -10px 40px -10px rgba(0,0,0,0.2)',
+    display: 'flex', flexDirection: 'column', overflow: 'hidden',
+    transition: 'transform 0.4s cubic-bezier(0.2, 0, 0, 1)',
+    transform: mounted ? 'translateY(0)' : 'translateY(100%)',
+  };
+
+  const closeButtonStyle: React.CSSProperties = {
+    position: 'absolute', top: 16, right: 16, zIndex: 2020,
+    background: 'rgba(255,255,255,0.85)',
+    backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
+    border: '1px solid rgba(241,245,249,0.8)',
+    borderRadius: '50%', padding: 8, cursor: 'pointer',
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    color: '#1e293b',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+    transition: 'background 0.2s, transform 0.15s',
+  };
+
   return (
     <>
-      <div 
-        className={`fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity duration-300 ${mounted ? 'opacity-100' : 'opacity-0'}`}
-        style={{ zIndex: 2000 }}
-        onClick={onClose}
-      />
+      <div style={backdropStyle} onClick={onClose} />
 
-      <div 
-        className={`fixed bg-white shadow-2xl flex flex-col overflow-hidden bottom-0 left-0 right-0 w-full h-[85vh] rounded-t-3xl sm:bottom-auto sm:top-0 sm:left-auto sm:right-0 sm:h-full sm:w-full sm:max-w-[450px] sm:rounded-none transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)] ${mounted ? 'translate-y-0 sm:translate-x-0' : 'translate-y-full sm:translate-y-0 sm:translate-x-full'}`}
-        style={{ zIndex: 2010 }}
-      >
-        
-        {/* Drag handle per Bottom Sheet su mobile */}
-        <div className="w-full flex justify-center pt-3 pb-1 sm:hidden absolute top-0 pointer-events-none" style={{ zIndex: 2030 }}>
-          <div className="w-12 h-1.5 bg-white/40 backdrop-blur-md rounded-full" />
-        </div>
+      <div style={panelStyle}>
+        {/* Drag handle mobile */}
+        {!isDesktop && (
+          <div style={{ width: '100%', display: 'flex', justifyContent: 'center', paddingTop: 12, paddingBottom: 4, position: 'absolute', top: 0, zIndex: 2030, pointerEvents: 'none' }}>
+            <div style={{ width: 48, height: 6, background: 'rgba(255,255,255,0.4)', backdropFilter: 'blur(8px)', borderRadius: 999 }} />
+          </div>
+        )}
 
-        <button 
+        <button
           onClick={onClose}
-          className="absolute top-4 right-4 bg-white/80 backdrop-blur hover:bg-white p-2 rounded-full shadow-lg text-slate-800 transition-all border border-slate-100"
-          style={{ zIndex: 2020 }}
+          style={closeButtonStyle}
+          onMouseEnter={(e) => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.transform = 'scale(1.05)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.85)'; e.currentTarget.style.transform = 'scale(1)'; }}
         >
           <X size={20} />
         </button>
 
-        {/* Header con Gradiente + Emoji Standardizzata */}
-        <div className={`relative h-56 w-full shrink-0 bg-gradient-to-br ${visuals.bg} flex items-center justify-center overflow-hidden`}>
-          <div className="absolute inset-0 bg-black/10" />
+        {/* Header con Gradiente + Emoji */}
+        <div style={{ position: 'relative', height: 224, width: '100%', flexShrink: 0, background: gradientBg, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.1)' }} />
+          <div style={{ position: 'absolute', width: 256, height: 256, background: 'rgba(255,255,255,0.1)', borderRadius: '50%', filter: 'blur(40px)', top: '-20%', right: '-10%' }} />
           
-          {/* Cerchio di sfondo astratto per dare tridimensionalità */}
-          <div className="absolute w-64 h-64 bg-white/10 rounded-full blur-2xl top-[-20%] right-[-10%]" />
-          
-          <span className="text-8xl drop-shadow-2xl z-10 relative transform hover:scale-110 transition-transform duration-500 ease-out mb-8">
+          <span style={{ fontSize: '5rem', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.2))', zIndex: 10, position: 'relative', marginBottom: 32 }}>
             {visuals.emoji}
           </span>
           
-          <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 text-white">
-            <span className="inline-block px-2.5 py-1 bg-white/20 backdrop-blur-md text-[10px] font-extrabold uppercase tracking-widest rounded-md mb-2 border border-white/20 shadow-sm">
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 20, background: 'linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4) 60%, transparent)', zIndex: 10, color: '#fff' }}>
+            <span style={{ display: 'inline-block', padding: '4px 10px', background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(12px)', fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', borderRadius: 6, marginBottom: 8, border: '1px solid rgba(255,255,255,0.2)' }}>
               {getCategoryLabel(badgeKey)}
             </span>
-            <h2 className="text-2xl font-bold leading-tight drop-shadow-md">{activity.name}</h2>
-            <div className="flex flex-col gap-1 mt-2 opacity-90 drop-shadow-sm">
-              <div className="flex items-center gap-1.5 text-sm font-semibold">
-                <MapPin size={14} className="shrink-0" />
-                <span className="truncate">{activity.locationName}</span>
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 700, lineHeight: 1.2, textShadow: '0 1px 4px rgba(0,0,0,0.3)', margin: 0 }}>
+              {activity.name}
+            </h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 8, opacity: 0.9 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.875rem', fontWeight: 600 }}>
+                <MapPin size={14} style={{ flexShrink: 0 }} />
+                <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{activity.locationName}</span>
               </div>
               {activity.address && activity.address !== "Indirizzo non disponibile" && (
-                <div className="flex items-center gap-1.5 pl-5 text-xs font-medium opacity-80">
-                  <span className="truncate">{activity.address}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, paddingLeft: 20, fontSize: '0.75rem', fontWeight: 500, opacity: 0.8 }}>
+                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{activity.address}</span>
                 </div>
               )}
             </div>
@@ -156,48 +214,41 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
         </div>
 
         {/* Contenuto Scrollabile */}
-        <div className="flex-1 overflow-y-auto p-6">
-          
-          {/* Griglia Informazioni Principali */}
-          <div className="grid grid-cols-2 gap-4 mb-8">
-            <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
-              <Calendar className="text-blue-600 mb-1" size={18} />
-              <p className="text-xs text-slate-500 font-medium">Giorni</p>
-              <p className="text-sm font-semibold text-slate-800">{daysString}</p>
+        <div style={{ flex: 1, overflowY: 'auto', padding: 24 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 32 }}>
+            <div style={{ background: '#f8fafc', padding: 12, borderRadius: 12, border: '1px solid #f1f5f9' }}>
+              <Calendar style={{ color: '#2563eb', marginBottom: 4 }} size={18} />
+              <p style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 500, margin: 0 }}>Giorni</p>
+              <p style={{ fontSize: '0.875rem', fontWeight: 600, color: '#1e293b', margin: 0 }}>{daysString}</p>
             </div>
-            <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
-              <Clock className="text-blue-600 mb-1" size={18} />
-              <p className="text-xs text-slate-500 font-medium">Orario</p>
-              <p className="text-sm font-semibold text-slate-800">{activity.startHour}:00 - {activity.endHour}:00</p>
+            <div style={{ background: '#f8fafc', padding: 12, borderRadius: 12, border: '1px solid #f1f5f9' }}>
+              <Clock style={{ color: '#2563eb', marginBottom: 4 }} size={18} />
+              <p style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 500, margin: 0 }}>Orario</p>
+              <p style={{ fontSize: '0.875rem', fontWeight: 600, color: '#1e293b', margin: 0 }}>{activity.startHour}:00 - {activity.endHour}:00</p>
             </div>
-            <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
-              <span className="text-blue-600 font-bold mb-1 block text-lg leading-none">🎖️</span>
-              <p className="text-xs text-slate-500 font-medium">Livello</p>
-              <p className="text-sm font-semibold text-slate-800">{LEVEL_LABELS[activity.level] || 'Tutti i livelli'}</p>
+            <div style={{ background: '#f8fafc', padding: 12, borderRadius: 12, border: '1px solid #f1f5f9' }}>
+              <span style={{ color: '#2563eb', fontWeight: 700, marginBottom: 4, display: 'block', fontSize: '1.125rem', lineHeight: 1 }}>🎖️</span>
+              <p style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 500, margin: 0 }}>Livello</p>
+              <p style={{ fontSize: '0.875rem', fontWeight: 600, color: '#1e293b', margin: 0 }}>{LEVEL_LABELS[activity.level] || 'Tutti i livelli'}</p>
             </div>
-            <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
-              <span className="text-blue-600 font-bold mb-1 block text-lg leading-none">🎯</span>
-              <p className="text-xs text-slate-500 font-medium">Target</p>
-              <p className="text-sm font-semibold text-slate-800">{TARGET_LABELS[activity.target]}</p>
+            <div style={{ background: '#f8fafc', padding: 12, borderRadius: 12, border: '1px solid #f1f5f9' }}>
+              <span style={{ color: '#2563eb', fontWeight: 700, marginBottom: 4, display: 'block', fontSize: '1.125rem', lineHeight: 1 }}>🎯</span>
+              <p style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 500, margin: 0 }}>Target</p>
+              <p style={{ fontSize: '0.875rem', fontWeight: 600, color: '#1e293b', margin: 0 }}>{TARGET_LABELS[activity.target]}</p>
             </div>
           </div>
 
-          {/* Descrizione */}
-          <div className="mb-8">
-            <h3 className="text-lg font-bold text-slate-900 mb-2">Informazioni sul corso</h3>
-            <p className="text-slate-600 leading-relaxed text-sm">
-              {activity.description}
-            </p>
+          <div style={{ marginBottom: 32 }}>
+            <h3 style={{ fontSize: '1.125rem', fontWeight: 700, color: '#0f172a', marginBottom: 8 }}>Informazioni sul corso</h3>
+            <p style={{ color: '#475569', lineHeight: 1.7, fontSize: '0.875rem', margin: 0 }}>{activity.description}</p>
           </div>
 
-          {/* Organizer & Contatti */}
-          <div className="bg-blue-50/50 rounded-2xl p-5 mb-8 border border-blue-100">
-            <h3 className="text-sm font-bold text-blue-900 mb-4 uppercase tracking-wider">Gestito da</h3>
-            <p className="font-semibold text-slate-900 mb-3">{activity.organizer}</p>
-            
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center gap-3 text-sm text-slate-700">
-                <div className="bg-white p-1.5 rounded-full shadow-sm text-blue-600">
+          <div style={{ background: 'rgba(239, 246, 255, 0.5)', borderRadius: 16, padding: 20, marginBottom: 32, border: '1px solid #dbeafe' }}>
+            <h3 style={{ fontSize: '0.875rem', fontWeight: 700, color: '#1e3a5f', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Gestito da</h3>
+            <p style={{ fontWeight: 600, color: '#0f172a', marginBottom: 12 }}>{activity.organizer}</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: '0.875rem', color: '#334155' }}>
+                <div style={{ background: '#fff', padding: 6, borderRadius: '50%', boxShadow: '0 1px 2px rgba(0,0,0,0.06)', color: '#2563eb' }}>
                   {activity.contact?.includes('@') ? <Mail size={14} /> : 
                    (activity.contact?.startsWith('http') || activity.contact?.startsWith('www')) ? <Navigation size={14} /> : 
                    <Phone size={14} />}
@@ -209,53 +260,48 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
                         `tel:${activity.contact?.replace(/\s+/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-blue-600 hover:underline transition-colors truncate"
+                  style={{ color: 'inherit', textDecoration: 'none', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
                 >
                   {activity.contact}
                 </a>
               </div>
             </div>
           </div>
-
         </div>
 
-        {/* Footer Appiccicato in Basso con Azioni Rapide */}
-        <div className="bg-white border-t border-slate-100 p-4 shadow-[0_-10px_20px_-15px_rgba(0,0,0,0.1)]">
-          <div className="flex items-center justify-between mb-4 px-2">
+        {/* Footer Azioni Rapide */}
+        <div style={{ background: '#fff', borderTop: '1px solid #f1f5f9', padding: 16, boxShadow: '0 -10px 20px -15px rgba(0,0,0,0.1)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, padding: '0 8px' }}>
             <div>
-              <p className="text-xs text-slate-500 font-medium">Prezzo</p>
+              <p style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 500, margin: 0 }}>Prezzo</p>
               {!activity.price || activity.price === 'N/A' || activity.price.toLowerCase().includes('verificare') ? (
-                <p className="text-lg font-bold text-amber-600 flex items-center gap-2">
-                  <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
-                  </span>
+                <p style={{ fontSize: '1.125rem', fontWeight: 700, color: '#d97706', display: 'flex', alignItems: 'center', gap: 8, margin: 0 }}>
                   Da verificare
                 </p>
               ) : (
-                <p className="text-xl font-extrabold text-slate-900">{activity.price}</p>
+                <p style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f172a', margin: 0 }}>{activity.price}</p>
               )}
             </div>
           </div>
 
-          <div className="grid grid-cols-4 gap-2">
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: 8 }}>
             <button 
               onClick={handleDirections}
-              className="col-span-2 bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center gap-2 py-3 rounded-xl font-bold transition-all shadow-md shadow-blue-200"
+              style={{ background: '#2563eb', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '12px 0', borderRadius: 12, fontWeight: 700, border: 'none', cursor: 'pointer', boxShadow: '0 4px 14px rgba(37,99,235,0.3)', transition: 'background 0.2s', fontSize: '0.875rem' }}
             >
               <Navigation size={18} />
               Andiamo!
             </button>
             <button 
               onClick={handleCalendar}
-              className="col-span-1 bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center py-3 rounded-xl font-bold transition-all"
+              style={{ background: '#f1f5f9', color: '#475569', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '12px 0', borderRadius: 12, fontWeight: 700, border: 'none', cursor: 'pointer', transition: 'background 0.2s' }}
               title="Aggiungi al Calendario"
             >
               <CalendarPlus size={20} />
             </button>
             <button 
               onClick={handleShare}
-              className="col-span-1 bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center py-3 rounded-xl font-bold transition-all"
+              style={{ background: '#f1f5f9', color: '#475569', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '12px 0', borderRadius: 12, fontWeight: 700, border: 'none', cursor: 'pointer', transition: 'background 0.2s' }}
               title="Condividi"
             >
               <Share2 size={20} />
@@ -263,17 +309,18 @@ export default function ActivityDetailPanel({ activity, onClose }: ActivityDetai
           </div>
           <button 
             onClick={handleContact}
-            className={`w-full mt-2 border-2 flex items-center justify-center gap-2 py-3 rounded-xl font-bold transition-all ${
-              (!activity.price || activity.price === 'N/A' || activity.price.toLowerCase().includes('verificare'))
-                ? 'bg-amber-50 border-amber-200 hover:bg-amber-100 text-amber-800 shadow-sm'
-                : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-800'
-            }`}
+            style={{ 
+              width: '100%', marginTop: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '12px 0', borderRadius: 12, fontWeight: 700, cursor: 'pointer', fontSize: '0.875rem', transition: 'background 0.2s',
+              ...(!activity.price || activity.price === 'N/A' || activity.price.toLowerCase().includes('verificare')
+                ? { background: '#fffbeb', border: '2px solid #fde68a', color: '#92400e' }
+                : { background: '#fff', border: '2px solid #e2e8f0', color: '#1e293b' }
+              ),
+            }}
           >
             {contactIcon}
             {contactText}
           </button>
         </div>
-
       </div>
     </>
   );

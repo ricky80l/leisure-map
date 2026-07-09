@@ -210,13 +210,4 @@ header.scrolled{box-shadow: var(--shadow);}
   .logo { font-size: 1.1rem; }
 }
 
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-@keyframes slideLeft {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
-}
-.animate-slide-up { animation: slideUp 0.3s cubic-bezier(0.2, 0, 0, 1) forwards; }
-.animate-slide-left { animation: slideLeft 0.3s cubic-bezier(0.2, 0, 0, 1) forwards; }
+
