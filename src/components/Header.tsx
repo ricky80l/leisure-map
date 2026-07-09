@@ -170,7 +170,7 @@ export default function Header({
             <svg 
               width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
               style={{ cursor: 'pointer', marginLeft: '8px', opacity: 0.6 }}
-              onClick={(e) => {
+              onClick={() => {
                 if (citySearchQuery) {
                   setCitySearchQuery('');
                   setShowDropdown(true);
