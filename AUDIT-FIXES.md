@@ -75,3 +75,13 @@ Questo documento funge da **handoff tra sessioni**. Va letto all'inizio di ogni 
   - La logica in `Header.tsx` esegue una ricerca in parallelo (una istantanea accent/case-insensitive sul JSON locale per le palestre, e una via `fetch` asincrono con debounce di 300ms verso Photon).
   - La UI ora usa un dropdown diviso in 2 sezioni (Palestre e Indirizzi) ed è robusta contro i problemi di rete: se Photon fallisce o rate-limita, il fallback silenzioso continua a mostrare le palestre senza bloccare l'esperienza.
 - **Limiti Noti**: Photon aggiorna regolarmente i propri dati da OpenStreetMap ma potrebbe non includere i civici ultra-recenti o i numeri interni non mappati; l'affidabilità dipende dalla qualità del dato OSM per le province di Treviso/Padova, che comunque è molto alta. Nessun salvataggio storico lato server per privacy.
+
+## FASE 5: SEO, Quick Wins e Fix Antigravity
+*Status: Completata*
+- **Task Completati**:
+  1. *Fix SEO e Canonical*: Aggiornato pp/sitemap.ts e creato public/robots.txt per l'indicizzazione.
+  2. *Refactoring Rotte Dinamiche*: Rinominata la rotta dettaglio da [id] a [slug] puro per URL semanticamente pulite.
+  3. *Fix Build TypeScript*: Risolto errore bloccante in src/components/Header.tsx (variabile inutilizzata) che faceva fallire la compilazione su Vercel.
+- **File Toccati**: pp/layout.tsx, pp/sitemap.ts, public/robots.txt, pp/attivita/[slug]/page.tsx, src/components/Header.tsx.
+- **Scelte Motivate**: Sblocco immediato del deploy continuo rimuovendo il warning TypeScript e completamento dei task SEO di base definiti nel piano Antigravity.
+- **Criteri Verificati**: La build in ambiente Vercel ora passa senza interruzioni.
